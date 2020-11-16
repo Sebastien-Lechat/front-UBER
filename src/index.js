@@ -12,9 +12,16 @@ import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Register />
+    <DoubleAuth />
   </React.StrictMode>,
   document.getElementById('root')
-);
+  );
+  
+//   ReactDOM.render(
+//     <React.StrictMode>
+//     <Login />
+//   </React.StrictMode>,
+//   document.getElementById('root2')
+// )
 
 reportWebVitals();
