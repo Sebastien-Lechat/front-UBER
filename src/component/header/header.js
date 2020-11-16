@@ -1,7 +1,6 @@
-// import logo1 from './logo1.png';
-// import logo3 from './logo3.png';
-// import avatarTest from './avatarTest.png';
-// import logout from './logout.png';
+import logo1 from '../../assets/img/1.png';
+import logo3 from '../../assets/img/3.png';
+import logout from '../../assets/img/16.png';
 import './header.css';
 
 function Header() {
@@ -11,8 +10,6 @@ function Header() {
   <div class="container"> 
 
     <a class="navbar-brand" href="#">
-    
-    
     </a> 
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
@@ -24,11 +21,11 @@ function Header() {
 
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          {/* <img src={logo3} alt="logo"/> */}
+          <img src={logo3} alt="logo"/>
         </li>
         <li class="nav-item">
-          {/* <img src={logo1} alt="logo"/> */}
-         
+          <img src={logo1} alt="logo"/>
+        
         </li>
         <li class="nav-item" class="li-header-gauche3">
           <a class="nav-link waves-effect">Dernière Connexion</a>
@@ -44,7 +41,7 @@ function Header() {
         </li> 
         <li class="nav-item">
           <a href="https://twitter.com/MDBootstrap" class="nav-link waves-effect" target="_blank">
-           Mon Compte 
+            Mon Compte 
           </a>
         </li>
         <li class="nav-item">
@@ -55,7 +52,6 @@ function Header() {
         <li class="nav-item">
           <a href="#" class="nav-link border border-light rounded waves-effect mr-2" target="_blank">
             <i class="fas fa-envelope mr-1"></i>Logout
-            
           </a>
         </li>
       </ul>
