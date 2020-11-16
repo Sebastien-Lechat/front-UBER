@@ -1,17 +1,17 @@
 import React from 'react';
-import logo from '../../assets/img/logo.png';
-import logo2 from '../../assets/img/logo2.png';
+import logo from '../../assets/img/1.png';
+import logo2 from '../../assets/img/uber.png';
 import './login.css';
 
 const Login = () => {
     return (
-          <div className="back-login">
-              <div className="row mx-0">
+        <div className="back-black">
+            <div className="row mx-0">
                 <div className="col-sm-12 col-md-12 col-lg-6 left-side px-0">
-                    <div className="col-12 px-0 center">
+                    <div className="col-sm-12 px-0 center">
                         <img src={logo2} alt="" className="title-img"/>
                     </div>
-                    <div className="col-12 px-0 center">
+                    <div className="col-sm-12 px-0 center">
                         <form id="login" className="login-form">
                             <div className="form-group">
                                 <label className="login-label">Adresse Email</label>
@@ -34,9 +34,9 @@ const Login = () => {
                 <div className="col-lg-6 rigth-side px-0 center">
                     <img src={logo} alt="" />
                 </div>
-              </div>
-          </div>
-      );
+            </div>
+        </div>
+    );
 }
 
 export default Login;

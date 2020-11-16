@@ -5,14 +5,6 @@
     height: 100vh;
 }
 
-.left-side {
-    height: 100vh;
-    border-right: 2px solid white;
-}
-
-.rigth-side {
-    height: 100vh;  
-}
 
 .center {
     display: flex;
@@ -21,9 +13,10 @@
 }
 
 .login-form {
-    width: 70%;
+    width: 35%;
     padding: 0px 50px;
-    border-radius: 25px;
+    border-radius: 15px;
+    margin-top: -35px;
 }
 
 .login-btn {
@@ -33,7 +26,7 @@
     width: 100%;
     height: 60px;
     font-size: 25px;
-    border-radius: 25px;
+    border-radius: 20px;
 }
 
 .login-label {
@@ -65,7 +58,7 @@
 }
 
 .title-img {
-    width: 375px;
+    width: 250px;
 }
 
 input {
@@ -74,26 +67,42 @@ input {
     border-radius: 10px !important;
 }
 
-@media (max-width: 576px) { 
-
-}
-
-@media (max-width: 768px) { 
-    .title-img {
-        width: 300px;
-    }
-
+@media (max-width: 1200px) { 
     .login-form {
-        width: 90%;
+        width: 40%;
         padding: 0px 10px;
         border-radius: 25px;
     }
 }
 
-@media (max-width: 992px) { 
-    .rigth-side {
-        display:none
+@media (max-width: 992px) {
+    .login-form {
+        width: 60%;
+        padding: 0px 10px;
+        border-radius: 25px;
     }
- }
+}
 
-@media (max-width: 1200px) {  }
+@media (max-width: 768px) { 
+    .title-img {
+        width: 225px;
+    }
+    .login-form {
+        width: 70%;
+        padding: 0px 10px;
+        border-radius: 25px;
+    }    
+}
+
+@media (max-width: 576px) { 
+    .login-form {
+        width: 80%;
+        padding: 0px 10px;
+        border-radius: 25px;
+    }
+}
+
+
+
+
+
