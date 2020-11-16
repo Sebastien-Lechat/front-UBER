@@ -1,0 +1,95 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@500&display=swap');
+#divMonCompte{
+    font-family: 'Manrope', sans-serif;
+}
+h1{
+    margin-left:5%
+}
+hr{
+    border: 5px solid black;
+    border-radius: 5px;
+    width: 90%;
+}
+.row{
+    padding-top: 50px;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+#infoUtilisateur{
+    background-color: black;
+    border-radius:20px;
+    height: 500px;
+}
+#listeInfo a{
+    color:white;
+    font-size: 20px;
+}
+#listeInfo{
+    list-style:none;
+}
+#listeInfo li{
+    margin:30px;
+}
+#parentBtnMaj{
+    height: 500px; 
+    line-height:500px ; 
+    white-space: nowrap;
+}
+
+#avatar{
+    height: 100px;
+}
+
+#infoUtilisateur h2{
+    color:white;
+    margin-left:10px;
+}
+#btnMAJ{
+    margin:0 auto!important;
+    background-color:black!important;
+    width: 100%;
+    font-size:30px!important;
+}
+#btnMAJ:hover{
+    background-color:#38B6FF!important;
+    border-color:#38B6FF!important;
+}
+
+@media (max-width: 450px) {
+  
+ 
+}
+@media (max-width: 995px) {
+    .br{
+        display: none!important;
+    }
+    #avatarNomUser{
+        text-align: center;
+        margin: 0 auto!important;
+    }
+    h1{
+        text-align: center!important;
+    }
+    #listeInfo a{
+        text-align: center!important;
+        color:white;
+        font-size: 20px;
+    }
+    
+    #parentBtnMaj{
+        margin-top:10px;
+        height: 10px!important; 
+        line-height:10px!important; 
+    }
+    #btnMAJ{
+        margin:0 auto!important;
+        background-color:#38B6FF!important;
+        border-color:#38B6FF!important;
+        width: 100%!important;
+        font-size:15px!important;
+    }
+    #listeInfo li{
+        margin:10px;
+    }
+}

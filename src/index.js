@@ -6,12 +6,12 @@ import App from './App';
 import Header from './component/header/header';
 import DoubleAuth from './auth/double-auth/double-auth';
 import Login from './auth/login/login';
-
+import MyAccount from './account/myAccount/myAccount';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Header />
+    <MyAccount />
   </React.StrictMode>,
   document.getElementById('root')
 );
