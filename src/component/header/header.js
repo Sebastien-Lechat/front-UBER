@@ -6,7 +6,6 @@ import './header.css';
 
 function Header() {
   return (
-
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <a class="navbar-brand" href="#" id="navbar-brand">
     <span class="cercleBlanc"><br></br><img  src={avatarTest} alt="logo"/>  </span>
@@ -23,7 +22,6 @@ function Header() {
     </ul>
   </div>
   <div class="collapse navbar-collapse" id="navDroite" >
-  
     <ul class="navbar-nav text-center">
       <li class="nav-item">
         <a class="nav-link" href="#">HISTORIQUE</a>
@@ -37,7 +35,6 @@ function Header() {
     </ul>
   </div>
 </nav>
-
   );
 }
 
