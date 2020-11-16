@@ -37,68 +37,9 @@
   }
 }
 
-.back-doubleAuth{
-  background-color:#000000;
-  width: 100vw;
-  height: 100vh;
-}
-.input-pos{
-  width: 300px;
-  height: 100px;
-  position: absolute;
-  top: 450px;
-  left : 600px;
-}
-.btn-connexion {
-	background:linear-gradient(to bottom, #ffffff 5%, #ffffff 100%);
-	background-color:#ffffff;
-	border-radius:29px;
-	border:2px solid #ffffff;
-	display:inline-block;
-	cursor:pointer;
-	color:#000000;
-	font-family:Arial;
-	font-size:17px;
-	padding:11px 31px;
-	text-decoration:none;
-  text-shadow:0px 1px 0px #000000;
-  position: absolute;
-  top: 500px;
-  left : 670px;
-}
-.btn-connexion:hover {
-	background:linear-gradient(to bottom, #ffffff 5%, #ffffff 100%);
-  background-color:#ffffff;
-}
-.uber{
-  position: absolute;
-  left: 600px;
-}
-.msg-email{
-  color:#ffffff;
-	font-family:Arial;
-  font-size:17px;
-  position: absolute;
-  left: 650px;
-  top: 250px;
-}
-.msg-openmail{
-  color:#ffffff;
-	font-family:Arial;
-  font-size:17px;
-  position: absolute;
-  left: 590px;
-  top: 300px;
-}
-.msg-codevalidation{
-  color:#ffffff;
-	font-family:Arial;
-  font-size:17px;
-  position: absolute;
-  left : 470px;
-  top : 350px;
-}
-.valcode{
-  color:#0000ff;
+.center {
+  display:flex;
+  align-items:center;
+  justify-content: center;
 }
 
