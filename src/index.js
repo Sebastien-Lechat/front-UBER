@@ -10,7 +10,7 @@ import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Login />
+    <DoubleAuth />
   </React.StrictMode>,
   document.getElementById('root')
 );
