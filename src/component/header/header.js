@@ -1,18 +1,17 @@
-import logo from './logo.svg';
 // import logo1 from './logo1.png';
 // import logo3 from './logo3.png';
 // import avatarTest from './avatarTest.png';
 // import logout from './logout.png';
-import './App.css';
+import './header.css';
 
-function App() {
+function Header() {
   return (
     <div className="App">
 <nav class="navbar navbar-expand-lg navbar-light white">
   <div class="container"> 
 
     <a class="navbar-brand" href="#">
-    <img src={logo} alt="logo"/>
+    
     
     </a> 
 
@@ -67,4 +66,5 @@ function App() {
   );
 }
 
-export default App;
+export default Header;
+

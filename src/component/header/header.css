@@ -1,0 +1,62 @@
+
+.logoutBtn{
+    height:50px; 
+    width: 50px; 
+  }
+  #navbarSupportedContent{
+    background-color: orange;
+    width: 100%!important;
+    height:80px;
+  }
+  
+  .li-header-gauche3{
+    border-style:solid;
+    border-top:none;
+    border-bottom:none;
+    border-color: white; 
+  }
+  .navbar .navbar-brand img {
+   height: 60px;
+  }
+  .navbar{
+  background-color: black;
+  }
+  .navbar .navbar-brand {
+   padding-top: 0;
+  }
+  
+  .navbar .nav-link {
+   color: white!important;
+  }
+  
+  .navbar .button-collapse {
+   padding-top: 1px;
+  }
+  
+  .card-intro .card-body {
+   padding-top: 1.5rem;
+   padding-bottom: 1.5rem;
+   border-radius: 0 !important;
+  }
+  
+  .card-intro .card-body h1 {
+   margin-bottom: 0;
+  }
+  
+  .card-intro {
+   margin-top: 64px;
+  }
+  
+  @media (max-width: 450px) {
+   .card-intro {
+     margin-top: 56px;
+   }
+  }
+  
+  @media (min-width: 1441px) {
+   .card-intro {
+     padding-left: 0 !important;
+   }
+  }
+  
+  
