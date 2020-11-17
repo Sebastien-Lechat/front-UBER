@@ -6,29 +6,25 @@ import Header from './component/header/header';
 import DoubleAuth from './auth/double-auth/double-auth';
 import Login from './auth/login/login';
 import Register from './auth/register/register';
-
 import PwdRecovery from './auth/pwd-recovery/pwd-recovery'
-
 import {ProtectedRoute, ProtectedRouteProps} from './guard/auth-gard';
-
 import {BrowserRouter as Router,Switch,Route,Link,useRouteMatch,useParams} from "react-router-dom";
-
 import reportWebVitals from './reportWebVitals';
+
 
 const defaultProtectedRouteProps: ProtectedRouteProps = {
   isAuthenticated: false,
   authenticationPath: '/login',
 };
 
-
 ReactDOM.render(
     <Router>
       <Switch>
         <Route exact={true} path="/login">
-          <Login />
+          <Login.Display />
         </Route>
         <Route exact={true} path="/register">
-          <Register />
+          <Register.Display />
         </Route>
         <Route exact={true} path="/double-auth">
           <DoubleAuth />

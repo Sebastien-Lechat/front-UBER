@@ -1,45 +1,97 @@
 import React from 'react';
-import logo2 from '../../assets/img/uber.png';
-import './register.css';
+import logo from '../../assets/img/uber.png';
+import styles, { registerStyles } from './register-style';
+import { withStyles, WithStyles } from '@material-ui/core/styles';
 
-const Register = () => {
-    return (
-        <div className="back-black">
-            <div className="row mx-0">
-                <div className="col-sm-12 px-0 center">
-                    <img src={logo2} alt="" className="title-img"/>
-                </div>
-                <div className="col-sm-12 px-0 center">
-                    <form id="register" className="register-form">
-                        <div className="form-group">
-                            <label className="register-label">Nom</label>
-                            <input type="text" className="form-control" id="name"  placeholder="Name"/>
-                        </div>
-                        <div className="form-group">
-                            <label className="register-label">Adresse Email</label>
-                            <input type="email" className="form-control" id="email"  placeholder="Email"/>
-                        </div>
-                        <div className="form-group">
-                            <label className="register-label">Téléphone</label>
-                            <input type="text" className="form-control" id="phone"  placeholder="Téléphone"/>
-                        </div>
-                        <div className="form-group">
-                            <label className="register-label">Mot de passe :</label>
-                            <input type="password" className="form-control" id="password"  placeholder="Mot de passe"/>
-                        </div>
-                        <div className="form-group">
-                            <label className="register-label">Confirmer le mot de passe :</label>
-                            <input type="password" className="form-control" id="confirmPassword"  placeholder="Confirmer le mot de passe"/>
-                        </div>
-                        <button type="submit" className="btn register-btn">M'inscrire</button>
-                        <div className="col-sm-12 px-0 div-link d-flex justify-content-center">
-                            <span className="register-label">Vous avez déjà un compte ?&nbsp;<span className="link">Connexion</span></span>
-                        </div>
-                    </form>
-                </div>
+import Grid from '@material-ui/core/Grid';
+import TextField from '@material-ui/core/TextField';
+import Link from '@material-ui/core/Link';
+import Button from '@material-ui/core/Button';
+
+interface P {}
+interface S {}
+
+export default class Register extends React.PureComponent<P & WithStyles<registerStyles>, S> {
+
+    public static Display = withStyles(styles as any)(Register) as React.ComponentType<P>
+    
+    render () {
+        const { classes } = this.props;
+        const preventDefault = (event: React.SyntheticEvent) => event.preventDefault();
+            return (
+            <div className={classes.back + ' ' + classes.center}>
+            <Grid container className={classes.container}>
+                <Grid item xs={12} className={classes.mainDiv + ' ' + classes.center}>
+                    <Grid container>
+                        <Grid item xs={12} className={classes.center}>
+                            <img className={classes.img} src={logo} alt=""/>
+                        </Grid>
+                        <Grid item xs={12} className={classes.center}>
+                            <form className={classes.form} noValidate autoComplete="off">
+                                <Input id="name" label="Name" variant="outlined" />
+                                <Input id="email" label="Email" variant="outlined" />
+                                <Input id="phone" label="Phone" variant="outlined" />
+                                <Input id="password" label="Mot de passe" variant="outlined" />
+                                <Input id="confirmPassword" label="Confirmer le mot de passe" variant="outlined" />
+                                <RegisterButton>Inscription</RegisterButton>
+                            </form>
+                        </Grid>
+                        <Grid item xs={12} className={classes.center}>
+                            <span className={classes.subtitle}>Vous avez déjà un compte ? <Link href="#" onClick={preventDefault} className={classes.link}>Connexion</Link></span> 
+                        </Grid>
+                    </Grid>
+                </Grid>
+            </Grid>
             </div>
-        </div>
-    );
+        );
+    }
 }
 
-export default Register;
+const Input = withStyles({
+    root: {
+        width:'100%',
+        marginBottom:'2rem',
+        color:'white',
+        '& input': {
+            color: 'white',
+        },
+        '& label': {
+            color: 'white',
+        },
+        '&:hover label': {
+            color: '#ADADAE',
+        },
+        '& label.Mui-focused': {
+            color: 'white',
+        },
+        '& .MuiOutlinedInput-root': {
+            '& fieldset': {
+                borderColor: 'white',
+                borderRadius: '10px',
+            },
+            '&:hover fieldset': {
+            borderColor: '#ADADAE',
+            },
+            '&.Mui-focused fieldset': {
+            borderColor: 'white',
+            },
+        },
+    },
+})(TextField);
+
+const RegisterButton = withStyles({
+    root: {
+        color: 'black',
+        backgroundColor:'white',
+        marginTop: '2rem',
+        border: 'none',
+        width: '100%',
+        height: '60px',
+        fontSize:'25px',
+        borderRadius: '10px',
+        textTransform: 'capitalize',
+        '&:hover': {
+            backgroundColor: '#ADADAE',
+        },
+    },
+})(Button);
