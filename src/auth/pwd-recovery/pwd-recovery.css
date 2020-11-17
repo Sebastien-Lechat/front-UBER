@@ -1,0 +1,63 @@
+.back-pwdRecovery{
+    background-color: black;
+    width: 100vw;
+    height: 100vh;
+}
+.center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.msg-forgetPwd{
+    font-size: 20px;
+    color:white;
+    text-align: center;
+    position: relative;
+    top:100px;
+}
+.mail-label {
+    font-size: 20px;
+    color:white;
+    text-align: center;
+}
+.input-code {
+    width: 30%;
+    height: 50px;
+    font-size: 10px;
+    border-radius: 10px;
+    position: relative;
+    top:200px;
+}
+.btn-send {
+    background:linear-gradient(to bottom, #ffffff 5%, #ffffff 100%);
+    background-color:#ffffff;
+    border-radius:29px;
+    border:2px solid #ffffff;
+    display:inline-block;
+    cursor:pointer;
+    color:#000000;
+    font-family:Arial;
+    font-size:17px;
+    padding:11px 31px;
+    text-decoration:none;
+    text-shadow:0px 1px 0px #000000;
+    width: 32%;
+    position: relative;
+    top:320px;
+}
+.btn-send:hover {
+    background:linear-gradient(to bottom, #ffffff 5%, #ffffff 100%);
+    background-color:#ffffff;
+}
+.msg-connexion{
+    color:#ffffff;
+    font-family:Arial;
+    font-size:16px;
+    position: relative;
+    top:400px;
+}
+.link-inscription {
+    font-size: 16px;
+    text-decoration: underline;
+    cursor: pointer;
+}
