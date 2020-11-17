@@ -21,7 +21,7 @@ function DoubleAuth() {
         <div className="col-sm-12 center">
           <form className="input-code">
               <div className="form-group">
-                  <input type="email" classNameName="form-control" placeholder="Your code" />
+                  <input type="email" className="form-control" placeholder="Your code" />
               </div>
           </form>
         </div>

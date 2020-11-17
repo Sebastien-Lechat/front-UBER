@@ -9,7 +9,7 @@ const Login = () => {
             <div className="row mx-0">
                 <div className="col-sm-12 col-md-12 col-lg-6 left-side px-0">
                     <div className="col-sm-12 px-0 center">
-                        <img src={logo2} alt="" className="title-img"/>
+                        <img src={logo2} alt="" className="title-img-login"/>
                     </div>
                     <div className="col-sm-12 px-0 center">
                         <form id="login" className="login-form">
