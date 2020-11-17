@@ -29,8 +29,8 @@ export default class Login extends React.PureComponent<P & WithStyles<loginStyle
                         </Grid>
                         <Grid item xs={12} className={classes.center}>
                             <form className={classes.form} noValidate autoComplete="off">
-                                <InputEmail id="outlined-basic" label="Email" variant="outlined" />
-                                <InputPassword id="outlined-basic" label="Password" variant="outlined" />
+                                <InputEmail id="outlined-basic" label="EMAIL" variant="outlined" />
+                                <InputPassword id="outlined-basic" label="PASSWORD" variant="outlined" />
                                 <div className={classes.passwordLost}>
                                     <Link href="#" onClick={preventDefault} className={classes.link}>Mot de passe oublié ?</Link>
                                 </div>

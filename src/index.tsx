@@ -10,6 +10,8 @@ import PwdRecovery from './auth/pwd-recovery/pwd-recovery'
 import {ProtectedRoute, ProtectedRouteProps} from './guard/auth-gard';
 import {BrowserRouter as Router,Switch,Route,Link,useRouteMatch,useParams} from "react-router-dom";
 import reportWebVitals from './reportWebVitals';
+import VerifyEmail from './auth/verify-email/verify-email';
+import RequestPasswordRecovery from './auth/request-pwd-recovery/request-pwd-recovery';
 
 
 const defaultProtectedRouteProps: ProtectedRouteProps = {
@@ -26,8 +28,17 @@ ReactDOM.render(
         <Route exact={true} path="/register">
           <Register.Display />
         </Route>
+        <Route exact={true} path="/verify-email">
+          <VerifyEmail.Display />
+        </Route>
         <Route exact={true} path="/double-auth">
-          <DoubleAuth />
+          <DoubleAuth.Display />
+        </Route>
+        <Route exact={true} path="/request-password-lost">
+          <RequestPasswordRecovery.Display />
+        </Route>
+        <Route exact={true} path="/double-auth">
+          <DoubleAuth.Display />
         </Route>
         <Route exact={true} path="/password-lost">
           <PwdRecovery />
