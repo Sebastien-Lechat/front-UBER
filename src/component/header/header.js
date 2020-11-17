@@ -9,7 +9,7 @@ function Header() {
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <a class="navbar-brand" href="#" id="navbar-brand">
-    <span class="cercleBlanc"><br></br><img  src={avatarTest} alt="logo"/>  </span>
+    {/* <span class="cercleBlanc"><br></br><img  src={avatarTest} alt="logo"/>  </span> */}
      <img class="logoUberCercle"src={logo1} alt="logo"/> 
      <img class="logoUber" src={logo3} alt="logo"/>  
   </a>
