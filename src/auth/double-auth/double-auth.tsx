@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import uber from '../../assets/img/uber.png';
 import './double-auth.css';
 
-function DoubleAuth() {
+const  DoubleAuth = () => {
   return (
     <div className="back-doubleAuth">
       <div className ="row mx-0">
