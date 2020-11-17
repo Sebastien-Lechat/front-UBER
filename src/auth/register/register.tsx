@@ -28,11 +28,11 @@ export default class Register extends React.PureComponent<P & WithStyles<registe
                         </Grid>
                         <Grid item xs={12} className={classes.center}>
                             <form className={classes.form} noValidate autoComplete="off">
-                                <Input id="name" label="Name" variant="outlined" />
-                                <Input id="email" label="Email" variant="outlined" />
-                                <Input id="phone" label="Phone" variant="outlined" />
-                                <Input id="password" label="Mot de passe" variant="outlined" />
-                                <Input id="confirmPassword" label="Confirmer le mot de passe" variant="outlined" />
+                                <Input id="name" label="NAME" variant="outlined" />
+                                <Input id="email" label="EMAIL" variant="outlined" />
+                                <Input id="phone" label="PHONE" variant="outlined" />
+                                <Input id="password" label="MOT DE PASSE" variant="outlined" />
+                                <Input id="confirmPassword" label="CONFIRMER LE MOT DE PASSE" variant="outlined" />
                                 <RegisterButton>Inscription</RegisterButton>
                             </form>
                         </Grid>
