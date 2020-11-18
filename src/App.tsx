@@ -8,7 +8,8 @@ import {ProtectedRoute, ProtectedRouteProps} from './guard/auth-gard';
 import {BrowserRouter as Router,Switch,Route,Link,useRouteMatch,useParams} from "react-router-dom";
 import VerifyEmail from './auth/verify-email/verify-email';
 import RequestPasswordRecovery from './auth/request-pwd-recovery/request-pwd-recovery';
-
+import Myaccount from './account/myAccount/myAccount';
+import UpdateMyAccount from './account/updateMyAccount/updateMyAccount';
 
 const defaultProtectedRouteProps: ProtectedRouteProps = {
   isAuthenticated: true,
@@ -39,6 +40,12 @@ const App = () => {
                 </Route>
                 <Route exact={true} path="/password-lost">
                     <PasswordRecovery.Display />
+                </Route>
+                <Route exact={true} path="/my-account">
+                    <Myaccount.Display />
+                </Route>
+                <Route exact={true} path="/update-my-account">
+                    <UpdateMyAccount.Display />
                 </Route>
                 <ProtectedRoute {...defaultProtectedRouteProps} exact={true} path='/' component={Header.Display}/>
                 <Route path="*">
