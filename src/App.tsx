@@ -11,41 +11,41 @@ import RequestPasswordRecovery from './auth/request-pwd-recovery/request-pwd-rec
 
 
 const defaultProtectedRouteProps: ProtectedRouteProps = {
-  isAuthenticated: false,
+  isAuthenticated: true,
   authenticationPath: '/login',
 };
 
 const App = () => {
     return (
         <Router>
-      <Switch>
-        <Route exact={true} path="/login">
-          <Login.Display />
-        </Route>
-        <Route exact={true} path="/register">
-          <Register.Display />
-        </Route>
-        <Route exact={true} path="/verify-email">
-          <VerifyEmail.Display />
-        </Route>
-        <Route exact={true} path="/double-auth">
-          <DoubleAuth.Display />
-        </Route>
-        <Route exact={true} path="/request-password-lost">
-          <RequestPasswordRecovery.Display />
-        </Route>
-        <Route exact={true} path="/double-auth">
-          <DoubleAuth.Display />
-        </Route>
-        <Route exact={true} path="/password-lost">
-          <PasswordRecovery.Display />
-        </Route>
-        <ProtectedRoute {...defaultProtectedRouteProps} exact={true} path='/' component={Header}/>
-        <Route path="*">
-          <Header />
-        </Route>
-      </Switch>
-    </Router>
+            <Switch>
+                <Route exact={true} path="/login">
+                    <Login.Display />
+                </Route>
+                <Route exact={true} path="/register">
+                    <Register.Display />
+                </Route>
+                <Route exact={true} path="/verify-email">
+                    <VerifyEmail.Display />
+                </Route>
+                <Route exact={true} path="/double-auth">
+                    <DoubleAuth.Display />
+                </Route>
+                <Route exact={true} path="/request-password-lost">
+                    <RequestPasswordRecovery.Display />
+                </Route>
+                <Route exact={true} path="/double-auth">
+                    <DoubleAuth.Display />
+                </Route>
+                <Route exact={true} path="/password-lost">
+                    <PasswordRecovery.Display />
+                </Route>
+                <ProtectedRoute {...defaultProtectedRouteProps} exact={true} path='/' component={Header.Display}/>
+                <Route path="*">
+                    <Header.Display />
+                </Route>
+            </Switch>
+        </Router>
     );
 }
 
