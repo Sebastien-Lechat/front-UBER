@@ -1,43 +1,62 @@
 import React from 'react';
+import styles, { headerBarStyles } from './header-style';
+import { withStyles, WithStyles } from '@material-ui/core/styles';
 import logo1 from '../../assets/img/1.png';
-import logo3 from  '../../assets/img/uber2.png';
-import avatarTest from '../../assets/img/avatarTest2.png';
-import logout from '../../assets/img/16.png';
-import './header.css';
+import logo2 from '../../assets/img/uber.png';
 
-const Header = () => {
-  return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-      <a className="navbar-brand" href="#" id="navbar-brand">
-        <span className="cercleBlanc"><br></br><img  src={avatarTest} alt="logo"/>  </span>
-        <img className="logoUberCercle"src={logo1} alt="logo"/> 
-        <img className="logoUber" src={logo3} alt="logo"/>  
-      </a>
-      <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navDroite" aria-controls="navDroite" aria-expanded="true" aria-label="Toggle navigation">
-        <span className="navbar-toggler-icon"></span>
-      </button>
-      <img className="logoUberMobil" src={logo1} alt="logo"/>  
-      <div className="collapse navbar-collapse" id="derniereConnexion" >
-        <ul className="navbar-nav mr-auto">
-          <li className="nav-item text-center" id="VR"><a className="nav-link" href="#">DERNIÈRE CONNEXION<br></br>JJ/MM/AA</a></li>
-        </ul>
-      </div>
-      <div className="collapse navbar-collapse" id="navDroite" >
-        <ul className="navbar-nav text-center">
-          <li className="nav-item">
-            <a className="nav-link" href="#">HISTORIQUE</a>
-          </li>
-          <li className="nav-item">
-            <a className="nav-link" href="#">MON COMPTE</a>
-          </li>
-          <li className="nav-item">
-            <a className="nav-link" href="#">DECONNEXION &nbsp; <img className="imgLogout" src={logout} alt="Déconnexion"/></a>
-          </li>  
-        </ul>
-      </div>
-    </nav>
-  );
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+
+interface P {}
+interface S {}
+
+export default class HeaderBar extends React.PureComponent<P & WithStyles<headerBarStyles>, S> {
+
+    public static Display = withStyles(styles as any)(HeaderBar) as React.ComponentType<P>
+    
+    render () {
+        const { classes } = this.props;
+        return (
+          <AppBar position="static">
+            <HeaderNavBar>
+              <div className={classes.avatar + ' ' + classes.center}>
+                <div className={classes.img}></div>
+              </div>
+              <div className={classes.logoDiv + ' ' + classes.center}>
+                <img className={classes.logo1} src={logo1} alt=""/>
+                <img className={classes.logo2} src={logo2} alt=""/>
+              </div>
+              <div className={classes.menu + ' ' + classes.center}>
+                <span>
+                  Mon compte
+                </span>
+                <span>
+                  Historique
+                </span>
+                <span>
+                  Déconnexion
+                  <LogoutIcon />
+                </span>
+              </div>
+            </HeaderNavBar>
+          </AppBar>
+        );
+    }
 }
 
-export default Header;
+const HeaderNavBar = withStyles({
+  root: {
+      backgroundColor: 'black',
+      height: '10vh',
+      paddingLeft: '0',
+  },
+})(Toolbar);
 
+const LogoutIcon = withStyles({
+  root: {
+    width: '30px',
+    height: '30px',
+    marginLeft: '5px'
+  },
+})(ExitToAppIcon);
