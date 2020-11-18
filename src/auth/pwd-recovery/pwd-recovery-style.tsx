@@ -1,9 +1,9 @@
 import { Theme, createStyles } from '@material-ui/core/styles';
 
-export type passwordRecoveryStyles = ("center" | "form" | "back" | "mainDiv" | "img" | "container"
-| "link" | "subtitle" | "passwordLost" | "text"); // add class create
+export type RequestPasswordRecoveryStyles = ("center" | "back" | "container" | "form" | "mainDiv" 
+| "img" | "text" | "subtitle" | "link"); // add class create
 
-export default (theme: Theme) => createStyles<passwordRecoveryStyles, {}>({
+export default (theme: Theme) => createStyles<RequestPasswordRecoveryStyles, {}>({
     center: {
         display: 'flex',
         alignItems: 'center',
@@ -14,8 +14,12 @@ export default (theme: Theme) => createStyles<passwordRecoveryStyles, {}>({
         width: '100vw',
         height: '100vh',
     },
+    container: {
+        height: '100vh',
+    },
     form: {
         width: '30%', // Fix IE 11 issue.
+        marginTop: '-2rem',
         textAlign:'center'
     },
     mainDiv: {
@@ -26,8 +30,13 @@ export default (theme: Theme) => createStyles<passwordRecoveryStyles, {}>({
         marginTop: '-7rem',
         width: '300px'
     },
-    container: {
-        height: '100vh',
+    text: {
+        marginTop : '-9rem',
+        color: 'white',
+        fontSize : '24px',
+        '& span' : {
+            color: '#143eda'
+        }
     },
     link: {
         color: 'white',
@@ -39,17 +48,6 @@ export default (theme: Theme) => createStyles<passwordRecoveryStyles, {}>({
     subtitle: {
         color: 'white',
         marginTop: '4rem',
-    },
-    passwordLost: {
-        marginTop: '0.5rem',
-        textAlign: 'right',
-    },
-    text: {
-        color: 'white',
-        fontSize : '24px',
-        '& span' : {
-            color: '#143eda'
-        }
     }
 });
     
