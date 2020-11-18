@@ -1,97 +1,71 @@
 import React from 'react';
-import logo from '../../assets/img/uber.png';
+import avatar from  '../../assets/img/linux-avatar.png';
 import styles, { updateMyAccountStyles } from './UpdateMyAccount-style';
 import { withStyles, WithStyles } from '@material-ui/core/styles';
 
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
-import Link from '@material-ui/core/Link';
 import Button from '@material-ui/core/Button';
-
+import Container from '@material-ui/core/Container';
+import PhotoCamera from '@material-ui/icons/PhotoCamera';
+import Checkbox from '@material-ui/core/Checkbox';
 interface P {}
 interface S {}
 
-export default class UpdateMyAccount extends React.PureComponent<P & WithStyles<updateMyAccountStyles>, S> {
+    export default class UpdateMyAccount extends React.PureComponent<P & WithStyles<updateMyAccountStyles>, S> {
 
     public static Display = withStyles(styles as any)(UpdateMyAccount) as React.ComponentType<P>
     
     render () {
         const { classes } = this.props;
         const preventDefault = (event: React.SyntheticEvent) => event.preventDefault();
+        
             return (
-            <div className={classes.back + ' ' + classes.center}>
-            <Grid container className={classes.container}>
-                <Grid item xs={12} className={classes.mainDiv + ' ' + classes.center}>
-                    <Grid container>
-                        <Grid item xs={12} className={classes.center}>
-                            <img className={classes.img} src={logo} alt=""/>
-                        </Grid>
-                        <Grid item xs={12} className={classes.center}>
-                            <form className={classes.form} noValidate autoComplete="off">
-                                <Input id="name" label="NAME" variant="outlined" />
-                                <Input id="email" label="EMAIL" variant="outlined" />
-                                <Input id="phone" label="PHONE" variant="outlined" />
-                                <Input id="password" label="MOT DE PASSE" variant="outlined" />
-                                <Input id="confirmPassword" label="CONFIRMER LE MOT DE PASSE" variant="outlined" />
-                                <RegisterButton>Emilie Mettre à jours mon compte</RegisterButton>
-                            </form>
-                        </Grid>
-                        <Grid item xs={12} className={classes.center}>
-                            <span className={classes.subtitle}>Vous avez déjà un compte ? <Link href="#" onClick={preventDefault} className={classes.link}>Connexion</Link></span> 
+                <div >
+                    <h1 className={classes.h1}>MON COMPTE &gt; METTRE A JOURS MON COMPTE</h1>
+                    <hr className={classes.hr}></hr>
+                    <Grid container className={classes.container}>
+                        <Grid item xs={12}>
+                            <Container className={classes.containerUser}>
+                                <Grid container>
+                                    <Grid item xs={4} className={classes.left}>
+                                    
+                                    <img src={avatar} className={classes.userAvatar} alt="" />
+                                        <input accept="image/*" className={classes.input} id="contained-button-file" multiple type="file" />
+                                            <label htmlFor="contained-button-file">
+                                                <Button className={classes.btnAvatar} variant="contained" color="primary" component="span">
+                                                <PhotoCamera /> &nbsp; Modifier mon avatar
+                                                </Button>
+                                            </label>
+                                    
+                                    
+                                    </Grid>
+                                    <Grid item xs={4}>
+                                    <form className={classes.form} noValidate autoComplete="off">
+                                        <TextField className={classes.formId} id="filled-basic" label="Nom" variant="filled" />
+                                        <TextField className={classes.formId} id="filled-basic" label="Prénom" variant="filled" />
+                                        <TextField className={classes.formId} id="filled-basic" label="Téléphone" variant="filled" />
+                                    </form>
+                                    </Grid>
+                                    <Grid item xs={4}>
+                                    <form className={classes.form} noValidate autoComplete="off">
+                                        <TextField className={classes.formId} id="filled-basic" label="Email" variant="filled" />
+                                        <TextField className={classes.formId} id="filled-basic" label="Mot de passe" variant="filled" />
+                                        <TextField className={classes.formId} id="filled-basic" label="Mot de passe" variant="filled" />
+                                        <Checkbox className={classes.checked}/>
+                                    <a className={classes.a}> Activer l'otpion du double authentification</a> 
+                                    </form>
+                                    
+                                    </Grid>
+                                    
+                                </Grid>
+                            </Container>
                         </Grid>
                     </Grid>
-                </Grid>
-            </Grid>
-            </div>
+                    <Grid container justify="center" alignItems="center">
+                        <Button   className={classes.btnUpdateUser} variant="contained" color="primary" disableElevation> VALIDER</Button>
+                    </Grid>
+                </div>
         );
     }
 }
-
-const Input = withStyles({
-    root: {
-        width:'100%',
-        marginBottom:'2rem',
-        color:'white',
-        '& input': {
-            color: 'white',
-        },
-        '& label': {
-            color: 'white',
-        },
-        '&:hover label': {
-            color: '#ADADAE',
-        },
-        '& label.Mui-focused': {
-            color: 'white',
-        },
-        '& .MuiOutlinedInput-root': {
-            '& fieldset': {
-                borderColor: 'white',
-                borderRadius: '10px',
-            },
-            '&:hover fieldset': {
-            borderColor: '#ADADAE',
-            },
-            '&.Mui-focused fieldset': {
-            borderColor: 'white',
-            },
-        },
-    },
-})(TextField);
-
-const RegisterButton = withStyles({
-    root: {
-        color: 'black',
-        backgroundColor:'white',
-        marginTop: '2rem',
-        border: 'none',
-        width: '100%',
-        height: '60px',
-        fontSize:'25px',
-        borderRadius: '10px',
-        textTransform: 'capitalize',
-        '&:hover': {
-            backgroundColor: '#ADADAE',
-        },
-    },
-})(Button);
