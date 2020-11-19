@@ -45,7 +45,7 @@ const App = () => {
                     <Myaccount.Display />
                 </Route>
                 <Route exact={true} path="/update-my-account">
-                    <Header.Display />
+                <Header.Display />
                     <UpdateMyAccount.Display />
                 </Route>
                 <ProtectedRoute {...defaultProtectedRouteProps} exact={true} path='/' component={Header.Display}/>

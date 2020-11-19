@@ -1,6 +1,6 @@
 import { Theme, createStyles } from '@material-ui/core/styles';
 
-export type updateMyAccountStyles = ("container" | "h1" |"left" | "hr" |"containerUser" | "btnAvatar" |"btnUpdateUser" | "input" | "userAvatar"|"form" | "formId" | "checked" |"a"); // add class create
+export type updateMyAccountStyles = ("container" | "h1" |"left" | "hr" |"containerUser" | "btnAvatar" |"btnUpdateUser" | "input" | "userAvatar"|"form" | "formId" | "checked" |"a" | "alert" | "leftSucces"|"succesIcone"); // add class create
 
 export default (theme: Theme) => createStyles<updateMyAccountStyles, {}>({
     input: {
@@ -75,7 +75,26 @@ export default (theme: Theme) => createStyles<updateMyAccountStyles, {}>({
     a:{
         textDecoration:'underline'
 
+    },
+    alert: {
+        marginTop: '40px',
+        float:'left',
+        width:'85%',
+        marginRight: '5%',
+        // marginTop: '10px',
+        // marginLeft: '10%',
+        // marginRight: '10%',
+
+    },
+    leftSucces: {
+        // backgroundColor:'orange',
+        // marginRight:'10%',
+    },
+    succesIcone:{
+        height:'40px',
+        marginRight:'10px'
     }
+
 
 
 });
