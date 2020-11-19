@@ -33,10 +33,11 @@ export default (theme: Theme) => createStyles<myAccountStyles, {}>({
         width: '90%',
     },
     container: {
+        backgroundColor:'',
         marginLeft:'10%',
-        marginRight:'10%',
+        // marginRight:'10%',
         marginTop: '50px',
-        backgroundColor: '',
+        width: '90%'
     },
     right: {
     },
@@ -67,7 +68,7 @@ export default (theme: Theme) => createStyles<myAccountStyles, {}>({
         marginLeft: '100px',
         backgroundColor: 'black',
         borderRadius: '60px',
-        width: '40%',
+        width: '70%',
         height: '100px',
         fontSize: '20px',
         alignItems:'center',
