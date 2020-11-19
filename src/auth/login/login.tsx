@@ -6,8 +6,8 @@ import { withStyles, WithStyles } from '@material-ui/core/styles';
 
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
-import Link from '@material-ui/core/Link';
 import Button from '@material-ui/core/Button';
+import { Link } from 'react-router-dom';
 
 interface P {}
 interface S {}
@@ -32,13 +32,13 @@ export default class Login extends React.PureComponent<P & WithStyles<loginStyle
                                 <InputEmail id="outlined-basic" label="EMAIL" variant="outlined" />
                                 <InputPassword id="outlined-basic" label="PASSWORD" variant="outlined" />
                                 <div className={classes.passwordLost}>
-                                    <Link href="#" onClick={preventDefault} className={classes.link}>Mot de passe oublié ?</Link>
+                                    <Link to="/request-password-lost" className={classes.link}>Mot de passe oublié ?</Link>
                                 </div>
                                 <LoginButton>Connexion</LoginButton>
                             </form>
                         </Grid>
                         <Grid item xs={12} className={classes.center}>
-                            <span className={classes.subtitle}>Vous n'avez pas encore de compte ? <Link href="#" onClick={preventDefault} className={classes.link}>Inscription</Link></span> 
+                            <span className={classes.subtitle}>Vous n'avez pas encore de compte ? <Link to="/register" className={classes.link}>Inscription</Link></span> 
                         </Grid>
                     </Grid>
                 </Grid>

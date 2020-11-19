@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import logo from '../../assets/img/uber.png';
 import styles, { passwordRecoveryStyles } from './request-pwd-recovery-style';
 import { withStyles, WithStyles } from '@material-ui/core/styles';
@@ -6,7 +7,6 @@ import { withStyles, WithStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import Link from '@material-ui/core/Link';
 
 interface P {}
 interface S {}
@@ -39,7 +39,7 @@ export default class PasswordRecovery extends React.PureComponent<P & WithStyles
                             </form>
                         </Grid>
                         <Grid item xs={12} className={classes.center}>
-                            <span className={classes.subtitle}>Retrouner à l'écran de <Link href="#" onClick={preventDefault} className={classes.link}>connexion</Link></span> 
+                            <span className={classes.subtitle}>Retourner à l'écran de <Link to="/login" className={classes.link}>connexion</Link></span>  
                         </Grid>
                     </Grid>
                 </Grid>
