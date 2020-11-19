@@ -2,6 +2,7 @@ import { Theme, createStyles } from '@material-ui/core/styles';
 
 export type myAccountStyles = ("container" | "h2" | "hr" | "right" | "h1" | "left" | "containerUser" | "ul" | "btnUpdateUser" | "input" | "userAvatar"); // add class create
 
+// eslint-disable-next-line
 export default (theme: Theme) => createStyles<myAccountStyles, {}>({
     input: {
         display: 'none',
