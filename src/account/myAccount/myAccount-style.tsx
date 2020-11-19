@@ -1,24 +1,41 @@
 import { Theme, createStyles } from '@material-ui/core/styles';
 
-export type myAccountStyles = ("container" | "h2" | "hr" | "right" | "h1" | "left" | "containerUser" | "ul" | "btnUpdateUser" | "input" | "userAvatar"); // add class create
+export type myAccountStyles = ("container" |"gridTopUser"|"titre"| "h1" | "h2" |"hr2"| "hr" | "right" | "h1" | "left" | "containerUser" | "ul" | "btnUpdateUser" | "input" | "userAvatar" |"li" |'fonttext'); // add class create
 
 export default (theme: Theme) => createStyles<myAccountStyles, {}>({
+    fonttext:{
+        color:'white',
+    },
     input: {
         display: 'none',
-      },
-    h2: {
+    },
+    gridTopUser:{
+        marginTop:'10px',
+        
+    },
+    titre: {
+        marginTop: '40px',
         paddingLeft: '5%',
-
+    },
+    h2:{
+        marginBottom:'30px'
     },
     hr: {
         border: '5px solid black',
+        color:'black',
+        borderRadius: '5px',
+        width: '90%',
+    },
+    hr2:{
+        border: '2px solid white',
+        color:'white',
         borderRadius: '5px',
         width: '90%',
     },
     container: {
         marginLeft:'10%',
         marginRight:'10%',
-        marginTop: '20px',
+        marginTop: '50px',
         backgroundColor: '',
     },
     right: {
@@ -41,12 +58,20 @@ export default (theme: Theme) => createStyles<myAccountStyles, {}>({
         color: 'white',
         fontsize: '20px',
     },
+    li:{
+        paddingBottom: '10px'
+    },
     btnUpdateUser: {
+        textAlign:'center',
+        marginTop: '200px', 
+        marginLeft: '100px',
         backgroundColor: 'black',
         borderRadius: '60px',
-        width: '60%',
+        width: '40%',
         height: '100px',
         fontSize: '20px',
+        alignItems:'center',
+        margin:'auto 0'
     },
     userAvatar:{
         height:'100px', 
