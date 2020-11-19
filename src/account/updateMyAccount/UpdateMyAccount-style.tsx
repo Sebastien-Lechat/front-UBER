@@ -1,50 +1,83 @@
 import { Theme, createStyles } from '@material-ui/core/styles';
 
-export type updateMyAccountStyles = ("center" | "form" | "back" | "mainDiv" | "img" | "container"
-| "link" | "subtitle" | "passwordLost"); // add class create
+export type updateMyAccountStyles = ("container" | "h1" |"left" | "hr" |"containerUser" | "btnAvatar" |"btnUpdateUser" | "input" | "userAvatar"|"form" | "formId" | "checked" |"a"); // add class create
 
 export default (theme: Theme) => createStyles<updateMyAccountStyles, {}>({
-    center: {
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center'
+    input: {
+        display: 'none',
+      },
+    h1: {
+        marginTop: '40px',
+        paddingLeft: '5%',
     },
-    back: {
-        backgroundColor: 'black',
-        width: '100vw',
-        height: '100vh',
-    },
-    form: {
-        width: '30%', // Fix IE 11 issue.
-        marginTop: '-2rem',
-        textAlign:'center'
-    },
-    mainDiv: {
-        height: '100vh',
-        borderRight: '1px solid white'
-    },
-    img: {
-        marginTop: '-7rem',
-        width: '300px'
+    hr: {
+        border: '5px solid black',
+        color:'black',
+        borderRadius: '5px',
+        width: '90%',
     },
     container: {
-        height: '100vh',
+        marginRight:'10%',
+        marginTop: '70px',
+        backgroundColor: '',
     },
-    link: {
+
+    containerUser: {
+        paddingTop:'100px',
+        backgroundColor:'black',
+        borderRadius: '20px',
+        paddingBottom:'80px',
+        
+    },
+   left:{
+       backgroundColor:'',
+       paddingLeft:'40px'
+      
+   },
+   btnAvatar:{
+       marginTop: '20px',
+       backgroundColor:'#008ab6',
+   },
+//    &:hover btnAvatar: {
+//     color: '#ADADAE',
+// },
+   btnUpdateUser: {
+        textAlign:'center',
+        marginTop: '50px', 
+        backgroundColor: 'black',
+        borderRadius: '60px',
+        width: '40%',
+        height: '100px',
+        fontSize: '20px',
+        alignItems:'center',
+        margin:'auto 0'
+    },
+    userAvatar:{
+        height:'200px', 
+        width: '200px',
+        borderRadius: '50%',
+    },
+    form:{
+        
+        backgroundColor:'black',
         color: 'white',
-        textDecoration: 'underline',
-        '&:hover' : {
-            color: '#ADADAE'
-        }
     },
-    subtitle: {
+    formId:{
+        width:'90%',
+        marginBottom: '20px',
+        backgroundColor:'white',
         color: 'white',
-        marginTop: '4rem',
     },
-    passwordLost: {
-        marginTop: '0.5rem',
-        textAlign: 'right',
+    checked:{
+        // backgroundColor:'white',
+        color:'white'
+    },
+    a:{
+        textDecoration:'underline'
+
     }
+
+
 });
     
 
