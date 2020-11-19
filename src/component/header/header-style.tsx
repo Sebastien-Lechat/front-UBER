@@ -52,6 +52,18 @@ export default (theme: Theme) => createStyles<headerBarStyles, {}>({
             color: 'white',
             fontSize: '22px',
             marginLeft: '45px',
+        },
+        '& span a' : {
+            color: 'white',
+            fontSize: '22px',
+            marginLeft: '45px',
+            textDecoration: 'none'
+        },
+        '& span a:hover' : {
+            color: 'white',
+            fontSize: '22px',
+            marginLeft: '45px',
+            textDecoration: 'none'
         }
     }
 });
