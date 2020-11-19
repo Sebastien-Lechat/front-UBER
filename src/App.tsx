@@ -42,9 +42,11 @@ const App = () => {
                     <PasswordRecovery.Display />
                 </Route>
                 <Route exact={true} path="/my-account">
+                    <Header.Display />
                     <Myaccount.Display />
                 </Route>
                 <Route exact={true} path="/update-my-account">
+                    <Header.Display />
                     <UpdateMyAccount.Display />
                 </Route>
                 <ProtectedRoute {...defaultProtectedRouteProps} exact={true} path='/' component={Header.Display}/>
