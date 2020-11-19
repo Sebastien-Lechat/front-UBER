@@ -1,13 +1,10 @@
 import { Theme, createStyles } from '@material-ui/core/styles';
-import { Height } from '@material-ui/icons';
 import avatar from '../../assets/img/linux-avatar.png';
 
-export type headerBarStyles = ("h100" | "avatar" | "menu" | "center" | "img" | "logo1" | "logo2" | "logoDiv"); // add class create
+export type headerBarStyles = ("avatar" | "menu" | "center" | "img" | "logo1" | "logo2" | "logoDiv"); // add class create
 
+// eslint-disable-next-line
 export default (theme: Theme) => createStyles<headerBarStyles, {}>({
-    h100: {
-        height:'12vh',
-    },
     center : {
         display: 'flex',
         alignItems: 'center',
@@ -52,6 +49,18 @@ export default (theme: Theme) => createStyles<headerBarStyles, {}>({
             color: 'white',
             fontSize: '22px',
             marginLeft: '45px',
+        },
+        '& span a' : {
+            color: 'white',
+            fontSize: '22px',
+            marginLeft: '45px',
+            textDecoration: 'none'
+        },
+        '& span a:hover' : {
+            color: 'white',
+            fontSize: '22px',
+            marginLeft: '45px',
+            textDecoration: 'none'
         }
     }
 });

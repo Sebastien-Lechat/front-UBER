@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import logo from '../../assets/img/uber.png';
 import styles, { doubleAuthStyles } from './double-auth-style';
 import { withStyles, WithStyles } from '@material-ui/core/styles';
@@ -16,7 +17,6 @@ export default class DoubleAuth extends React.PureComponent<P & WithStyles<doubl
     
     render () {
         const { classes } = this.props;
-        const preventDefault = (event: React.SyntheticEvent) => event.preventDefault();
             return (
             <div className={classes.back + ' ' + classes.center}>
             <Grid container className={classes.container}>
@@ -39,6 +39,9 @@ export default class DoubleAuth extends React.PureComponent<P & WithStyles<doubl
                                 <Input id="code" label="CODE" variant="outlined" />
                                 <DoubleAuthButton>Connexion</DoubleAuthButton>
                             </form>
+                        </Grid>
+                        <Grid item xs={12} className={classes.center}>
+                            <span className={classes.subtitle}>Retourner à l'écran de <Link to="/login" className={classes.link}>connexion</Link></span> 
                         </Grid>
                     </Grid>
                 </Grid>

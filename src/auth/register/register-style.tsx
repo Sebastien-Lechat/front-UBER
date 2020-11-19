@@ -3,6 +3,7 @@ import { Theme, createStyles } from '@material-ui/core/styles';
 export type registerStyles = ("center" | "form" | "back" | "mainDiv" | "img" | "container"
 | "link" | "subtitle" | "passwordLost"); // add class create
 
+// eslint-disable-next-line
 export default (theme: Theme) => createStyles<registerStyles, {}>({
     center: {
         display: 'flex',

@@ -2,6 +2,7 @@ import { Theme, createStyles } from '@material-ui/core/styles';
 
 export type myAccountStyles = ("container" |"gridTopUser"|"titre"| "h1" | "h2" |"hr2"| "hr" | "right" | "h1" | "left" | "containerUser" | "ul" | "btnUpdateUser" | "input" | "userAvatar" |"li" |'fonttext'); // add class create
 
+// eslint-disable-next-line
 export default (theme: Theme) => createStyles<myAccountStyles, {}>({
     fonttext:{
         color:'white',

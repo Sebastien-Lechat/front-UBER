@@ -22,8 +22,6 @@ return <MuiAlert elevation={6} variant="filled" {...props} />;
     
     render () {
         const { classes } = this.props;
-        const preventDefault = (event: React.SyntheticEvent) => event.preventDefault();
-        
             return (
                 <div >
                     <Grid container>

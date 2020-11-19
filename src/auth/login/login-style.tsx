@@ -3,6 +3,7 @@ import { Theme, createStyles } from '@material-ui/core/styles';
 export type loginStyles = ("center" | "form" | "back" | "leftSide" | "img"| "img2" | "rightSide" | "container"
 | "link" | "subtitle" | "passwordLost"); // add class create
 
+// eslint-disable-next-line
 export default (theme: Theme) => createStyles<loginStyles, {}>({
     center: {
         display: 'flex',
