@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styles, { headerBarStyles } from './header-style';
 import { withStyles, WithStyles } from '@material-ui/core/styles';
 import logo1 from '../../assets/img/1.png';
@@ -23,13 +24,13 @@ export default class HeaderBar extends React.PureComponent<P & WithStyles<header
               <div className={classes.avatar + ' ' + classes.center}>
                 <div className={classes.img}></div>
               </div>
-              <div className={classes.logoDiv + ' ' + classes.center}>
+              <Link to="/" className={classes.logoDiv + ' ' + classes.center}>
                 <img className={classes.logo1} src={logo1} alt=""/>
                 <img className={classes.logo2} src={logo2} alt=""/>
-              </div>
+              </Link>
               <div className={classes.menu + ' ' + classes.center}>
                 <span>
-                  Mon compte
+                  <Link to="/my-account">Mon compte</Link>
                 </span>
                 <span>
                   Historique
