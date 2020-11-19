@@ -3,6 +3,7 @@ import { Theme, createStyles } from '@material-ui/core/styles';
 export type RequestPasswordRecoveryStyles = ("center" | "back" | "container" | "form" | "mainDiv" 
 | "img" | "text" | "subtitle" | "link"); // add class create
 
+// eslint-disable-next-line
 export default (theme: Theme) => createStyles<RequestPasswordRecoveryStyles, {}>({
     center: {
         display: 'flex',

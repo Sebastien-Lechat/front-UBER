@@ -1,20 +1,11 @@
 import React from 'react';
-import logo from '../../assets/img/uber.png';
 import avatar from  '../../assets/img/linux-avatar.png';
 import styles, { myAccountStyles } from './myAccount-style';
 import { withStyles, WithStyles } from '@material-ui/core/styles';
 
 import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
-import TextField from '@material-ui/core/TextField';
-import Link from '@material-ui/core/Link';
 import Button from '@material-ui/core/Button';
-import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import Container from '@material-ui/core/Container';
-import IconButton from '@material-ui/core/IconButton';
-import PhotoCamera from '@material-ui/icons/PhotoCamera';
-import FaceIcon from '@material-ui/icons/Face';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
 
 interface P {}
 interface S {}
@@ -25,7 +16,6 @@ export default class MyAccount extends React.PureComponent<P & WithStyles<myAcco
     
     render () {
         const { classes } = this.props;
-        const preventDefault = (event: React.SyntheticEvent) => event.preventDefault();
             return (
             <div >
             <h2 className={classes.h2}>MON COMPTE</h2>
@@ -52,7 +42,7 @@ export default class MyAccount extends React.PureComponent<P & WithStyles<myAcco
                     </Container>
                 </Grid>
                 <Grid item xs={8}>
-                     <Button  className={classes.btnUpdateUser} variant="contained" color="primary" disableElevation> Mettre à jours mes informations</Button>
+                    <Button  className={classes.btnUpdateUser} variant="contained" color="primary" disableElevation> Mettre à jours mes informations</Button>
                 </Grid>
             </Grid>
             </div>

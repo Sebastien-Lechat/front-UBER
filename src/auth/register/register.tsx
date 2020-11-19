@@ -17,7 +17,6 @@ export default class Register extends React.PureComponent<P & WithStyles<registe
     
     render () {
         const { classes } = this.props;
-        const preventDefault = (event: React.SyntheticEvent) => event.preventDefault();
             return (
             <div className={classes.back + ' ' + classes.center}>
             <Grid container className={classes.container}>

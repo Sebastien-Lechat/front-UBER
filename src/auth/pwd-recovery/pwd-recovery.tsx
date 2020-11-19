@@ -17,7 +17,6 @@ export default class RequestPasswordRecovery extends React.PureComponent<P & Wit
     
     render () {
         const { classes } = this.props;
-        const preventDefault = (event: React.SyntheticEvent) => event.preventDefault();
             return (
             <div className={classes.back + ' ' + classes.center}>
             <Grid container className={classes.container}>

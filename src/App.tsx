@@ -5,7 +5,7 @@ import Login from './auth/login/login';
 import Register from './auth/register/register';
 import PasswordRecovery from './auth/pwd-recovery/pwd-recovery'
 import {ProtectedRoute, ProtectedRouteProps} from './guard/auth-gard';
-import {BrowserRouter as Router,Switch,Route,Link,useRouteMatch,useParams} from "react-router-dom";
+import {BrowserRouter as Router,Switch,Route} from "react-router-dom";
 import VerifyEmail from './auth/verify-email/verify-email';
 import RequestPasswordRecovery from './auth/request-pwd-recovery/request-pwd-recovery';
 import Myaccount from './account/myAccount/myAccount';

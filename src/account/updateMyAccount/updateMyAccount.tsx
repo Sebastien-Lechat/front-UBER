@@ -18,8 +18,6 @@ interface S {}
     
     render () {
         const { classes } = this.props;
-        const preventDefault = (event: React.SyntheticEvent) => event.preventDefault();
-        
             return (
                 <div >
                     <h1 className={classes.h1}>MON COMPTE &gt; METTRE A JOURS MON COMPTE</h1>
