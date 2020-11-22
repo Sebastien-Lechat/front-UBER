@@ -10,6 +10,8 @@ import VerifyEmail from './auth/verify-email/verify-email';
 import RequestPasswordRecovery from './auth/request-pwd-recovery/request-pwd-recovery';
 import Myaccount from './account/myAccount/myAccount';
 import UpdateMyAccount from './account/updateMyAccount/updateMyAccount';
+import homePage from './auth/home-page/home-page';
+import myHistory from './account/history/history';
 
 const defaultProtectedRouteProps: ProtectedRouteProps = {
   isAuthenticated: true,
@@ -20,6 +22,9 @@ const App = () => {
     return (
         <Router>
             <Switch>
+                <Route exact={true} path="/home">
+                    <homePage.Display />
+                </Route>
                 <Route exact={true} path="/login">
                     <Login.Display />
                 </Route>
@@ -48,6 +53,10 @@ const App = () => {
                 <Route exact={true} path="/update-my-account">
                     <Header.Display />
                     <UpdateMyAccount.Display />
+                </Route>
+                <Route exact={true} path="/history">
+                    <Header.Display />
+                    <myHistory.Display />
                 </Route>
                 <ProtectedRoute {...defaultProtectedRouteProps} exact={true} path='/' component={Header.Display}/>
                 <Route path="*">
