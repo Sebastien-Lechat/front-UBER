@@ -25,7 +25,6 @@ export default (theme: Theme) => createStyles<VerifyEmailStyles, {}>({
     },
     mainDiv: {
         height: '100vh',
-        borderRight: '1px solid white'
     },
     img: {
         marginTop: '-7rem',

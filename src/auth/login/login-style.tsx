@@ -16,7 +16,7 @@ export default (theme: Theme) => createStyles<loginStyles, {}>({
         height: '100vh',
     },
     form: {
-        width: '50%', // Fix IE 11 issue.
+        width: '60%',
         marginTop: '-2rem',
         textAlign:'center'
     },
@@ -51,7 +51,39 @@ export default (theme: Theme) => createStyles<loginStyles, {}>({
     passwordLost: {
         marginTop: '0.5rem',
         textAlign: 'right',
-    }
+    },
+    [theme.breakpoints.down('xl')]: {
+        
+    },
+    [theme.breakpoints.down('lg')]: {
+        img: {
+            width: '375px'
+        },
+    },
+    [theme.breakpoints.down('md')]: {
+        rightSide: {
+            display: 'none',
+        },
+        img: {
+            width: '350px'
+        },
+    },
+    [theme.breakpoints.down('sm')]: {
+        form: {
+            width: '70%',
+        },
+        img: {
+            width: '325px'
+        },
+    },
+    [theme.breakpoints.down('xs')]: {
+        form: {
+            width: '80%',
+        },
+        img: {
+            width: '300px'
+        },
+    },
 });
     
 
