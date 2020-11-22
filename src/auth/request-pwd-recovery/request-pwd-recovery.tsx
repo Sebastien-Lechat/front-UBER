@@ -21,15 +21,23 @@ export default class PasswordRecovery extends React.PureComponent<P & WithStyles
             <div className={classes.back + ' ' + classes.center}>
             <Grid container className={classes.container}>
                 <Grid item xs={12} className={classes.mainDiv + ' ' + classes.center}>
-                    <Grid container>
+                    <Grid container >
                         <Grid item xs={12} className={classes.center}>
                             <img className={classes.img} src={logo} alt=""/>
                         </Grid>
-                        <Grid item xs={12} className={classes.center}>
+                        <Grid item xs={2} className={classes.center}>
+                        </Grid>
+                        <Grid item xs={8} className={classes.center}>
                             <span className={classes.text}>Vous avez oublié votre mot de passe ?</span>
                         </Grid>
-                        <Grid item xs={12} className={classes.center}>
+                        <Grid item xs={2} className={classes.center}>
+                        </Grid>
+                        <Grid item xs={2} className={classes.center}>
+                        </Grid>
+                        <Grid item xs={8} className={classes.center}>
                             <span className={classes.text}>Entrer votre email pour recevoir email avec <span>un code pour modifier votre mot de passe.</span></span> 
+                        </Grid>
+                        <Grid item xs={2} className={classes.center}>
                         </Grid>
                         <Grid item xs={12} className={classes.center}>
                             <form className={classes.form} noValidate autoComplete="off">

@@ -21,7 +21,6 @@ export default (theme: Theme) => createStyles<doubleAuthStyles, {}>({
     },
     mainDiv: {
         height: '100vh',
-        borderRight: '1px solid white'
     },
     img: {
         marginTop: '-7rem',
@@ -48,10 +47,46 @@ export default (theme: Theme) => createStyles<doubleAuthStyles, {}>({
     text: {
         color: 'white',
         fontSize : '24px',
+        textAlign: 'center',
         '& span' : {
             color: '#143eda'
         }
-    }
+    },
+    [theme.breakpoints.down('xl')]: {
+        
+    },
+    [theme.breakpoints.down('lg')]: {
+        form: {
+            width: '35%', 
+        },
+        img: {
+            width: '300px'
+        },
+    },
+    [theme.breakpoints.down('md')]: {
+        form: {
+            width: '50%', 
+        },
+        img: {
+            width: '275px'
+        },
+    },
+    [theme.breakpoints.down('sm')]: {
+        form: {
+            width: '65%', 
+        },
+        img: {
+            width: '250px'
+        },
+    },
+    [theme.breakpoints.down('xs')]: {
+        form: {
+            width: '80%', 
+        },
+        img: {
+            width: '225px'
+        },
+    },
 });
     
 

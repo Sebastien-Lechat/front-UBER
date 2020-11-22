@@ -21,7 +21,7 @@ export default class Login extends React.PureComponent<P & WithStyles<loginStyle
             return (
             <div className={classes.back + ' ' + classes.center}>
             <Grid container className={classes.container}>
-                <Grid item xs={6} className={classes.leftSide + ' ' + classes.center}>
+                <Grid item xs={12} sm={12} md={12} lg={6} xl={6} className={classes.leftSide + ' ' + classes.center}>
                     <Grid container>
                         <Grid item xs={12} className={classes.center}>
                             <img className={classes.img} src={logo2} alt=""/>
@@ -41,7 +41,7 @@ export default class Login extends React.PureComponent<P & WithStyles<loginStyle
                         </Grid>
                     </Grid>
                 </Grid>
-                <Grid item xs={6} className={classes.rightSide + ' ' + classes.center}>
+                <Grid item lg={6} xl={6} className={classes.rightSide + ' ' + classes.center}>
                     <img className={classes.img2} src={logo} alt=""/>
                 </Grid>
             </Grid>

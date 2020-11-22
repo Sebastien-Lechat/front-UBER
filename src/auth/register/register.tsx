@@ -49,7 +49,7 @@ export default class Register extends React.PureComponent<P & WithStyles<registe
 const Input = withStyles({
     root: {
         width:'100%',
-        marginBottom:'2rem',
+        marginBottom:'1.7rem',
         color:'white',
         '& input': {
             color: 'white',

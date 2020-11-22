@@ -22,11 +22,10 @@ export default (theme: Theme) => createStyles<registerStyles, {}>({
     },
     mainDiv: {
         height: '100vh',
-        borderRight: '1px solid white'
     },
     img: {
         marginTop: '-7rem',
-        width: '300px'
+        width: '325px'
     },
     container: {
         height: '100vh',
@@ -40,12 +39,47 @@ export default (theme: Theme) => createStyles<registerStyles, {}>({
     },
     subtitle: {
         color: 'white',
-        marginTop: '4rem',
+        marginTop: '2rem',
     },
     passwordLost: {
         marginTop: '0.5rem',
         textAlign: 'right',
-    }
+    },
+    [theme.breakpoints.down('xl')]: {
+        
+    },
+    [theme.breakpoints.down('lg')]: {
+        form: {
+            width: '40%', 
+        },
+        img: {
+            width: '300px'
+        },
+    },
+    [theme.breakpoints.down('md')]: {
+        form: {
+            width: '50%', 
+        },
+        img: {
+            width: '275px'
+        },
+    },
+    [theme.breakpoints.down('sm')]: {
+        form: {
+            width: '65%', 
+        },
+        img: {
+            width: '250px'
+        },
+    },
+    [theme.breakpoints.down('xs')]: {
+        form: {
+            width: '80%', 
+        },
+        img: {
+            width: '225px'
+        },
+    },
 });
     
 
