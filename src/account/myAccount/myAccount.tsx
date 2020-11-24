@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import avatar from  '../../assets/img/linux-avatar.png';
 import styles, { myAccountStyles } from './myAccount-style';
 import { withStyles, WithStyles } from '@material-ui/core/styles';
@@ -49,7 +50,7 @@ export default class MyAccount extends React.PureComponent<P & WithStyles<myAcco
                     </Container>
                 </Grid>
                 <Grid item xs={7}>
-                     <Button  className={classes.btnUpdateUser} variant="contained" color="primary" disableElevation> Mettre à jours mes informations</Button>
+                      <Link to="/update-my-account"><Button  className={classes.btnUpdateUser} variant="contained" color="primary" disableElevation> Mettre à jours mes informations</Button> </Link>
                 </Grid>
             </Grid>
             </div>
