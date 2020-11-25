@@ -27,13 +27,15 @@ export default (theme: Theme) => createStyles<VerifyEmailStyles, {}>({
         height: '100vh',
     },
     img: {
-        marginTop: '-7rem',
+        marginTop: '-12rem',
         width: '300px'
     },
     text: {
-        marginTop : '-9rem',
+        marginTop : '-7rem',
+        marginBottom: '5rem',
         color: 'white',
         fontSize : '24px',
+        textAlign: 'center',
         '& span' : {
             color: '#143eda'
         }
@@ -48,7 +50,39 @@ export default (theme: Theme) => createStyles<VerifyEmailStyles, {}>({
     subtitle: {
         color: 'white',
         marginTop: '4rem',
-    }
+    },
+    [theme.breakpoints.down('xl')]: {
+        
+    },
+    [theme.breakpoints.down('lg')]: {
+        img: {
+            width: '375px'
+        },
+    },
+    [theme.breakpoints.down('md')]: {
+        rightSide: {
+            display: 'none',
+        },
+        img: {
+            width: '350px'
+        },
+    },
+    [theme.breakpoints.down('sm')]: {
+        form: {
+            width: '70%',
+        },
+        img: {
+            width: '325px'
+        },
+    },
+    [theme.breakpoints.down('xs')]: {
+        form: {
+            width: '80%',
+        },
+        img: {
+            width: '300px'
+        },
+    },
 });
     
 

@@ -24,10 +24,14 @@ export default class homePage extends React.PureComponent<P & WithStyles<homePag
                         <Grid item xs={12} className={classes.center}>
                             <img className={classes.img} src={logo} alt=""/>
                         </Grid>
+                        <Grid item xs={2} className={classes.center}>
+                        </Grid>
                         <Grid item xs={12} className={classes.center}>
                             <form className={classes.form} noValidate autoComplete="off">
                             <Link to="/login"><ConnexionButton>Connexion</ConnexionButton></Link>
                             </form>
+                        </Grid>
+                        <Grid item xs={2} className={classes.center}>
                         </Grid>
                         <Grid item xs={12} className={classes.center}>
                             <span className={classes.subtitle}>Vous n'avez pas de compte ? <Link to="/register" className={classes.link}>Rejoignez-nous</Link>&nbsp;!</span> 

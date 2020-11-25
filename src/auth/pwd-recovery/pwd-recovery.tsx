@@ -20,19 +20,23 @@ export default class RequestPasswordRecovery extends React.PureComponent<P & Wit
             return (
             <div className={classes.back + ' ' + classes.center}>
             <Grid container className={classes.container}>
-                <Grid item xs={12} className={classes.mainDiv + ' ' + classes.center}>
+                <Grid item xs={12} sm={12} md={12} className={classes.mainDiv + ' ' + classes.center}>
                     <Grid container>
                         <Grid item xs={12} className={classes.center}>
                             <img className={classes.img} src={logo} alt=""/>
                         </Grid>
-                        <Grid item xs={12} className={classes.center}>
+                        <Grid item xs={2} className={classes.center}>
+                        </Grid>
+                        <Grid item xs={8} className={classes.center}>
                             <span className={classes.text}>Définir un nouveau mot de passe</span>
+                        </Grid>
+                        <Grid item xs={2} className={classes.center}>
                         </Grid>
                         <Grid item xs={12} className={classes.center}>
                             <form className={classes.form} noValidate autoComplete="off">
                                 <Input id="code" label="CODE" variant="outlined" />
-                                <Input id="password" label="NOUVEAU MOT DE PASSE" variant="outlined" />
-                                <Input id="confirmPassword" label="CONFIRMER LE NOUVEAU MOT DE PASSE" variant="outlined" />
+                                <Input id="password" label="MOT DE PASSE" variant="outlined" />
+                                <Input id="confirmPassword" label="CONFIRMER LE MOT DE PASSE" variant="outlined" />
                                 <SubmitButton>Confirmer</SubmitButton>
                             </form>
                         </Grid>
