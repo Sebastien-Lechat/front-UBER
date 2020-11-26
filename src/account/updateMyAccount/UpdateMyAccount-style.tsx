@@ -1,9 +1,15 @@
 import { Theme, createStyles } from '@material-ui/core/styles';
 
-export type updateMyAccountStyles = ("container" | "h1" |"left" | "hr" |"containerUser" | "btnAvatar" |"btnUpdateUser" | "input" | "userAvatar"|"form" | "formId" | "checked" |"a" | "alert" | "leftSucces"|"succesIcone"); // add class create
+export type updateMyAccountStyles = ("container" | "h1" |"left" | "hr" |"containerUser" | "center" |
+ "btnAvatar" |"btnUpdateUser" | "input" | "userAvatar"|"form" | "formId" | "checked" |"a" | "alert" | "leftSucces"|"succesIcone"); // add class create
 
 // eslint-disable-next-line
 export default (theme: Theme) => createStyles<updateMyAccountStyles, {}>({
+    center: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
     input: {
         display: 'none',
       },
@@ -94,10 +100,39 @@ export default (theme: Theme) => createStyles<updateMyAccountStyles, {}>({
     succesIcone:{
         height:'40px',
         marginRight:'10px'
-    }
-
-
-
+    },
+    [theme.breakpoints.down('xl')]: {
+        
+    },
+    [theme.breakpoints.down('lg')]: {
+        img: {
+            width: '375px'
+        },
+    },
+    [theme.breakpoints.down('md')]: {
+        rightSide: {
+            display: 'none',
+        },
+        img: {
+            width: '350px'
+        },
+    },
+    [theme.breakpoints.down('sm')]: {
+        form: {
+            width: '70%',
+        },
+        img: {
+            width: '325px'
+        },
+    },
+    [theme.breakpoints.down('xs')]: {
+        form: {
+            width: '80%',
+        },
+        img: {
+            width: '300px'
+        },
+    },
 });
     
 

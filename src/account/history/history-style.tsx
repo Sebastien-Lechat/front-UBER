@@ -1,10 +1,15 @@
 import { Theme, createStyles } from '@material-ui/core/styles';
 
-export type historyStyles = ("container" |"gridTopUser"|"titre"| "h1" | "h2" | "hr" | "h1" | "containerHistory"
+export type historyStyles = ("container" |"gridTopUser"|"center"|"titre"| "h1" | "h2" | "hr" | "h1" | "containerHistory"
  | "ul" | "input" | "userAvatar" |"li" |'fonttext'); // add class create
 
 // eslint-disable-next-line
 export default (theme: Theme) => createStyles<historyStyles, {}>({
+    center: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
     fonttext:{
         color:'white',
     },
@@ -58,7 +63,39 @@ export default (theme: Theme) => createStyles<historyStyles, {}>({
         height:'100px', 
         width: '100px',
         borderRadius: '50%'
-    }
+    },
+    [theme.breakpoints.down('xl')]: {
+        
+    },
+    [theme.breakpoints.down('lg')]: {
+        img: {
+            width: '375px'
+        },
+    },
+    [theme.breakpoints.down('md')]: {
+        rightSide: {
+            display: 'none',
+        },
+        img: {
+            width: '350px'
+        },
+    },
+    [theme.breakpoints.down('sm')]: {
+        form: {
+            width: '70%',
+        },
+        img: {
+            width: '325px'
+        },
+    },
+    [theme.breakpoints.down('xs')]: {
+        form: {
+            width: '80%',
+        },
+        img: {
+            width: '300px'
+        },
+    },
 });
     
 

@@ -21,12 +21,14 @@ export default class VerifyEmail extends React.PureComponent<P & WithStyles<Veri
             return (
             <div className={classes.back + ' ' + classes.center}>
             <Grid container className={classes.container}>
-                <Grid item xs={12} className={classes.mainDiv + ' ' + classes.center}>
+                <Grid item xs={12} sm={12} md={12} className={classes.mainDiv + ' ' + classes.center}>
                     <Grid container>
                         <Grid item xs={12} className={classes.center}>
                             <img className={classes.img} src={logo} alt=""/>
                         </Grid>
-                        <Grid item xs={12} className={classes.center}>
+                        <Grid item xs={2} className={classes.center}>
+                        </Grid>
+                        <Grid item xs={8} className={classes.center}>
                             <span className={classes.text}>Vous devez vérifier votre email afin de pouvoir vous connecter</span>
                         </Grid>
                         <Grid item xs={12} className={classes.center}>
