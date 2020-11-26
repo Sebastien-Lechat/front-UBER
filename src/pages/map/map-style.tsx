@@ -1,6 +1,8 @@
 import { Theme, createStyles } from '@material-ui/core/styles';
+import { isWhiteSpaceLike } from 'typescript';
 
-export type mapStyles = ("parentMap"|"map" | "container" | "containerMobilite" | "containerInfoDeplacement"|'fonttext' |"boutonsMonbilite"|"blocVoitureVeloPieton"|"containerPrincipalInput" |"containerInput"|"inputDepart"|"inputDestination"|"iconLocalisation"|"iconSup"|"iconSupParent"|"iconAjoutParent"|"iconAjout"|"ajoutText"|"ajoutTextparent"|"btnValiderItineraire"); // add class create
+export type mapStyles = ("parentMap"|"map" | "container" |"container2" |"containerMobilite" | "containerInfoDeplacement"|'fonttext' |"boutonsMonbilite"|"blocVoitureVeloPieton"|"containerPrincipalInput" |"containerInput"|"inputDepart"|"inputDestination"|"iconLocalisation"|"iconSup"|"iconSupParent"|"iconAjoutParent"|"iconAjout"|"ajoutText"|"ajoutTextparent"|"btnValiderItineraire" |
+"tempsTrajet" |"tempsTrajetA"|"tempsTrajethms"|"detailBtn"|"detailList"); // add class create
 
 // eslint-disable-next-line
 export default (theme: Theme) => createStyles<mapStyles, {}>({
@@ -28,7 +30,7 @@ export default (theme: Theme) => createStyles<mapStyles, {}>({
     containerMobilite: {
         backgroundColor:'white',
         borderRadius: '20px',
-        height: '80px',
+        height: 'auto',
         width:'100%',
         marginTop:'10px',
         marginLeft:'10px',
@@ -48,7 +50,7 @@ export default (theme: Theme) => createStyles<mapStyles, {}>({
         borderRadius: '20px',
         marginLeft:'10px',
         marginRight:'10px',
-        height: '600px',
+        height: 'auto',
         width:'100%',
         marginBottom:'10px',
     },
@@ -127,8 +129,45 @@ export default (theme: Theme) => createStyles<mapStyles, {}>({
         alignItems:'center',
         margin:'auto 0'
     },
-   
+//    TABLEAU 2
 
+    container2: {
+        backgroundColor: 'rgba(0, 0, 0, 0.5)', 
+        marginLeft:'30%',
+        width: '20%',
+        position: 'relative',
+        zIndex: 2,
+        marginTop:'-710px'
+    },
+    tempsTrajet:{
+        marginTop:'15px',
+        backgroundColor:'black',
+        width:'80%',
+        height:'60px',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    tempsTrajetA:{
+    
+        color:'white',
+    },
+    tempsTrajethms:{
+        color: 'primary',
+        fontWeight:'bold',
+    },
+    detailBtn:{
+        color:'black',
+        marginTop:'25px'
+    },
+    detailList:{
+        height: '300px',
+        marginTop: '20px',
+        marginLeft: '5px',
+        marginRight: '5px',
+        overflow: 'scroll',
+        textAlign:'justify',
+    }
 });
     
 
