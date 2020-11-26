@@ -12,7 +12,7 @@ import Myaccount from './account/myAccount/myAccount';
 import UpdateMyAccount from './account/updateMyAccount/updateMyAccount';
 import homePage from './auth/home-page/home-page';
 import myHistory from './account/history/history';
-
+import Map from './pages/map/map';
 const defaultProtectedRouteProps: ProtectedRouteProps = {
   isAuthenticated: true,
   authenticationPath: '/login',
@@ -57,6 +57,10 @@ const App = () => {
                 <Route exact={true} path="/history">
                     <Header.Display />
                     <myHistory.Display />
+                </Route>
+                <Route exact={true} path="/map">
+                    <Header.Display />
+                    <Map.Display />
                 </Route>
                 <ProtectedRoute {...defaultProtectedRouteProps} exact={true} path='/' component={Header.Display}/>
                 <Route path="*">
