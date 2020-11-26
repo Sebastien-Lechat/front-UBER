@@ -20,6 +20,9 @@ import SupprimerIco from '@material-ui/icons/HighlightOff';
 import Button from '@material-ui/core/Button';
 
 import LocalisationIco from '@material-ui/icons/Room';
+
+import Typography from '@material-ui/core/Typography';
+
 interface P {}
 interface S {}
 
@@ -140,11 +143,33 @@ export default class Map extends React.PureComponent<P & WithStyles<mapStyles>, 
                                                 startAdornment={<InputAdornment position="start"><LocalisationIco fontSize="small"/></InputAdornment>}
                                             />
                                         </FormControl> */}
-                                       
+                                       <Grid container justify="center" alignItems="center">
+                                            <div className={classes.tempsTrajet}>
+                                                
+                                                <Typography className={classes.fonttext}>
+                                                    <a className={classes.tempsTrajetA}>Temps éstimé: </a><a  color="primary.main" className={classes.tempsTrajethms}> 1 H 15 min</a>
+                                                </Typography>
+                                            </div>
+
+                                        </Grid>
+                                        <Grid container justify="center" alignItems="center">
+                                             <a className={classes.detailBtn} href="#"> DETAIL DE L'ITINERAIRE &#9660;</a>
+                                        </Grid>
+
+                                        <Grid container justify="center" alignItems="center">
+                                             <p className={classes.detailList}>
+                                                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda aliquam commodi accusantium eum. Fugiat,
+                                                  voluptate? Doloremque sint vel assumenda? Distinctio quis officia corrupti modi esse repudiandae aliquid vitae ex? Iure.
+                                                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda aliquam commodi accusantium eum. Fugiat,
+                                                  voluptate? Doloremque sint vel assumenda? Distinctio quis officia corrupti modi esse repudiandae aliquid vitae ex? Iure.
+                                             </p>
+                                        </Grid>
+  
                             </Grid>
                     </Container>
 
             </Grid> 
+            
             </div>
         );
     }
