@@ -8,10 +8,10 @@ import {ProtectedRoute, ProtectedRouteProps} from './guard/auth-gard';
 import {BrowserRouter as Router,Switch,Route} from "react-router-dom";
 import VerifyEmail from './auth/verify-email/verify-email';
 import RequestPasswordRecovery from './auth/request-pwd-recovery/request-pwd-recovery';
-import Myaccount from './account/myAccount/myAccount';
-import UpdateMyAccount from './account/updateMyAccount/updateMyAccount';
+import Myaccount from './pages/myAccount/myAccount';
+import UpdateMyAccount from './pages/updateMyAccount/updateMyAccount';
 import homePage from './auth/home-page/home-page';
-import myHistory from './account/history/history';
+import myHistory from './pages/history/history';
 import Map from './pages/map/map';
 const defaultProtectedRouteProps: ProtectedRouteProps = {
   isAuthenticated: true,
