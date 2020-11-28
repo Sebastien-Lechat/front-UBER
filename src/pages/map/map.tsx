@@ -162,7 +162,12 @@ export default class Map extends React.PureComponent<P & WithStyles<mapStyles>, 
                                                   voluptate? Doloremque sint vel assumenda? Distinctio quis officia corrupti modi esse repudiandae aliquid vitae ex? Iure.
                                                   Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda aliquam commodi accusantium eum. Fugiat,
                                                   voluptate? Doloremque sint vel assumenda? Distinctio quis officia corrupti modi esse repudiandae aliquid vitae ex? Iure.
-                                             </p>
+                                                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda aliquam commodi accusantium eum. Fugiat,
+                                                  voluptate? Doloremque sint vel assumenda? Distinctio quis officia corrupti modi esse repudiandae aliquid vitae ex? Iure.
+                                                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda aliquam commodi accusantium eum. Fugiat,
+                                                  voluptate? Doloremque sint vel assumenda? Distinctio quis officia corrupti modi esse repudiandae aliquid vitae ex? Iure.
+                                             
+                                             µ</p>
                                         </Grid>
   
                             </Grid>
