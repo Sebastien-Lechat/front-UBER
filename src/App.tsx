@@ -13,6 +13,8 @@ import UpdateMyAccount from './pages/updateMyAccount/updateMyAccount';
 import homePage from './auth/home-page/home-page';
 import myHistory from './pages/history/history';
 import Map from './pages/map/map';
+
+
 const defaultProtectedRouteProps: ProtectedRouteProps = {
   isAuthenticated: true,
   authenticationPath: '/login',
@@ -46,25 +48,12 @@ const App = () => {
                 <Route exact={true} path="/password-lost">
                     <PasswordRecovery.Display />
                 </Route>
-                <Route exact={true} path="/my-account">
-                    <Header.Display />
-                    <Myaccount.Display />
-                </Route>
-                <Route exact={true} path="/update-my-account">
-                    <Header.Display />
-                    <UpdateMyAccount.Display />
-                </Route>
-                <Route exact={true} path="/history">
-                    <Header.Display />
-                    <myHistory.Display />
-                </Route>
-                <Route exact={true} path="/map">
-                    <Header.Display />
-                    <Map.Display />
-                </Route>
-                <ProtectedRoute {...defaultProtectedRouteProps} exact={true} path='/' component={Header.Display}/>
+                <ProtectedRoute {...defaultProtectedRouteProps} exact={true} path='/map' component={Map.Display}/>
+                <ProtectedRoute {...defaultProtectedRouteProps} exact={true} path='/my-account' component={Myaccount.Display}/>
+                <ProtectedRoute {...defaultProtectedRouteProps} exact={true} path='/update-my-account' component={UpdateMyAccount.Display}/>
+                <ProtectedRoute {...defaultProtectedRouteProps} exact={true} path='/history' component={myHistory.Display}/>
                 <Route path="*">
-                    <Header.Display />
+                    <homePage.Display />
                 </Route>
             </Switch>
         </Router>
