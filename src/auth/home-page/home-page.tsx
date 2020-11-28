@@ -28,7 +28,7 @@ export default class homePage extends React.PureComponent<P & WithStyles<homePag
                         </Grid>
                         <Grid item xs={12} className={classes.center}>
                             <form className={classes.form} noValidate autoComplete="off">
-                            <Link to="/login"><ConnexionButton>Connexion</ConnexionButton></Link>
+                            <ConnexionButton><Link to="/login">Connexion</Link></ConnexionButton>
                             </form>
                         </Grid>
                         <Grid item xs={2} className={classes.center}>
@@ -57,6 +57,15 @@ const ConnexionButton = withStyles({
         textTransform: 'capitalize',
         '&:hover': {
             backgroundColor: '#ADADAE',
+        },
+        '& span:hover': {
+            textDecoration: 'none',
+        },
+        '& a': {
+            color: 'black',
+        },
+        '& a:hover': {
+            textDecoration: 'none',
         },
     },
 })(Button);

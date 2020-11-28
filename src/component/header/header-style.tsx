@@ -53,13 +53,11 @@ export default (theme: Theme) => createStyles<headerBarStyles, {}>({
         '& span a' : {
             color: 'white',
             fontSize: '22px',
-            marginLeft: '45px',
             textDecoration: 'none'
         },
         '& span a:hover' : {
-            color: 'white',
+            color: '#ADADAE',
             fontSize: '22px',
-            marginLeft: '45px',
             textDecoration: 'none'
         }
     }

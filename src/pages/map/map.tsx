@@ -1,3 +1,4 @@
+import Header from '../../component/header/header';
 import React from 'react';
 
 import styles, { mapStyles } from './map-style';
@@ -32,145 +33,115 @@ export default class Map extends React.PureComponent<P & WithStyles<mapStyles>, 
     
     render () {
         const { classes } = this.props;
-     
-          
-            return (
-                
-            <div className="parentMap">
-             
-            <Iframe url="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2623.26385935044!2d2.281957415732015!3d48.89130837929074!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66f65519599ab%3A0x648913b6b58c1316!2sIMIE%20Paris!5e0!3m2!1sfr!2sfr!4v1606261522299!5m2!1sfr!2sfr" 
-                    width="100%"
-                    height="900px"
-                    className="map"
-                    />
-            <Grid  container className={classes.container}>
-                    <Container className={classes.containerMobilite}>
-                            <Grid container className={classes.boutonsMonbilite} >
+        return (
+            <><Header.Display />
+                <div className="parentMap">
+                    <Iframe url="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2623.26385935044!2d2.281957415732015!3d48.89130837929074!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66f65519599ab%3A0x648913b6b58c1316!2sIMIE%20Paris!5e0!3m2!1sfr!2sfr!4v1606261522299!5m2!1sfr!2sfr"
+                        width="100%"
+                        height="900px"
+                        className="map" />
+                    <Grid container className={classes.container}>
+                        <Container className={classes.containerMobilite}>
+                            <Grid container className={classes.boutonsMonbilite}>
                                 <Grid item xs={4} className={classes.blocVoitureVeloPieton}>
                                     <Fab color="primary" aria-label="add">
                                         <Voiture fontSize="large" />
                                     </Fab>
                                 </Grid>
-
-                                <Grid item xs={4} className={classes.blocVoitureVeloPieton}>
-                                   <Fab color="default" aria-label="add">
-                                        <Velo fontSize="large"/>
-                                    </Fab>
-                                    
-                                </Grid> 
                                 <Grid item xs={4} className={classes.blocVoitureVeloPieton}>
                                     <Fab color="default" aria-label="add">
-                                        <Apied fontSize="large"/>
+                                        <Velo fontSize="large" />
                                     </Fab>
-                                </Grid> 
+                                </Grid>
+                                <Grid item xs={4} className={classes.blocVoitureVeloPieton}>
+                                    <Fab color="default" aria-label="add">
+                                        <Apied fontSize="large" />
+                                    </Fab>
+                                </Grid>
                             </Grid>
-                    </Container>
-                    <Container className={classes.containerInfoDeplacement}>
-                            <Grid container >
+                        </Container>
+                        <Container className={classes.containerInfoDeplacement}>
+                            <Grid container>
                                 <Grid className={classes.containerPrincipalInput}>
-                                    <Grid container className={classes.containerInput} >
+                                    <Grid container className={classes.containerInput}>
                                         <Grid item xs={2}>
-                                            <LocalisationIco  className={classes.iconLocalisation}/>
+                                            <LocalisationIco className={classes.iconLocalisation} />
                                         </Grid>
-                                        <Grid item xs={8} >
-                                            <form noValidate autoComplete="off" >
-                                                <TextField id="filled-size-small" className={classes.inputDepart}  size="small" label="Adresse de départ" variant="filled" />
+                                        <Grid item xs={8}>
+                                            <form noValidate autoComplete="off">
+                                                <TextField id="filled-size-small" className={classes.inputDepart} size="small" label="Adresse de départ" variant="filled" />
                                             </form>
                                         </Grid>
                                         <Grid item xs={2}>
-   
                                         </Grid>
-                                    </Grid> 
-                                </Grid> 
-                                <Grid container >
-                                    <Grid item xs={2}>
-                                         <LocalisationIco className={classes.iconLocalisation}/>
                                     </Grid>
-
-                                    <Grid item xs={8} >
-                                        <form noValidate autoComplete="off" >
-                                              <TextField id="filled-size-small" className={classes.inputDestination} size="small" label="Déstination 1" variant="filled" />
+                                </Grid>
+                                <Grid container>
+                                    <Grid item xs={2}>
+                                        <LocalisationIco className={classes.iconLocalisation} />
+                                    </Grid>
+                                    <Grid item xs={8}>
+                                        <form noValidate autoComplete="off">
+                                            <TextField id="filled-size-small" className={classes.inputDestination} size="small" label="Déstination 1" variant="filled" />
                                         </form>
                                     </Grid>
                                     <Grid item xs={2}>
-   
                                     </Grid>
-                                </Grid> 
-
-                                <Grid container >
+                                </Grid>
+                                <Grid container>
                                     <Grid item xs={2}>
-                                         <LocalisationIco className={classes.iconLocalisation}/>
+                                        <LocalisationIco className={classes.iconLocalisation} />
                                     </Grid>
-
-                                    <Grid item xs={8} >
-                                        <form noValidate autoComplete="off" >
-                                              <TextField id="filled-size-small" className={classes.inputDestination} size="small" label="Déstination 2" variant="filled" />
+                                    <Grid item xs={8}>
+                                        <form noValidate autoComplete="off">
+                                            <TextField id="filled-size-small" className={classes.inputDestination} size="small" label="Déstination 2" variant="filled" />
                                         </form>
                                     </Grid>
                                     <Grid item xs={2}>
                                         <Fab color="default" className={classes.iconSupParent}>
-                                         <SupprimerIco className={classes.iconSup} />
+                                            <SupprimerIco className={classes.iconSup} />
                                         </Fab>
-                                         
                                     </Grid>
-                                </Grid> 
-
-                                <Grid container >
+                                </Grid>
+                                <Grid container>
                                     <Grid item xs={2}>
                                         <Fab color="default" className={classes.iconAjoutParent}>
                                             <AjouterIco className={classes.iconAjout} />
                                         </Fab>
                                     </Grid>
-
                                     <Grid item xs={10} className={classes.ajoutTextparent}>
-                                       <a href="#" className={classes.ajoutText}>Ajouter une Destination</a>
+                                        <a href="#" className={classes.ajoutText}>Ajouter une Destination</a>
                                     </Grid>
-                                </Grid> 
+                                </Grid>
                                 <Grid container justify="center" alignItems="center">
-                                     <Button  className={classes.btnValiderItineraire} variant="contained" color="primary" disableElevation> Valider l'itinéraire</Button>
-                                 </Grid>
-                                        {/* <FormControl>
-                                            <InputLabel htmlFor="standard-adornment-amount" className={classes.inputDepart}>Adresse de départ</InputLabel>
-                                            <Input
-                                                id="standard-adornment-amount"
-                                                startAdornment={<InputAdornment position="start"><LocalisationIco fontSize="small"/></InputAdornment>}
-                                            />
-                                        </FormControl>
-                                        <FormControl>
-                                            <InputLabel htmlFor="standard-adornment-amount"  className={classes.inputDestination}>Déstination</InputLabel>
-                                            <Input
-                                                id="standard-adornment-amount"
-                                                startAdornment={<InputAdornment position="start"><LocalisationIco fontSize="small"/></InputAdornment>}
-                                            />
-                                        </FormControl> */}
-                                       <Grid container justify="center" alignItems="center">
-                                            <div className={classes.tempsTrajet}>
-                                                
-                                                <Typography className={classes.fonttext}>
-                                                    <a className={classes.tempsTrajetA}>Temps éstimé: </a><a  color="primary.main" className={classes.tempsTrajethms}> 1 H 15 min</a>
-                                                </Typography>
-                                            </div>
+                                    <Button className={classes.btnValiderItineraire} variant="contained" color="primary" disableElevation> Valider l'itinéraire</Button>
+                                </Grid>
 
-                                        </Grid>
-                                        <Grid container justify="center" alignItems="center">
-                                             <a className={classes.detailBtn} href="#"> DETAIL DE L'ITINERAIRE &#9660;</a>
-                                        </Grid>
+                                <Grid container justify="center" alignItems="center">
+                                    <div className={classes.tempsTrajet}>
 
-                                        <Grid container justify="center" alignItems="center">
-                                             <p className={classes.detailList}>
-                                                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda aliquam commodi accusantium eum. Fugiat,
-                                                  voluptate? Doloremque sint vel assumenda? Distinctio quis officia corrupti modi esse repudiandae aliquid vitae ex? Iure.
-                                                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda aliquam commodi accusantium eum. Fugiat,
-                                                  voluptate? Doloremque sint vel assumenda? Distinctio quis officia corrupti modi esse repudiandae aliquid vitae ex? Iure.
-                                             </p>
-                                        </Grid>
-  
+                                        <Typography className={classes.fonttext}>
+                                            <a className={classes.tempsTrajetA}>Temps éstimé: </a><a color="primary.main" className={classes.tempsTrajethms}> 1 H 15 min</a>
+                                        </Typography>
+                                    </div>
+
+                                </Grid>
+                                <Grid container justify="center" alignItems="center">
+                                    <a className={classes.detailBtn} href="#"> DETAIL DE L'ITINERAIRE &#9660;</a>
+                                </Grid>
+
+                                <Grid container justify="center" alignItems="center">
+                                    <p className={classes.detailList}>
+                                                                               Lorem ipsum dolor sit amet, consectetur adipisicing elit.Assumenda aliquam commodi accusantium eum.Fugiat,
+                                              Doloremque sint vel assumenda?Distinctio quis officia corrupti modi esse repudiandae aliquid vitae ex?Iure.
+                                                      sit amet, consectetur adipisicing elit.Assumenda aliquam commodi accusantium eum.Fugiat,
+                                        voluptate?Doloremque sint vel assumenda?Distinctio quis officia corrupti modi esse repudiandae aliquid vitae ex?Iure.
+                                    </p>
+                                </Grid>
                             </Grid>
-                    </Container>
-
-            </Grid> 
-            
-            </div>
+                        </Container>
+                    </Grid>
+                </div></>
         );
     }
 }

@@ -36,7 +36,7 @@ export default class HeaderBar extends React.PureComponent<P & WithStyles<header
                 <Link to="/history">Historique</Link>
                 </span>
                 <span>
-                  Déconnexion
+                  <Link to="/login">Déconnexion</Link>
                   <LogoutIcon />
                 </span>
               </div>

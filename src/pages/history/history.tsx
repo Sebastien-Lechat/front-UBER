@@ -1,6 +1,8 @@
+import Header from '../../component/header/header';
 import React from 'react';
 import styles, { historyStyles } from './history-style';
 import { withStyles, WithStyles } from '@material-ui/core/styles';
+import {BrowserRouter as Router,Switch,Route} from "react-router-dom";
 
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
@@ -16,50 +18,51 @@ export default class myHistory extends React.PureComponent<P & WithStyles<histor
     
     render () {
         const { classes } = this.props;
-            return (
-            <div >
-            <h1 className={classes.titre}>MON HISTORIQUE DE DÉPLACEMENT</h1>
-            <hr className={classes.hr}></hr>
-            <Grid container className={classes.container}>
-                <Grid>
-                    <Container className={classes.containerHistory}>
-                        <Typography className={classes.fonttext} gutterBottom variant="h5" component="h2">
-                            <ul className={classes.ul}>
-                                <li className={classes.li}>Date: <a>XXXXXXXX&nbsp;</a></li>
-                                <li className={classes.li}>Temps de trajet: <a>XXXXXXXX&nbsp;</a></li>
-                                <li className={classes.li}>Départ: <a>XXXXXXXX&nbsp;</a></li>
-                                <li className={classes.li}>Arrivé: <a>XXXXXXXX&nbsp;</a></li>
-                                <li className={classes.li}>Détails : <a>XXXXXXXX&nbsp;</a></li>
-                            </ul>
-                        </Typography>
-                    </Container>
+        return (
+            <><Header.Display />
+                <div>
+                    <h1 className={classes.titre}>MON HISTORIQUE DE DÉPLACEMENT</h1>
                     <hr className={classes.hr}></hr>
-                    <Container className={classes.containerHistory}>
-                        <Typography className={classes.fonttext} gutterBottom variant="h5" component="h2">
-                            <ul className={classes.ul}>
-                                <li className={classes.li}>Date: <a>XXXXXXXX&nbsp;</a></li>
-                                <li className={classes.li}>Temps de trajet: <a>XXXXXXXX&nbsp;</a></li>
-                                <li className={classes.li}>Départ: <a>XXXXXXXX&nbsp;</a></li>
-                                <li className={classes.li}>Arrivé: <a>XXXXXXXX&nbsp;</a></li>
-                                <li className={classes.li}>Détails : <a>XXXXXXXX&nbsp;</a></li>
-                            </ul>
-                        </Typography>
-                    </Container>
-                    <hr className={classes.hr}></hr>
-                    <Container className={classes.containerHistory}>
-                        <Typography className={classes.fonttext} gutterBottom variant="h5" component="h2">
-                            <ul className={classes.ul}>
-                                <li className={classes.li}>Date: <a>XXXXXXXX&nbsp;</a></li>
-                                <li className={classes.li}>Temps de trajet: <a>XXXXXXXX&nbsp;</a></li>
-                                <li className={classes.li}>Départ: <a>XXXXXXXX&nbsp;</a></li>
-                                <li className={classes.li}>Arrivé: <a>XXXXXXXX&nbsp;</a></li>
-                                <li className={classes.li}>Détails : <a>XXXXXXXX&nbsp;</a></li>
-                            </ul>
-                        </Typography>
-                    </Container>
-                </Grid>
-            </Grid>
-            </div>
+                    <Grid container className={classes.container}>
+                        <Grid>
+                            <Container className={classes.containerHistory}>
+                                <Typography className={classes.fonttext} gutterBottom variant="h5" component="h2">
+                                    <ul className={classes.ul}>
+                                        <li className={classes.li}>Date: <a>XXXXXXXX&nbsp;</a></li>
+                                        <li className={classes.li}>Temps de trajet: <a>XXXXXXXX&nbsp;</a></li>
+                                        <li className={classes.li}>Départ: <a>XXXXXXXX&nbsp;</a></li>
+                                        <li className={classes.li}>Arrivé: <a>XXXXXXXX&nbsp;</a></li>
+                                        <li className={classes.li}>Détails: <a>XXXXXXXX&nbsp;</a></li>
+                                    </ul>
+                                </Typography>
+                            </Container>
+                            <hr className={classes.hr}></hr>
+                            <Container className={classes.containerHistory}>
+                                <Typography className={classes.fonttext} gutterBottom variant="h5" component="h2">
+                                    <ul className={classes.ul}>
+                                        <li className={classes.li}>Date: <a>XXXXXXXX&nbsp;</a></li>
+                                        <li className={classes.li}>Temps de trajet: <a>XXXXXXXX&nbsp;</a></li>
+                                        <li className={classes.li}>Départ: <a>XXXXXXXX&nbsp;</a></li>
+                                        <li className={classes.li}>Arrivé: <a>XXXXXXXX&nbsp;</a></li>
+                                        <li className={classes.li}>Détails: <a>XXXXXXXX&nbsp;</a></li>
+                                    </ul>
+                                </Typography>
+                            </Container>
+                            <hr className={classes.hr}></hr>
+                            <Container className={classes.containerHistory}>
+                                <Typography className={classes.fonttext} gutterBottom variant="h5" component="h2">
+                                    <ul className={classes.ul}>
+                                        <li className={classes.li}>Date: <a>XXXXXXXX&nbsp;</a></li>
+                                        <li className={classes.li}>Temps de trajet: <a>XXXXXXXX&nbsp;</a></li>
+                                        <li className={classes.li}>Départ: <a>XXXXXXXX&nbsp;</a></li>
+                                        <li className={classes.li}>Arrivé: <a>XXXXXXXX&nbsp;</a></li>
+                                        <li className={classes.li}>Détails: <a>XXXXXXXX&nbsp;</a></li>
+                                    </ul>
+                                </Typography>
+                            </Container>
+                        </Grid>
+                    </Grid>
+                </div></>
         );
     }
 }
