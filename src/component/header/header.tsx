@@ -24,7 +24,7 @@ export default class HeaderBar extends React.PureComponent<P & WithStyles<header
               <div className={classes.avatar + ' ' + classes.center}>
                 <div className={classes.img}></div>
               </div>
-              <Link to="/" className={classes.logoDiv + ' ' + classes.center}>
+              <Link to="/map" className={classes.logoDiv + ' ' + classes.center}>
                 <img className={classes.logo1} src={logo1} alt=""/>
                 <img className={classes.logo2} src={logo2} alt=""/>
               </Link>

@@ -25,7 +25,7 @@ export default class MyAccount extends React.PureComponent<P & WithStyles<myAcco
                     <h1 className={classes.titre}>MON COMPTE</h1>
                     <hr className={classes.hr}></hr>
                     <Grid container className={classes.container}>
-                        <Grid item xs={5}>
+                        <Grid item xs={12} sm={12} md={12} lg={6} xl={6}>
                             <Container className={classes.containerUser}>
                                 <Grid container>
                                     <Grid item xs={6} className={classes.gridTopUser}>
@@ -51,8 +51,8 @@ export default class MyAccount extends React.PureComponent<P & WithStyles<myAcco
 
                             </Container>
                         </Grid>
-                        <Grid item xs={7}>
-                            <Link to="/update-my-account"><Button className={classes.btnUpdateUser} variant="contained" color="primary" disableElevation> Mettre à jours mes informations</Button> </Link>
+                        <Grid item xs={12} sm={12} md={12} lg={6} xl={6} className={classes.btnContainer}>
+                            <Button className={classes.btnUpdateUser} variant="contained" color="primary" disableElevation><Link to="/update-my-account"> Mettre à jours mes informations </Link></Button>
                         </Grid>
                     </Grid>
                 </div></>

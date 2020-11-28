@@ -14,18 +14,22 @@ export default (theme: Theme) => createStyles<mapStyles, {}>({
   
     parentMap:{
         position: 'absolute',
+        height: '90vh',
+        width: '100vw'
     },
+
     map:{
         position: 'relative',
         zIndex: 1,
     },
     container: {
         backgroundColor: 'rgba(0, 0, 0, 0.5)', 
-        marginLeft:'1%',
-        width: '20%',
-        position: 'relative',
+        width: '25%',
+        position: 'absolute',
         zIndex: 2,
-        marginTop:'-840px'
+        top: '7vh',
+        left: '5vw',
+        height: '75vh'
     },
     containerMobilite: {
         backgroundColor:'white',
@@ -51,8 +55,10 @@ export default (theme: Theme) => createStyles<mapStyles, {}>({
         marginLeft:'10px',
         marginRight:'10px',
         height: 'auto',
+        maxHeight: '65vh',
         width:'100%',
         marginBottom:'10px',
+        overflowX: 'auto'
     },
     blocVoitureVeloPieton:{
         width: '100%',
@@ -167,7 +173,26 @@ export default (theme: Theme) => createStyles<mapStyles, {}>({
         marginRight: '5px',
         overflow: 'scroll',
         textAlign:'justify',
-    }
+    },
+    [theme.breakpoints.down('xl')]: {
+        
+    },
+    [theme.breakpoints.down('lg')]: {
+        
+    },
+    [theme.breakpoints.down('md')]: {
+        container: {
+            width: '35%'
+        }
+    },
+    [theme.breakpoints.down('sm')]: {
+        container: {
+            width: '45%'
+        }
+    },
+    [theme.breakpoints.down('xs')]: {
+        
+    },
 });
     
 
