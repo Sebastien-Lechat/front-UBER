@@ -14,7 +14,7 @@ export default (theme: Theme) => createStyles<updateMyAccountStyles, {}>({
         display: 'none',
       },
     h1: {
-        marginTop: '40px',
+        marginTop: '70px',
         paddingLeft: '5%',
     },
     hr: {
@@ -24,9 +24,9 @@ export default (theme: Theme) => createStyles<updateMyAccountStyles, {}>({
         width: '90%',
     },
     container: {
-        marginRight:'10%',
-        marginTop: '70px',
-        backgroundColor: '',
+        marginTop: '5vh',
+        margin:'auto',
+        width: '90%'
     },
 
     containerUser: {
@@ -50,14 +50,28 @@ export default (theme: Theme) => createStyles<updateMyAccountStyles, {}>({
 // },
    btnUpdateUser: {
         textAlign:'center',
-        marginTop: '50px', 
         backgroundColor: 'black',
         borderRadius: '60px',
-        width: '40%',
-        height: '100px',
+        width: '60%',
+        height: '75px',
         fontSize: '20px',
         alignItems:'center',
-        margin:'auto 0'
+        margin:'auto',
+        marginTop:'4vh',
+        '&:hover' : {
+            color: 'black',
+            backgroundColor: '#ADADAE'
+        },
+        '& span' : {
+            color: 'white',
+        },
+        '& a' : {
+            color: 'white',
+        },
+        '& a:hover' : {
+            color: 'white',
+            textDecoration: 'none'
+        },
     },
     userAvatar:{
         height:'200px', 

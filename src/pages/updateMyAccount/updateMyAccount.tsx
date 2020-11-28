@@ -26,16 +26,12 @@ return <MuiAlert elevation={6} variant="filled" {...props} />;
         return (
             <><Header.Display />
                 <div>
-                    <Grid container>
-                        <Grid item xs={8}>
-                            <h1 className={classes.h1}>MON COMPTE &gt; METTRE A JOURS MON COMPTE</h1>
-                        </Grid>
-                        <Grid item xs={4} className={classes.leftSucces}>
+                    <h1 className={classes.h1}>MON COMPTE &gt; METTRE A JOURS MON COMPTE</h1>
+                        {/* <Grid item xs={4} className={classes.leftSucces}>
                             <Alert className={classes.alert}>
                                 Votre compte à bien été mis à jours!
                             </Alert>
-                        </Grid>
-                    </Grid>
+                        </Grid> */}
                     <hr className={classes.hr}></hr>
                     <Grid container className={classes.container}>
                         <Grid item xs={12}>

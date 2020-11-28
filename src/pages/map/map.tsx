@@ -35,10 +35,10 @@ export default class Map extends React.PureComponent<P & WithStyles<mapStyles>, 
         const { classes } = this.props;
         return (
             <><Header.Display />
-                <div className="parentMap">
+                <div className={classes.parentMap}>
                     <Iframe url="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2623.26385935044!2d2.281957415732015!3d48.89130837929074!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66f65519599ab%3A0x648913b6b58c1316!2sIMIE%20Paris!5e0!3m2!1sfr!2sfr!4v1606261522299!5m2!1sfr!2sfr"
                         width="100%"
-                        height="900px"
+                        height="100%"
                         className="map" />
                     <Grid container className={classes.container}>
                         <Container className={classes.containerMobilite}>
