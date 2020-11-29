@@ -17,6 +17,7 @@ export default (theme: Theme) => createStyles<headerBarStyles, {}>({
         height: '140px',
         border: '1px solid #00000050',
         marginTop: '5vh',
+        zIndex: 3
     },
     img: {
         backgroundImage: `url(${avatar})`,
@@ -53,13 +54,11 @@ export default (theme: Theme) => createStyles<headerBarStyles, {}>({
         '& span a' : {
             color: 'white',
             fontSize: '22px',
-            marginLeft: '45px',
             textDecoration: 'none'
         },
         '& span a:hover' : {
-            color: 'white',
+            color: '#ADADAE',
             fontSize: '22px',
-            marginLeft: '45px',
             textDecoration: 'none'
         }
     }

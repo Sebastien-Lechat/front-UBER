@@ -37,7 +37,7 @@ export default class Login extends React.PureComponent<P & WithStyles<loginStyle
                             </form>
                         </Grid>
                         <Grid item xs={12} className={classes.center}>
-                            <span className={classes.subtitle}>Vous n'avez pas encore de compte ? <Link to="/register" className={classes.link}>Inscription</Link></span> 
+                            <span className={classes.subtitle}>Vous n'avez pas encore de compte ? <Link to="/register" className={classes.link}>Rejoignez-nous !</Link></span> 
                         </Grid>
                     </Grid>
                 </Grid>
