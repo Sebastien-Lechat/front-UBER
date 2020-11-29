@@ -11,6 +11,10 @@ import Container from '@material-ui/core/Container';
 import PhotoCamera from '@material-ui/icons/PhotoCamera';
 import Checkbox from '@material-ui/core/Checkbox';
 import MuiAlert, { AlertProps } from '@material-ui/lab/Alert';
+import DeleteAccount from '@material-ui/icons/DeleteForever';
+import Warning from '@material-ui/icons/Warning';
+
+import Fab from '@material-ui/core/Fab';
 interface P {}
 interface S {}
 function Alert(props: AlertProps) {
@@ -48,7 +52,7 @@ return <MuiAlert elevation={6} variant="filled" {...props} />;
                                         <input accept="image/*" className={classes.input} id="contained-button-file" multiple type="file" />
                                             <label htmlFor="contained-button-file">
                                                 <Button className={classes.btnAvatar} variant="contained" color="primary" component="span">
-                                                <PhotoCamera /> &nbsp; Modifier mon avatar
+                                                <PhotoCamera className={classes.iconCamera}/> &nbsp; Modifier mon avatar &nbsp; &nbsp; 
                                                 </Button>
                                             </label>
                                     </Grid>
@@ -60,23 +64,37 @@ return <MuiAlert elevation={6} variant="filled" {...props} />;
                                     </form>
                                     </Grid>
                                     <Grid item xs={4}>
-                                    <form className={classes.form} noValidate autoComplete="off">
-                                        <TextField className={classes.formId} id="filled-basic" label="Email" variant="filled" />
-                                        <TextField className={classes.formId} id="filled-basic" label="Mot de passe" variant="filled" />
-                                        <TextField className={classes.formId} id="filled-basic" label="Mot de passe" variant="filled" />
-                                        <Checkbox className={classes.checked}/>
-                                    <a className={classes.a}> Activer l'otpion du double authentification</a> 
-                                     </form>
-                                    
+                                        <form className={classes.form} noValidate autoComplete="off">
+                                            <TextField className={classes.formId} id="filled-basic" label="Email" variant="filled" />
+                                            <TextField className={classes.formId} id="filled-basic" label="Mot de passe" variant="filled" />
+                                            <TextField className={classes.formId} id="filled-basic" label="Mot de passe" variant="filled" />
+                                            <Checkbox className={classes.checked}/>
+                                        <a className={classes.a}> Activer l'otpion du double authentification</a> 
+                                        </form>
                                     </Grid>
-                                    
                                 </Grid>
+                                <br/>
+                                <Grid container >
+                                    <Grid item xs={4} className={classes.blocBtn}>
+                                    
+                                     <Button className={classes.btnDeleteAccount} variant="contained" color="primary" component="span">
+                                         <DeleteAccount className={classes.iconDeleteAccount} /> &nbsp; Supprimer mon compte
+                                    </Button>
+                                     
+                                    </Grid>
+                                    <Grid item xs={8} className={classes.containerBtnvalider} >
+                                        <Button  className={classes.btnUpdateUser} variant="contained" color="primary" disableElevation> VALIDER</Button>
+                                    </Grid> 
+                            
+                                </Grid>
+
+
                             </Container>
+                            
                         </Grid>
+                        
                     </Grid>
-                    <Grid container justify="center" alignItems="center">
-                        <Button   className={classes.btnUpdateUser} variant="contained" color="primary" disableElevation> VALIDER</Button>
-                    </Grid>
+                    
                    
                 </div>
         );
