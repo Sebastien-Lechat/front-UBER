@@ -20,7 +20,9 @@ export default (theme: Theme) => createStyles<myAccountStyles, {}>({
         paddingLeft: '5%',
     },
     h2:{
-        marginBottom:'30px'
+        marginBottom:'30px', 
+        marginRight:'40px',
+        float:'right',
     },
     hr: {
         border: '5px solid black',
@@ -40,9 +42,8 @@ export default (theme: Theme) => createStyles<myAccountStyles, {}>({
         width: '90%'
     },
     h1: {
-        paddingTop: '20px',
+        paddingLeft: '40px',
         color: 'white',
-        textAlign: 'center',
     },
     left: {
 
@@ -50,7 +51,8 @@ export default (theme: Theme) => createStyles<myAccountStyles, {}>({
     containerUser: {
         backgroundColor:'black',
         borderRadius: '20px',
-        padding: '20px'
+        padding: '20px', 
+        marginRight:'40px'
     },
     ul: {
         listStyle:'none',
@@ -60,7 +62,11 @@ export default (theme: Theme) => createStyles<myAccountStyles, {}>({
     li:{
         paddingBottom: '10px'
     },
+
+ 
+    
     btnUpdateUser: {
+        color:'white',
         textAlign:'center',
         backgroundColor: 'black',
         borderRadius: '60px',
@@ -69,20 +75,30 @@ export default (theme: Theme) => createStyles<myAccountStyles, {}>({
         fontSize: '20px',
         alignItems:'center',
         margin:'auto 0',
-        '&:hover' : {
-            color: 'black',
-            backgroundColor: '#ADADAE'
-        },
-        '& span' : {
-            color: 'white',
-        },
-        '& a' : {
-            color: 'white',
-        },
-        '& a:hover' : {
-            color: 'white',
-            textDecoration: 'none'
-        },
+        textDecoration:'none',
+        '&:hover' :{
+            border: '1px solid black',
+            backgroundColor:'white',
+            color:'black',
+            textDecoration:'none',
+    }
+        
+        
+        // '&:hover' : {
+        //     backgroundColor: 'white',
+        //     border:'1px solid black',
+        //     color:'black'
+        // },
+        // '& span' : {
+        //     color: 'white',
+        // },
+        // '& a' : {
+        //     color: 'red ',
+        // },
+        // '& a:hover' : {
+        //     color:'orange',
+        //     textDecoration: 'none'
+        // },
         // '&:hover' : {
         //     color: '#ADADAE'
         // },

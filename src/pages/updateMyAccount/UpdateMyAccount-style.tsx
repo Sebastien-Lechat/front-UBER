@@ -94,6 +94,7 @@ export default (theme: Theme) => createStyles<updateMyAccountStyles, {}>({
     btnUpdateUser: {
         textAlign:'center',
         backgroundColor: 'black',
+        border: '1px solid white',
         borderRadius: '60px',
         width: '60%',
         height: '75px',
@@ -103,18 +104,18 @@ export default (theme: Theme) => createStyles<updateMyAccountStyles, {}>({
         marginTop:'4vh',
         '&:hover' : {
             color: 'black',
-            backgroundColor: '#ADADAE'
+            backgroundColor: 'white'
         },
-        '& span' : {
-            color: 'white',
-        },
-        '& a' : {
-            color: 'white',
-        },
-        '& a:hover' : {
-            color: 'white',
-            textDecoration: 'none'
-        },
+        // '& span' : {
+        //     color: 'white',
+        // },
+        // '& a' : {
+        //     color: 'white',
+        // },
+        // '& a:hover' : {
+        //     color: 'black',
+        //     textDecoration: 'none'
+        // },
     },
     userAvatar:{
         height:'200px', 
