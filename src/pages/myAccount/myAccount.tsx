@@ -48,7 +48,6 @@ export default class MyAccount extends React.PureComponent<P & WithStyles<myAcco
                                         <li className={classes.li}> Email: <a>XXXXXXXX</a></li>
                                     </ul>
                                 </Typography>
-
                             </Container>
                         </Grid>
                         <Grid item xs={12} sm={12} md={12} lg={6} xl={6} className={classes.btnContainer}>
