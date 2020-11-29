@@ -1,7 +1,8 @@
 import { Theme, createStyles } from '@material-ui/core/styles';
 
 export type updateMyAccountStyles = ("container" | "h1" |"left" | "hr" |"containerUser" | "center" |
- "btnAvatar" |"btnUpdateUser" | "input" | "userAvatar"|"form" | "formId" | "checked" |"a" | "alert" | "leftSucces"|"succesIcone"); // add class create
+ "btnAvatar" |"btnUpdateUser" | "input" | "userAvatar"|"form" | "formId" | "checked" |"a" | "alert" | "leftSucces"|"succesIcone"|
+"iconDelete"|"containerBtnvalider"|"blocBtn"|"textDelete"|"btnDeleteAccount"|"iconDeleteAccount"|"iconCamera"); // add class create
 
 // eslint-disable-next-line
 export default (theme: Theme) => createStyles<updateMyAccountStyles, {}>({
@@ -32,9 +33,53 @@ export default (theme: Theme) => createStyles<updateMyAccountStyles, {}>({
     containerUser: {
         paddingTop:'100px',
         backgroundColor:'black',
+        height:'auto',
         borderRadius: '20px',
         paddingBottom:'80px',
+    },
+    containerBtnvalider:{
+        width:'100%',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+    btnDeleteAccount:{
+        backgroundColor:'black',
+        border: '1px solid white',
+        borderColor: '#A93226',
+        color:'#A93226',
+   
+        '&:hover' : {
+            backgroundColor:'black',
+            border: '1px solid white',
+            borderColor: '#A93226',
+            color:'#A93226',
+            fontWeight:'bold'
+        }
         
+    },
+ 
+    iconDeleteAccount:{
+        color: '#A93226',
+    },
+    iconCamera:{
+        '& hover':{
+            color: '#7FB3D5',
+        }
+    },
+   
+    btnUpdateUser: {
+        backgroundColor: 'transparent',
+        border: '1px solid white ',
+        borderRadius: '60px',
+        width:'80%',
+        fontSize: '20px',
+        color:'white',
+       
+        '&:hover' : {
+            backgroundColor: 'white',
+            color:'black'
+        }
     },
    left:{
        backgroundColor:'',
@@ -43,6 +88,24 @@ export default (theme: Theme) => createStyles<updateMyAccountStyles, {}>({
    },
    btnAvatar:{
        marginTop: '20px',
+       backgroundColor:'black',
+       border: '1px solid white',
+
+       '&:hover' : {
+        backgroundColor: 'black',
+        borderColor:'#7FB3D5',
+        color:'#7FB3D5'
+    }
+   },
+   
+   
+   
+   blocBtn:{
+    paddingLeft: '40px'
+   },
+    iconDelete:{
+        color:'white',
+        float:"left"
        backgroundColor:'#008ab6',
    },
 //    &:hover btnAvatar: {
@@ -94,8 +157,13 @@ export default (theme: Theme) => createStyles<updateMyAccountStyles, {}>({
         color:'white'
     },
     a:{
-        textDecoration:'underline'
-
+        textDecoration:'underline',
+        color:'white',
+    },
+    textDelete:{
+        color:'white',
+        fontSize:'15px'
+  
     },
     alert: {
         marginTop: '40px',
