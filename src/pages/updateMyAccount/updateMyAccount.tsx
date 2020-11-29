@@ -83,7 +83,7 @@ return <MuiAlert elevation={6} variant="filled" {...props} />;
                                      
                                     </Grid>
                                     <Grid item xs={8} className={classes.containerBtnvalider} >
-                                        <Button  className={classes.btnUpdateUser} variant="contained" color="primary" disableElevation> VALIDER</Button>
+                                        <Button  className={classes.btnUpdateUser} > VALIDER</Button>
                                     </Grid> 
                             
                                 </Grid>

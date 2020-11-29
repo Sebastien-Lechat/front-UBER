@@ -50,7 +50,7 @@ export default class MyAccount extends React.PureComponent<P & WithStyles<myAcco
                     </Container>
                 </Grid>
                 <Grid item xs={7}>
-                      <Link to="/update-my-account"><Button  className={classes.btnUpdateUser} variant="contained" color="primary" disableElevation> Mettre à jours mes informations</Button> </Link>
+                      <Link to="/update-my-account"><Button  className={classes.btnUpdateUser}  > Mettre à jours mes informations</Button> </Link>
                 </Grid>
             </Grid>
             </div>

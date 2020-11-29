@@ -67,13 +67,23 @@ export default (theme: Theme) => createStyles<myAccountStyles, {}>({
         textAlign:'center',
         marginTop: '200px', 
         marginLeft: '100px',
-        backgroundColor: 'black',
-        borderRadius: '60px',
         width: '70%',
         height: '100px',
         fontSize: '20px',
         alignItems:'center',
-        margin:'auto 0'
+        margin:'auto 0',
+        backgroundColor: 'black',
+        border: '1px solid white ',
+        borderRadius: '60px',
+        color:'white',
+       
+        '&:hover' : {
+            borderColor:'black',
+            backgroundColor: 'white',
+            color:'black',
+            textDecoration:'none'
+        }
+       
     },
     userAvatar:{
         height:'100px', 
