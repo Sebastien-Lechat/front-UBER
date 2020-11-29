@@ -119,12 +119,22 @@ export default class Map extends React.PureComponent<P & WithStyles<mapStyles>, 
 
                                 <Grid container justify="center" alignItems="center">
                                     <div className={classes.tempsTrajet}>
-
+                                        <Grid container justify="center" alignItems="center">
+                                             <p className={classes.detailList}>
+                                                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda aliquam commodi accusantium eum. Fugiat,
+                                                  voluptate? Doloremque sint vel assumenda? Distinctio quis officia corrupti modi esse repudiandae aliquid vitae ex? Iure.
+                                                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda aliquam commodi accusantium eum. Fugiat,
+                                                  voluptate? Doloremque sint vel assumenda? Distinctio quis officia corrupti modi esse repudiandae aliquid vitae ex? Iure.
+                                                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda aliquam commodi accusantium eum. Fugiat,
+                                                  voluptate? Doloremque sint vel assumenda? Distinctio quis officia corrupti modi esse repudiandae aliquid vitae ex? Iure.
+                                                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda aliquam commodi accusantium eum. Fugiat,
+                                                  voluptate? Doloremque sint vel assumenda? Distinctio quis officia corrupti modi esse repudiandae aliquid vitae ex? Iure.
+                                              </p>
+                                        </Grid>
                                         <Typography className={classes.fonttext}>
                                             <a className={classes.tempsTrajetA}>Temps éstimé: </a><a color="primary.main" className={classes.tempsTrajethms}> 1 H 15 min</a>
                                         </Typography>
                                     </div>
-
                                 </Grid>
                                 <Grid container justify="center" alignItems="center">
                                     <a className={classes.detailBtn} href="#"> DETAIL DE L'ITINERAIRE &#9660;</a>
