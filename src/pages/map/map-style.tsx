@@ -34,7 +34,7 @@ export default (theme: Theme) => createStyles<mapStyles, {}>({
     containerMobilite: {
         backgroundColor:'white',
         borderRadius: '20px',
-        height: 'auto',
+        height: '10vh',
         width:'100%',
         marginTop:'10px',
         marginLeft:'10px',
@@ -54,11 +54,12 @@ export default (theme: Theme) => createStyles<mapStyles, {}>({
         borderRadius: '20px',
         marginLeft:'10px',
         marginRight:'10px',
-        height: 'auto',
+        height: '60vh',
         maxHeight: '65vh',
         width:'100%',
         marginBottom:'10px',
-        overflowX: 'auto'
+        overflowX: 'auto',
+        padding: '15px 7px',
     },
     blocVoitureVeloPieton:{
         width: '100%',
@@ -88,8 +89,7 @@ export default (theme: Theme) => createStyles<mapStyles, {}>({
     iconLocalisation:{
         width: '70%',
         height:'70%',
-        marginTop:'30%', 
-        marginLef: '1px',
+        marginTop:'15px', 
         float: 'right',
     },
     
@@ -119,10 +119,13 @@ export default (theme: Theme) => createStyles<mapStyles, {}>({
     },
     ajoutTextparent:{
         marginTop: '20px', 
-        paddingLeft:'10px'
+        padding:'3px 10px',
+        textAlign:'center',
+        '& a' : {
+            color:'black'
+        }
     },
     ajoutText:{
-     
     },
     btnValiderItineraire: {
         textAlign:'center',
@@ -167,11 +170,8 @@ export default (theme: Theme) => createStyles<mapStyles, {}>({
         marginTop:'25px'
     },
     detailList:{
-        height: '300px',
-        marginTop: '20px',
-        marginLeft: '5px',
-        marginRight: '5px',
-        overflow: 'scroll',
+        height:'max-content',
+        margin: '15px 15px',
         textAlign:'justify',
     },
     [theme.breakpoints.down('xl')]: {

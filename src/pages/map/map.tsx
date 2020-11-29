@@ -109,7 +109,7 @@ export default class Map extends React.PureComponent<P & WithStyles<mapStyles>, 
                                             <AjouterIco className={classes.iconAjout} />
                                         </Fab>
                                     </Grid>
-                                    <Grid item xs={10} className={classes.ajoutTextparent}>
+                                    <Grid item xs={8} className={classes.ajoutTextparent}>
                                         <a href="#" className={classes.ajoutText}>Ajouter une Destination</a>
                                     </Grid>
                                 </Grid>
@@ -119,18 +119,6 @@ export default class Map extends React.PureComponent<P & WithStyles<mapStyles>, 
 
                                 <Grid container justify="center" alignItems="center">
                                     <div className={classes.tempsTrajet}>
-                                        <Grid container justify="center" alignItems="center">
-                                             <p className={classes.detailList}>
-                                                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda aliquam commodi accusantium eum. Fugiat,
-                                                  voluptate? Doloremque sint vel assumenda? Distinctio quis officia corrupti modi esse repudiandae aliquid vitae ex? Iure.
-                                                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda aliquam commodi accusantium eum. Fugiat,
-                                                  voluptate? Doloremque sint vel assumenda? Distinctio quis officia corrupti modi esse repudiandae aliquid vitae ex? Iure.
-                                                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda aliquam commodi accusantium eum. Fugiat,
-                                                  voluptate? Doloremque sint vel assumenda? Distinctio quis officia corrupti modi esse repudiandae aliquid vitae ex? Iure.
-                                                  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda aliquam commodi accusantium eum. Fugiat,
-                                                  voluptate? Doloremque sint vel assumenda? Distinctio quis officia corrupti modi esse repudiandae aliquid vitae ex? Iure.
-                                              </p>
-                                        </Grid>
                                         <Typography className={classes.fonttext}>
                                             <a className={classes.tempsTrajetA}>Temps éstimé: </a><a color="primary.main" className={classes.tempsTrajethms}> 1 H 15 min</a>
                                         </Typography>
@@ -142,9 +130,9 @@ export default class Map extends React.PureComponent<P & WithStyles<mapStyles>, 
 
                                 <Grid container justify="center" alignItems="center">
                                     <p className={classes.detailList}>
-                                                                               Lorem ipsum dolor sit amet, consectetur adipisicing elit.Assumenda aliquam commodi accusantium eum.Fugiat,
-                                              Doloremque sint vel assumenda?Distinctio quis officia corrupti modi esse repudiandae aliquid vitae ex?Iure.
-                                                      sit amet, consectetur adipisicing elit.Assumenda aliquam commodi accusantium eum.Fugiat,
+                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit.Assumenda aliquam commodi accusantium eum.Fugiat,
+                                        Doloremque sint vel assumenda?Distinctio quis officia corrupti modi esse repudiandae aliquid vitae ex?Iure.
+                                        sit amet, consectetur adipisicing elit.Assumenda aliquam commodi accusantium eum.Fugiat,
                                         voluptate?Doloremque sint vel assumenda?Distinctio quis officia corrupti modi esse repudiandae aliquid vitae ex?Iure.
                                     </p>
                                 </Grid>
