@@ -58,7 +58,7 @@ export default (theme: Theme) => createStyles<updateMyAccountStyles, {}>({
         }
         
     },
- 
+
     iconDeleteAccount:{
         color: '#A93226',
     },
@@ -67,51 +67,31 @@ export default (theme: Theme) => createStyles<updateMyAccountStyles, {}>({
             color: '#7FB3D5',
         }
     },
-   
-    btnUpdateUser: {
-        backgroundColor: 'transparent',
-        border: '1px solid white ',
-        borderRadius: '60px',
-        width:'80%',
-        fontSize: '20px',
-        color:'white',
-       
-        '&:hover' : {
-            backgroundColor: 'white',
-            color:'black'
-        }
+    left:{
+        backgroundColor:'',
+        paddingLeft:'40px'
+        
     },
-   left:{
-       backgroundColor:'',
-       paddingLeft:'40px'
-      
-   },
-   btnAvatar:{
-       marginTop: '20px',
-       backgroundColor:'black',
-       border: '1px solid white',
+    btnAvatar:{
+        marginTop: '20px',
+        backgroundColor:'black',
+        border: '1px solid white',
 
-       '&:hover' : {
+        '&:hover' : {
         backgroundColor: 'black',
         borderColor:'#7FB3D5',
         color:'#7FB3D5'
-    }
-   },
-   
-   
-   
-   blocBtn:{
-    paddingLeft: '40px'
-   },
+        }
+    },
+    blocBtn:{
+        paddingLeft: '40px'
+    },
     iconDelete:{
         color:'white',
-        float:"left"
+        float:"left",
        backgroundColor:'#008ab6',
-   },
-//    &:hover btnAvatar: {
-//     color: '#ADADAE',
-// },
-   btnUpdateUser: {
+    },
+    btnUpdateUser: {
         textAlign:'center',
         backgroundColor: 'black',
         borderRadius: '60px',
