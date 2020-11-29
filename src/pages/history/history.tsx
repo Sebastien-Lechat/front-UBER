@@ -1,6 +1,8 @@
+import Header from '../../component/header/header';
 import React from 'react';
 import styles, { historyStyles } from './history-style';
 import { withStyles, WithStyles } from '@material-ui/core/styles';
+import {BrowserRouter as Router,Switch,Route} from "react-router-dom";
 
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
@@ -17,7 +19,7 @@ export default class myHistory extends React.PureComponent<P & WithStyles<histor
     render () {
         const { classes } = this.props;
             return (
-            <div >
+            <><Header.Display /><div >
             <h1 className={classes.titre}>MON HISTORIQUE DE DÉPLACEMENT</h1>
             <hr className={classes.hr}></hr>
             <Grid container className={classes.container}>
@@ -187,7 +189,7 @@ export default class myHistory extends React.PureComponent<P & WithStyles<histor
                     </Container>
                 </Grid> */}
             </Grid>
-            </div>
+            </div></>
         );
     }
 }
