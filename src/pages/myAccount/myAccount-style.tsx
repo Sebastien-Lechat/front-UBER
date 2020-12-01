@@ -6,7 +6,7 @@ export type myAccountStyles = ("container" |"gridTopUser"|"titre"| "h1" | "h2" |
 // eslint-disable-next-line
 export default (theme: Theme) => createStyles<myAccountStyles, {}>({
     fonttext:{
-        color:'white',
+        color:'black',
     },
     input: {
         display: 'none',
@@ -43,20 +43,21 @@ export default (theme: Theme) => createStyles<myAccountStyles, {}>({
     },
     h1: {
         paddingLeft: '40px',
-        color: 'white',
+        color: 'black',
     },
     left: {
 
     },
     containerUser: {
-        backgroundColor:'black',
+        border: '5px solid black',
+        backgroundColor:'white',
         borderRadius: '20px',
         padding: '20px', 
         marginRight:'40px'
     },
     ul: {
         listStyle:'none',
-        color: 'white',
+        color: 'black',
         fontsize: '20px',
     },
     li:{
@@ -66,9 +67,10 @@ export default (theme: Theme) => createStyles<myAccountStyles, {}>({
  
     
     btnUpdateUser: {
-        color:'white',
+        border: '5px solid black',
+        color:'black',
         textAlign:'center',
-        backgroundColor: 'black',
+        backgroundColor: 'white',
         borderRadius: '60px',
         width: '80%',
         height: '100px',
@@ -78,10 +80,10 @@ export default (theme: Theme) => createStyles<myAccountStyles, {}>({
         textDecoration:'none',
         '&:hover' :{
             border: '1px solid black',
-            backgroundColor:'white',
-            color:'black',
+            backgroundColor:'black',
+            color:'white',
             textDecoration:'none',
-    }
+        }
         
         
         // '&:hover' : {
