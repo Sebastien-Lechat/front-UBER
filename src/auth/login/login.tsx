@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 import logo from '../../assets/img/1.png';
 import logo2 from '../../assets/img/uber.png';
 import styles, { loginStyles } from './login-style';
@@ -8,14 +9,22 @@ import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom';
+import { history } from '../../history';
 
-interface P {}
-interface S {}
-
+interface P {
+}
+interface S {
+    email: string,
+    password: string,
+}
 export default class Login extends React.PureComponent<P & WithStyles<loginStyles>, S> {
 
     public static Display = withStyles(styles as any)(Login) as React.ComponentType<P>
-    
+    public state: Readonly<S> = {
+        email: "",
+        password: "",
+    };
+
     render () {
         const { classes } = this.props;
             return (
@@ -27,13 +36,13 @@ export default class Login extends React.PureComponent<P & WithStyles<loginStyle
                             <img className={classes.img} src={logo2} alt=""/>
                         </Grid>
                         <Grid item xs={12} className={classes.center}>
-                            <form className={classes.form} noValidate autoComplete="off">
-                                <InputEmail id="outlined-basic" label="EMAIL" variant="outlined" />
-                                <InputPassword id="outlined-basic" label="PASSWORD" variant="outlined" />
+                            <form className={classes.form} noValidate autoComplete="off" onSubmit={this.validationForm}>
+                                <InputEmail id="email" label="EMAIL" name="email" variant="outlined" onChange={this.changeVal} />
+                                <InputPassword id="password" label="PASSWORD" type="password" name="password" variant="outlined" onChange={this.changeVal} />
                                 <div className={classes.passwordLost}>
                                     <Link to="/request-password-lost" className={classes.link}>Mot de passe oublié ?</Link>
                                 </div>
-                                <LoginButton>Connexion</LoginButton>
+                                <LoginButton type='submit'>Connexion</LoginButton>
                             </form>
                         </Grid>
                         <Grid item xs={12} className={classes.center}>
@@ -47,6 +56,29 @@ export default class Login extends React.PureComponent<P & WithStyles<loginStyle
             </Grid>
             </div>
         );
+    }
+
+    changeVal = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = e.currentTarget;
+        this.setState({[name]: value} as Pick<S, keyof S>)
+    }
+
+    validationForm = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault()
+        const data = {
+            email: this.state.email,
+            password: this.state.password,
+        }
+        axios.post(`http://localhost:3010/api/UBER-EEDSI/account/login`, data)
+        .then(res => {
+            console.log(res);
+            localStorage.setItem('currentUser', JSON.stringify(res.data));
+            history.push('/map');
+        })
+        .catch(error => {
+            
+        })
+        
     }
 }
 
