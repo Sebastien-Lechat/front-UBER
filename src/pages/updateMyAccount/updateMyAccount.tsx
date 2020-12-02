@@ -30,7 +30,7 @@ return <MuiAlert elevation={6} variant="filled" {...props} />;
         return (
             <><Header.Display />
                 <div>
-                    <h1 className={classes.h1}>MON COMPTE &gt; METTRE A JOURS MON COMPTE</h1>
+                    <h1 className={classes.h1}>MON COMPTE &gt; METTRE A JOUR MON COMPTE</h1>
                         {/* <Grid item xs={4} className={classes.leftSucces}>
                             <Alert className={classes.alert}>
                                 Votre compte à bien été mis à jours!
@@ -53,17 +53,17 @@ return <MuiAlert elevation={6} variant="filled" {...props} />;
                                     <Grid item xs={4}>
                                         <form className={classes.form} noValidate autoComplete="off">
                                             <TextField className={classes.formId} id="filled-basic" label="Nom" variant="filled" />
-                                            <TextField className={classes.formId} id="filled-basic" label="Prénom" variant="filled" />
-                                            <TextField className={classes.formId} id="filled-basic" label="Téléphone" variant="filled" />
+                                            <TextField className={classes.formId} id="filled-basic" label="Email" variant="filled" />
+                                            <TextField className={classes.formId} id="filled-basic" label="Nouveau mot de passe" variant="filled" />
                                         </form>
                                     </Grid>
                                     <Grid item xs={4}>
                                         <form className={classes.form} noValidate autoComplete="off">
-                                            <TextField className={classes.formId} id="filled-basic" label="Email" variant="filled" />
-                                            <TextField className={classes.formId} id="filled-basic" label="Mot de passe" variant="filled" />
-                                            <TextField className={classes.formId} id="filled-basic" label="Mot de passe" variant="filled" />
+                                            <TextField className={classes.formId} id="filled-basic" label="Prénom" variant="filled" />
+                                            <TextField className={classes.formId} id="filled-basic" label="Téléphone" variant="filled" />
+                                            <TextField className={classes.formId} id="filled-basic" label="Confirmez le nouveau mot de passe" variant="filled" />
                                             <Checkbox className={classes.checked}/>
-                                        <a className={classes.a}> Activer l'otpion du double authentification</a> 
+                                        <a className={classes.a}> Activer l'option de double authentification</a> 
                                         </form>
                                     </Grid>
                                 </Grid>
@@ -77,7 +77,7 @@ return <MuiAlert elevation={6} variant="filled" {...props} />;
                                      
                                     </Grid>
                                     <Grid item xs={8} className={classes.containerBtnvalider} >
-                                        <Button  className={classes.btnUpdateUser} variant="contained" color="primary" disableElevation> VALIDER</Button>
+                                        <Button  className={classes.btnUpdateUser} variant="contained" color="primary" disableElevation> VALIDER </Button>
                                     </Grid>                         
                                 </Grid>
                             </Container>

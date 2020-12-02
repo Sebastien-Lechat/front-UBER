@@ -31,8 +31,9 @@ export default (theme: Theme) => createStyles<updateMyAccountStyles, {}>({
     },
 
     containerUser: {
+        border: '5px solid black',
         paddingTop:'100px',
-        backgroundColor:'black',
+        backgroundColor:'white',
         height:'auto',
         borderRadius: '20px',
         paddingBottom:'80px',
@@ -41,14 +42,14 @@ export default (theme: Theme) => createStyles<updateMyAccountStyles, {}>({
         width:'100%',
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        
     },
     btnDeleteAccount:{
         backgroundColor:'black',
         border: '1px solid white',
         borderColor: '#A93226',
-        color:'#A93226',
-   
+        color:'#A93226',  
         '&:hover' : {
             backgroundColor:'black',
             border: '1px solid white',
@@ -93,18 +94,21 @@ export default (theme: Theme) => createStyles<updateMyAccountStyles, {}>({
     },
     btnUpdateUser: {
         textAlign:'center',
-        backgroundColor: 'black',
-        border: '1px solid white',
+        backgroundColor: 'white',
+        border: '5px solid black',
         borderRadius: '60px',
         width: '60%',
         height: '75px',
         fontSize: '20px',
+        color:'black',
         alignItems:'center',
         margin:'auto',
         marginTop:'4vh',
-        '&:hover' : {
-            color: 'black',
-            backgroundColor: 'white'
+        '&:hover' :{
+            border: '1px solid black',
+            backgroundColor:'black',
+            color:'white',
+            textDecoration:'none',
         },
         // '& span' : {
         //     color: 'white',
@@ -123,9 +127,8 @@ export default (theme: Theme) => createStyles<updateMyAccountStyles, {}>({
         borderRadius: '50%',
     },
     form:{
-        
-        backgroundColor:'black',
-        color: 'white',
+        backgroundColor:'white',
+        color: 'black',
     },
     formId:{
         width:'90%',
@@ -135,7 +138,7 @@ export default (theme: Theme) => createStyles<updateMyAccountStyles, {}>({
     },
     checked:{
         // backgroundColor:'white',
-        color:'white'
+        color:'black'
     },
     a:{
         textDecoration:'underline',
