@@ -16,6 +16,7 @@ import DeleteAccount from '@material-ui/icons/DeleteForever';
 import Warning from '@material-ui/icons/Warning';
 
 import Fab from '@material-ui/core/Fab';
+import HeaderBarUpdateMyAccount from '../../component/header/header-update-my-account';
 interface P {}
 interface S {}
 function Alert(props: AlertProps) {
@@ -28,7 +29,7 @@ return <MuiAlert elevation={6} variant="filled" {...props} />;
     render () {
         const { classes } = this.props;
         return (
-            <><Header.Display />
+            <><HeaderBarUpdateMyAccount.Display />
                 <div>
                     <h1 className={classes.h1}>MON COMPTE &gt; METTRE A JOUR MON COMPTE</h1>
                         {/* <Grid item xs={4} className={classes.leftSucces}>

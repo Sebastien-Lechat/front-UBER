@@ -122,6 +122,7 @@ export default (theme: Theme) => createStyles<updateMyAccountStyles, {}>({
         // },
     },
     userAvatar:{
+        marginLeft:"25px",
         height:'200px', 
         width: '200px',
         borderRadius: '50%',
