@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 import { Link } from 'react-router-dom';
 import logo from '../../assets/img/uber.png';
 import styles, { doubleAuthStyles } from './double-auth-style';
@@ -7,14 +8,20 @@ import { withStyles, WithStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import { history } from '../../history';
 
 interface P {}
-interface S {}
+interface S {
+    code: string
+}
 
 export default class DoubleAuth extends React.PureComponent<P & WithStyles<doubleAuthStyles>, S> {
 
     public static Display = withStyles(styles as any)(DoubleAuth) as React.ComponentType<P>
-    
+    public state: Readonly<S> = {
+        code: ""
+    };
+
     render () {
         const { classes } = this.props;
             return (
@@ -33,9 +40,9 @@ export default class DoubleAuth extends React.PureComponent<P & WithStyles<doubl
                         <Grid item xs={2} className={classes.center}>
                         </Grid>
                         <Grid item xs={12} className={classes.center}>
-                            <form className={classes.form} noValidate autoComplete="off">
-                                <Input id="code" label="CODE" variant="outlined" />
-                                <DoubleAuthButton>Connexion</DoubleAuthButton>
+                            <form className={classes.form} noValidate autoComplete="off" onSubmit={this.doubleAuth}>
+                                <Input id="code" name="code" label="CODE" variant="outlined" onChange={this.changeVal}/>
+                                <DoubleAuthButton type="submit">Connexion</DoubleAuthButton>
                             </form>
                         </Grid>
                         <Grid item xs={12} className={classes.center}>
@@ -46,6 +53,25 @@ export default class DoubleAuth extends React.PureComponent<P & WithStyles<doubl
             </Grid>
             </div>
         );
+    }
+
+    changeVal = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = e.currentTarget;
+        this.setState({[name]: value} as Pick<S, keyof S>)
+    }
+
+    doubleAuth = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault()
+        const state: any = history.location.state;
+        state.code = this.state.code
+        axios.post(`http://localhost:3010/api/UBER-EEDSI/account/login`, state)
+        .then(res => {
+            localStorage.setItem('currentUser', JSON.stringify(res.data));
+            history.push('/map');
+        })
+        .catch(error => {
+            console.log(error.response.data)
+        })
     }
 }
 
