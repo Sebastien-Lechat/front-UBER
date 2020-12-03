@@ -20,6 +20,7 @@ interface S {
 export default class Login extends React.PureComponent<P & WithStyles<loginStyles>, S> {
 
     public static Display = withStyles(styles as any)(Login) as React.ComponentType<P>
+
     public state: Readonly<S> = {
         email: "",
         password: "",
@@ -36,7 +37,7 @@ export default class Login extends React.PureComponent<P & WithStyles<loginStyle
                             <img className={classes.img} src={logo2} alt=""/>
                         </Grid>
                         <Grid item xs={12} className={classes.center}>
-                            <form className={classes.form} noValidate autoComplete="off" onSubmit={this.validationForm}>
+                            <form className={classes.form} noValidate autoComplete="off" onSubmit={this.login}>
                                 <InputEmail id="email" label="EMAIL" name="email" variant="outlined" onChange={this.changeVal} />
                                 <InputPassword id="password" label="PASSWORD" type="password" name="password" variant="outlined" onChange={this.changeVal} />
                                 <div className={classes.passwordLost}>
@@ -63,22 +64,28 @@ export default class Login extends React.PureComponent<P & WithStyles<loginStyle
         this.setState({[name]: value} as Pick<S, keyof S>)
     }
 
-    validationForm = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault()
-        const data = {
-            email: this.state.email,
-            password: this.state.password,
+    login = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault() // empecher la redirection sur la même page
+        const data = { // définir les data à envoyer
+            email: this.state.email.trim(),
+            password: this.state.password.trim(),
         }
         axios.post(`http://localhost:3010/api/UBER-EEDSI/account/login`, data)
         .then(res => {
-            console.log(res);
-            localStorage.setItem('currentUser', JSON.stringify(res.data));
-            history.push('/map');
+            localStorage.setItem('currentUser', JSON.stringify(res.data)); // stock les informations de l'utilisateurs en front
+            history.push('/map'); // faire la redirection
         })
         .catch(error => {
-            
+            if (error.response.data.message === 'Double authentification is activated, code is required') {
+                axios.post(`http://localhost:3010/api/UBER-EEDSI/account/request-double-authentification`, data)
+                .then(res => {
+                    history.push('/double-auth', data); // faire la redirection en envoyant des données à la page d'après
+                })
+                .catch(error => {
+                    console.log(error.response.data)
+                })
+            }
         })
-        
     }
 }
 

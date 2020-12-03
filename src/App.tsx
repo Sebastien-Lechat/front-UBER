@@ -41,9 +41,6 @@ const App = () => {
             <Route exact={true} path="/request-password-lost">
                 <RequestPasswordRecovery.Display />
             </Route>
-            <Route exact={true} path="/double-auth">
-                <DoubleAuth.Display />
-            </Route>
             <Route exact={true} path="/password-lost">
                 <PasswordRecovery.Display />
             </Route>
