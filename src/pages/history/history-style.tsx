@@ -21,7 +21,7 @@ export default (theme: Theme) => createStyles<historyStyles, {}>({
         
     },
     titre: {
-        marginTop: '40px',
+        marginTop: '70px',
         paddingLeft: '5%',
     },
     h2:{
@@ -40,8 +40,7 @@ export default (theme: Theme) => createStyles<historyStyles, {}>({
         width: '90%',
     },
     container: {
-        backgroundColor:'',
-        marginTop: '50px',
+        margin: '20px 0px',
         width: '100%'
     },
     h1: {
@@ -63,8 +62,6 @@ export default (theme: Theme) => createStyles<historyStyles, {}>({
         backgroundColor:'white',
         borderRadius: '5px',
         border: '2px solid #EAECEE',
-        margin: '1%'
-        
     },
     tabHeader:{
         backgroundColor:'#f7f7f9',
@@ -78,7 +75,6 @@ export default (theme: Theme) => createStyles<historyStyles, {}>({
         borderRadius: '2px',
         height: 'auto',
         border: '2px solid black'
-       
     },
     ul: {
         listStyle:'none',
