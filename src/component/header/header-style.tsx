@@ -1,7 +1,7 @@
 import { Theme, createStyles } from '@material-ui/core/styles';
 import avatar from '../../assets/img/linux-avatar.png';
 
-export type headerBarStyles = ("avatar" | "menu" | "center" | "img" | "logo1" | "logo2" | "logoDiv"); // add class create
+export type headerBarStyles = ("avatar" | "menu" | "center" | "img" | "logo1" | "logo2" | "logoDiv" | "pointer"); // add class create
 
 // eslint-disable-next-line
 export default (theme: Theme) => createStyles<headerBarStyles, {}>({
@@ -61,6 +61,14 @@ export default (theme: Theme) => createStyles<headerBarStyles, {}>({
             fontSize: '22px',
             textDecoration: 'none'
         }
+    },
+    pointer: {
+        cursor : 'pointer',
+        userSelect: 'none',
+        WebkitUserSelect: 'none',
+        HtmlUserSelect: 'none',
+        MozUserSelect: 'none',
+        MsUserSelect: 'none',
     }
 });
     
