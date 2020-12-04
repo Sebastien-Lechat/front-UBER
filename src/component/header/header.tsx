@@ -49,7 +49,6 @@ export default class HeaderBar extends React.PureComponent<P & WithStyles<header
   logout = (e:React.MouseEvent) => {
     e.preventDefault()
     const user = JSON.parse(localStorage.getItem('currentUser') as string)
-    console.log(user)
     const config: any = {
       method: 'post',
       url: 'http://localhost:3010/api/UBER-EEDSI/account/disconnect',
@@ -58,12 +57,13 @@ export default class HeaderBar extends React.PureComponent<P & WithStyles<header
       }
     };
     axios(config)
-    .then(function (response) {
+    .then(() => {
       localStorage.removeItem('currentUser');
       history.push('/login')
     })
-    .catch(function (error) {
-      console.log(error);
+    .catch(() => {
+      localStorage.removeItem('currentUser');
+      history.push('/login')
     });
   } 
 }
