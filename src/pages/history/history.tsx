@@ -5,6 +5,8 @@ import styles, { historyStyles } from './history-style';
 import { withStyles, WithStyles } from '@material-ui/core/styles';
 
 import Grid from '@material-ui/core/Grid';
+import { Button } from '@material-ui/core';
+import { history } from '../../history';
 
 interface P {}
 interface S {
@@ -31,19 +33,27 @@ export default class myHistory extends React.PureComponent<P & WithStyles<histor
                     { history.map((item: any) => {
                             item.date = new Date(item.createdAt).toLocaleString();
                             return (
-                                <Grid item xs={4}>
+                                <Grid item xs={12} sm={6} md={6} lg={4}>
                                     <div className={classes.tabHistorique}>
                                         <Grid className={classes.tabHeader}>
-                                            <div>
-                                                <span className={classes.libellé}>Date:</span>&nbsp;<span>{ item.date }</span><br/>
-                                                <span className={classes.libellé}>Temps de trajet:</span> <span>XXHXX</span><br/>
-                                                    <hr className={classes.hrTitre}/>
-                                                <span className={classes.libellé}>Départ:</span> <span>{item.departure_location}</span><br/>
-                                                <span className={classes.libellé}>Arrivé:</span> <span>{item.arrival_location}</span><br/><br/>
-                                            </div>
+                                            <Grid className={classes.textContainer}>
+                                                <p><span className={classes.libellé}>Date:</span>&nbsp;<span>{ item.date }</span></p>
+                                                <p><span className={classes.libellé}>Temps de trajet:</span> <span>XXHXX</span></p>
+                                            </Grid>
+                                            <hr className={classes.hrTitre}/>
+                                            <Grid className={classes.textContainer}>
+                                                <p><span className={classes.libellé}>Départ:</span>&nbsp;<span>{item.departure_location}</span></p>
+                                                <p><span className={classes.libellé}>Arrivé:</span>&nbsp;<span>{item.arrival_location}</span></p>
+                                            </Grid>
+                                            <hr className={classes.hrTitre}/>
                                         </Grid>
-                                        <Grid><br/>
+                                        <Grid className={classes.textContainer}>
                                             <span className={classes.libellé}>Detail du trajet:</span> <p  className={classes.detail}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo ex explicabo laborum eius ut error odio illum animi accusamus porro. Deserunt sit voluptate enim officia amet vel animi reprehenderit culpa!Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo ex explicabo laborum eius ut error odio illum animi accusamus porro. Deserunt sit voluptate enim officia amet vel animi reprehenderit culpa</p>
+                                        </Grid>
+                                        <hr className={classes.hrTitre}/>
+                                        <Grid className={classes.textContainer + ' ' + classes.center}>
+                                            <Button variant="outlined" color="secondary" onClick={(e) => this.deleteHistory(e, item._id)}>Supprimer</Button>
+                                            <ReplayTrajectButton variant="outlined">Rejouer le trajet</ReplayTrajectButton>
                                         </Grid>
                                     </div>
                                 </Grid>
@@ -75,5 +85,37 @@ export default class myHistory extends React.PureComponent<P & WithStyles<histor
             });
         }   
     }
+
+    deleteHistory = (e:React.MouseEvent, historyId: string) => {
+        e.preventDefault()
+        const user = JSON.parse(localStorage.getItem('currentUser') as string)
+        const data = {
+            id : historyId,
+        }
+        const config: any = {
+            method: 'delete',
+            url: 'http://localhost:3010/api/UBER-EEDSI/history',
+            headers: { 
+                'Authorization': user.token, 
+                'Content-Type': 'application/json'
+            },
+            data : data
+        };
+        axios(config)
+        .then(() => {
+            document.location.reload()
+        })
+        .catch((error) => {
+            console.log(error.response);
+        });
+    }
 }
+
+const ReplayTrajectButton = withStyles({
+    root: {
+        marginLeft: '25px',
+    },
+})(Button);
+
+
 
