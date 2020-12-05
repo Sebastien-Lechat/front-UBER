@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 import { Link } from 'react-router-dom';
 import logo from '../../assets/img/uber.png';
 import styles, { passwordRecoveryStyles } from './request-pwd-recovery-style';
@@ -7,14 +8,23 @@ import { withStyles, WithStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import { history } from '../../history';
 
 interface P {}
-interface S {}
+interface S {
+    email: string,
+    type: string,
+}
 
 export default class PasswordRecovery extends React.PureComponent<P & WithStyles<passwordRecoveryStyles>, S> {
 
     public static Display = withStyles(styles as any)(PasswordRecovery) as React.ComponentType<P>
     
+    public state: Readonly<S> = {
+        email: "",
+        type: "",
+    };
+
     render () {
         const { classes } = this.props;
             return (
@@ -40,9 +50,9 @@ export default class PasswordRecovery extends React.PureComponent<P & WithStyles
                         <Grid item xs={2} className={classes.center}>
                         </Grid>
                         <Grid item xs={12} className={classes.center}>
-                            <form className={classes.form} noValidate autoComplete="off">
-                                <Input id="email" label="EMAIL" variant="outlined" />
-                                <PasswordRecoveryButton>Envoyer</PasswordRecoveryButton>
+                            <form className={classes.form} noValidate autoComplete="off" onSubmit={this.submit}>
+                                <Input id="email" name="email" label="EMAIL" variant="outlined" onChange={this.changeVal} />
+                                <PasswordRecoveryButton type="submit">Envoyer</PasswordRecoveryButton>
                             </form>
                         </Grid>
                         <Grid item xs={12} className={classes.center}>
@@ -53,6 +63,26 @@ export default class PasswordRecovery extends React.PureComponent<P & WithStyles
             </Grid>
             </div>
         );
+    }
+
+    changeVal = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = e.currentTarget;
+        this.setState({[name]: value} as Pick<S, keyof S>)
+    }
+    submit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault() // empecher la redirection sur la même page
+        const data = { // définir les data à envoyer
+            email: this.state.email.trim(),
+            type :'email',
+        }
+        axios.post(`http://localhost:3010/api/UBER-EEDSI/account/request-reset-password`, data)
+        .then(res => {
+            localStorage.setItem('currentUser', JSON.stringify(res.data)); // stock les informations de l'utilisateurs en front
+            history.push('/password-lost',{email : data.email}); // faire la redirection
+        })
+        .catch(error => {
+            console.log(error.response.data); 
+        })
     }
 }
 
