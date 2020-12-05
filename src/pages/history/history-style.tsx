@@ -1,7 +1,7 @@
 import { Theme, createStyles } from '@material-ui/core/styles';
 
 export type historyStyles = ("container" |"gridTopUser"|"center"|"titre"| "h1" | "h2" | "hr" | "hr2" | "h1" | "containerHistory"
- | "ul" | "input" | "userAvatar" |"li" |'fonttext'|'libellé'|'tableauxHistorique'|'tabHistorique'|'tabHeader'|'detail'|'hrTitre'); // add class create
+ | "ul" | "input" | "userAvatar" |"li" |'fonttext'|'libellé'|'tableauxHistorique'|'tabHistorique'|'tabHeader'|'detail'|'hrTitre' | 'textContainer'); // add class create
 
 // eslint-disable-next-line
 export default (theme: Theme) => createStyles<historyStyles, {}>({
@@ -41,6 +41,7 @@ export default (theme: Theme) => createStyles<historyStyles, {}>({
     },
     container: {
         margin: '20px 0px',
+        padding: '0px 3.5%',
         width: '100%'
     },
     h1: {
@@ -66,11 +67,14 @@ export default (theme: Theme) => createStyles<historyStyles, {}>({
     tabHeader:{
         backgroundColor:'#f7f7f9',
         borderRadius: '2px',
-        paddingTop: '5%',
-        lloat: 'felt'
+    },
+    textContainer: {
+        padding: '10px 15px',
+        '& p': {
+            margin: '5px 0',
+        }
     },
     containerHistory: {
-        // paddingTop:'10px',
         backgroundColor:'white',
         borderRadius: '2px',
         height: 'auto',
@@ -80,8 +84,6 @@ export default (theme: Theme) => createStyles<historyStyles, {}>({
         listStyle:'none',
         color: 'white',
         fontsize: '20px',
-        // marginTop:'2Opx',
-        // backgroundColor:'orange'
     },
     li:{
         display : 'inline',
@@ -89,7 +91,6 @@ export default (theme: Theme) => createStyles<historyStyles, {}>({
         paddingBottom: '10px',
         color:'black',
         textAlign:'justify',
-       
     },
     detail:{
         textAlign:'justify',
@@ -101,7 +102,7 @@ export default (theme: Theme) => createStyles<historyStyles, {}>({
         paddingLeft: '5%',
     },
     hrTitre:{
-        width:'auto'
+        margin: '0',
     },
     userAvatar:{
         height:'100px', 
