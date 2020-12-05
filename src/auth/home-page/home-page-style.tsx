@@ -1,7 +1,9 @@
 import { Theme, createStyles } from '@material-ui/core/styles';
+import ville from '../../assets/img/ville.png';
 
 export type homePageStyles = ("center" | "form" | "back" | "mainDiv" | "img" | "container"
-| "link" | "subtitle" | "passwordLost"); // add class create
+| "link" | "subtitle" | "passwordLost"|"ligneBlanche1"|"ligneBlanche"|"dotted"|"voiture"|"annimation"|"client"
+|"boxDroite"|"fondVille"); // add class create
 
 // eslint-disable-next-line
 export default (theme: Theme) => createStyles<homePageStyles, {}>({
@@ -45,6 +47,54 @@ export default (theme: Theme) => createStyles<homePageStyles, {}>({
         marginTop: '0.5rem',
         textAlign: 'right',
     },
+    annimation:{
+        top:'-50px',
+        maxWidth:'100%',
+        width:'100%'
+    },
+    fondVille:{
+       height:'100px',
+       backgroundImage: 'url(" + ville + ")'
+
+    },
+
+    ligneBlanche1:{
+        width:'100%',
+        height:'5px',
+        backgroundColor:'white',
+        marginBottom:'70px'
+    },
+    ligneBlanche:{
+        width:'100%',
+        height:'5px',
+        backgroundColor:'white',
+        color: 'orange',
+       
+    marginTop: '17px',
+
+    },
+    dotted:{
+        border: '20px dashed #fff',
+        borderStyle: 'none none dashed',
+        color: 'black',
+        backgroundColor: 'black',
+     },
+     voiture:{
+        height:'80px',
+        width:'230px',
+        marginTop:'-100px',
+     },
+     client:{
+        height:'200px',
+        width:'200px',
+        marginTop:'-100px',
+      
+     },
+     boxDroite:{
+        border:'5px solid white',
+        paddingTop:'50px',
+        paddingBottom:'70px',
+     },
     [theme.breakpoints.down('xl')]: {
         
     },
