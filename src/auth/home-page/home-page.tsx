@@ -1,11 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../assets/img/uber.png';
+import voiture from '../../assets/img/UBER.gif';
+import client from '../../assets/img/client.gif';
+import ville from '../../assets/img/ville.png';
 import styles, { homePageStyles } from './home-page-style';
 import { withStyles, WithStyles } from '@material-ui/core/styles';
 
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
+
+import Marquee from 'react-smooth-marquee';
 
 interface P {}
 interface S {}
@@ -18,9 +23,33 @@ export default class homePage extends React.PureComponent<P & WithStyles<homePag
         const { classes } = this.props;
             return (
             <div className={classes.back + ' ' + classes.center}>
+                            
+            <Grid container>
+                <Grid item xs={12} >
+                    <div className={classes.annimation}>
+                        {/* <img className={classes.client} src={client} alt=""/> */}
+                        {/* <div className={classes.fondVille} style={{ backgroundImage: 'url(' + ville + ')', backgroundRepeat: 'repeat' }}> */}
+                        <div className={classes.fondVille}>
+                                <img className={classes.client} src={ville} alt=""/>
+                                <img className={classes.client} src={ville} alt=""/>
+                                <img className={classes.client} src={ville} alt=""/>
+                        </div> 
+                        <div className={classes.ligneBlanche1}>&nbsp;</div>
+                        <hr className={classes.dotted} />
+                        <Marquee>
+                            <img className={classes.voiture} src={voiture} alt=""/>
+                        </Marquee>
+                        {/* <img className={classes.voiture} src={voiture} alt=""/> */}
+                        <div className={classes.ligneBlanche}>&nbsp;</div>
+                    </div><br></br>       
+                </Grid>
+            </Grid>
             <Grid container className={classes.container}>
+            
                 <Grid item xs={12} className={classes.mainDiv + ' ' + classes.center}>
-                    <Grid container>
+                    
+                    <Grid container className={classes.boxDroite}>
+                    
                         <Grid item xs={12} className={classes.center}>
                             <img className={classes.img} src={logo} alt=""/>
                         </Grid>
