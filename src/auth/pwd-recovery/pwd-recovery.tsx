@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 import { Link } from 'react-router-dom';
 import logo from '../../assets/img/uber.png';
 import styles, { RequestPasswordRecoveryStyles } from './pwd-recovery-style';
@@ -7,14 +8,25 @@ import { withStyles, WithStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import { history } from '../../history';
 
 interface P {}
-interface S {}
+interface S {
+    code: string,
+    password: string,
+    confirmPassword: string,
+}
 
 export default class RequestPasswordRecovery extends React.PureComponent<P & WithStyles<RequestPasswordRecoveryStyles>, S> {
 
     public static Display = withStyles(styles as any)(RequestPasswordRecovery) as React.ComponentType<P>
     
+    public state: Readonly<S> = {
+        code: "",
+        password: "",
+        confirmPassword:"",
+    };
+
     render () {
         const { classes } = this.props;
             return (
@@ -33,11 +45,11 @@ export default class RequestPasswordRecovery extends React.PureComponent<P & Wit
                         <Grid item xs={2} className={classes.center}>
                         </Grid>
                         <Grid item xs={12} className={classes.center}>
-                            <form className={classes.form} noValidate autoComplete="off">
-                                <Input id="code" label="CODE" variant="outlined" />
-                                <Input id="password" label="MOT DE PASSE" variant="outlined" />
-                                <Input id="confirmPassword" label="CONFIRMER LE MOT DE PASSE" variant="outlined" />
-                                <SubmitButton>Confirmer</SubmitButton>
+                            <form className={classes.form} noValidate autoComplete="off" onSubmit={this.submit}>
+                                <Input id="code" name="code" label="CODE" variant="outlined" onChange={this.changeVal} />
+                                <Input id="password" name="password" type="password" label="MOT DE PASSE" variant="outlined" onChange={this.changeVal} />
+                                <Input id="confirmPassword" name="confirmPassword" type="password" label="CONFIRMER LE MOT DE PASSE" variant="outlined" onChange={this.changeVal} />
+                                <SubmitButton type="submit">Confirmer</SubmitButton>
                             </form>
                         </Grid>
                         <Grid item xs={12} className={classes.center}>
@@ -48,6 +60,26 @@ export default class RequestPasswordRecovery extends React.PureComponent<P & Wit
             </Grid>
             </div>
         );
+    }
+    changeVal = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = e.currentTarget;
+        this.setState({[name]: value} as Pick<S, keyof S>)
+    }
+    submit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault() // empecher la redirection sur la même page
+        const state: any = history.location.state;
+        state.code = this.state.code
+        state.password = this.state.password
+        axios.post(`http://localhost:3010/api/UBER-EEDSI/account/reset-password`, state)
+        .then(res => {
+            if(this.state.password === this.state.confirmPassword){
+                localStorage.setItem('currentUser', JSON.stringify(res.data)); // stock les informations de l'utilisateurs en front
+                history.push('/login'); // faire la redirection
+            }
+        })
+        .catch(error => {
+            console.log(error.response.data); 
+        })
     }
 }
 
