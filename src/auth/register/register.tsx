@@ -37,7 +37,7 @@ export default class Register extends React.PureComponent<P & WithStyles<registe
                 <Grid item xs={12} className={classes.mainDiv + ' ' + classes.center}>
                     <Grid container>
                         <Grid item xs={12} className={classes.center}>
-                            {/* <img className={classes.img} src={logo} alt=""/> */}
+                            <img className={classes.img} src={logo} alt=""/>
                         </Grid>
                         <Grid item xs={12} className={classes.center}>
                             <form className={classes.form} noValidate autoComplete="off" onSubmit={this.register}>
