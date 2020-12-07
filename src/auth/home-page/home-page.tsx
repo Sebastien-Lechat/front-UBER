@@ -27,7 +27,7 @@ export default class homePage extends React.PureComponent<P & WithStyles<homePag
             return (
             <div className={classes.back + ' ' + classes.center}>
                             
-            <Grid container>
+            <Grid container className={classes.containerLeft}>
                 <Grid item xs={12} >
                     <div className={classes.annimation}>
                         {/* <img className={classes.client} src={client} alt=""/> */}
@@ -35,7 +35,7 @@ export default class homePage extends React.PureComponent<P & WithStyles<homePag
                         <img className={classes.fondVilleImage} src={yvi} alt=""/>
                         <div className={classes.ligneBlanche1}>&nbsp;</div>
                         <hr className={classes.dotted} />
-                        <img className={classes.voiture} src={voiture2} alt=""/>
+                        {/* <img className={classes.voiture} src={voiture2} alt=""/> */}
                         <div className={classes.ligneBlanche}>&nbsp;</div>
                     </div><br></br>       
                 </Grid>

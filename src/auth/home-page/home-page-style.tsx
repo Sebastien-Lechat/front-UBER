@@ -3,7 +3,7 @@ import ville from '../../assets/img/ville.png';
 
 export type homePageStyles = ("center" | "form" | "back" | "mainDiv" | "img" | "container"
 | "link" | "subtitle" | "passwordLost"|"ligneBlanche1"|"ligneBlanche"|"dotted"|"voiture"|"annimation"|"client"
-|"boxDroite"|"fondVille"|"marquee"|"fondVilleImage"); // add class create
+|"boxDroite"|"fondVille"|"marquee"|"fondVilleImage"|"containerLeft"); // add class create
 
 // eslint-disable-next-line
 export default (theme: Theme) => createStyles<homePageStyles, {}>({
@@ -46,6 +46,10 @@ export default (theme: Theme) => createStyles<homePageStyles, {}>({
     passwordLost: {
         marginTop: '0.5rem',
         textAlign: 'right',
+    },
+    // -----Animation-----
+    containerLeft:{
+        
     },
     annimation:{
         top:'-50px',
@@ -100,7 +104,6 @@ export default (theme: Theme) => createStyles<homePageStyles, {}>({
         marginTop:'-100px',
       
      },
-
      boxDroite:{
         border:'5px solid white',
         paddingTop:'50px',
@@ -126,6 +129,9 @@ export default (theme: Theme) => createStyles<homePageStyles, {}>({
         },
     },
     [theme.breakpoints.down('sm')]: {
+        containerLeft:{
+            display:'none',
+        },
         form: {
             width: '65%', 
         },
