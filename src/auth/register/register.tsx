@@ -41,9 +41,9 @@ export default class Register extends React.PureComponent<P & WithStyles<registe
                         </Grid>
                         <Grid item xs={12} className={classes.center}>
                             <form className={classes.form} noValidate autoComplete="off" onSubmit={this.register}>
-                                <Input id="name" label="NAME" type="" name="name" variant="outlined" onChange={this.changeVal} />
-                                <Input id="email" label="EMAIL" name="email" variant="outlined" onChange={this.changeVal}/>
-                                <Input id="phone" label="PHONE"  name="phone" variant="outlined" onChange={this.changeVal} />
+                                <Input id="name" label="NAME" type="text" name="name" variant="outlined" onChange={this.changeVal} />
+                                <Input id="email" label="EMAIL" type="email" name="email" variant="outlined" onChange={this.changeVal}/>
+                                <Input id="phone" label="PHONE" type="text"  name="phone" variant="outlined" onChange={this.changeVal} />
                                 <Input id="password" label="MOT DE PASSE" type="password" name="password" variant="outlined"onChange={this.changeVal} />
                                 <Input id="confirmPassword" label="CONFIRMER LE MOT DE PASSE" type="password" name="confirmPassword" variant="outlined" onChange={this.changeVal} />
                                 <RegisterButton type="submit">Inscription</RegisterButton>
@@ -67,16 +67,20 @@ export default class Register extends React.PureComponent<P & WithStyles<registe
         e.preventDefault() // empecher la redirection sur la même page
         const data :any = {} ; 
         // définir les data à envoyer
-        data.name= this.state.name
-        data.email = this.state.email
-        data.phone = this.state.phone
-        data.password = this.state.password
-        if(this.state.password === this.state.confirmPassword){
+        if (this.state.name !== '') data.name = this.state.name
+        if (this.state.email !== '') data.email = this.state.email
+        if (this.state.phone !== '') data.phone = this.state.phone
+        if (this.state.password !== '') data.password = this.state.password
+        if(data.name && data.email && data.password && data.password.length > 7 && this.state.password === this.state.confirmPassword){
             axios.post(`http://localhost:3010/api/UBER-EEDSI/account/register`, data)
-            .then(res => {
-                localStorage.setItem('currentUser', JSON.stringify(res.data)); // stock les informations de l'utilisateurs en front
-                history.push('/verify-email'); // faire la redirection
-    
+            .then((res:any) => {
+                axios.post(`http://localhost:3010/api/UBER-EEDSI/account/request-verify-email`, {email: data.email})
+                .then((res:any) => {
+                    history.push('/verify-email', {email: data.email}); // faire la redirection
+                })
+                .catch(error => {
+                    console.log(error.response.data)
+                })
             })
             .catch(error => {
                 console.log(error.response.data); 
