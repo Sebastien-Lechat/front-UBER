@@ -1,16 +1,19 @@
-import React from 'react';
+// import React from 'react';
+import * as React from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../assets/img/uber.png';
 import voiture from '../../assets/img/UBER.gif';
 import client from '../../assets/img/client.gif';
-import ville from '../../assets/img/ville.png';
+import voiture2 from '../../assets/img/uberCar.gif';
+import yvi from '../../assets/img/bgVille.gif';
+
+// import fondVille2 from '../../assets/img/fondVilleResize.jpg';
 import styles, { homePageStyles } from './home-page-style';
 import { withStyles, WithStyles } from '@material-ui/core/styles';
 
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
-
-import Marquee from 'react-smooth-marquee';
+// import Marquee from '/react-smooth-marquee';
 
 interface P {}
 interface S {}
@@ -29,17 +32,10 @@ export default class homePage extends React.PureComponent<P & WithStyles<homePag
                     <div className={classes.annimation}>
                         {/* <img className={classes.client} src={client} alt=""/> */}
                         {/* <div className={classes.fondVille} style={{ backgroundImage: 'url(' + ville + ')', backgroundRepeat: 'repeat' }}> */}
-                        <div className={classes.fondVille}>
-                                <img className={classes.client} src={ville} alt=""/>
-                                <img className={classes.client} src={ville} alt=""/>
-                                <img className={classes.client} src={ville} alt=""/>
-                        </div> 
+                        <img className={classes.fondVilleImage} src={yvi} alt=""/>
                         <div className={classes.ligneBlanche1}>&nbsp;</div>
                         <hr className={classes.dotted} />
-                        <Marquee>
-                            <img className={classes.voiture} src={voiture} alt=""/>
-                        </Marquee>
-                        {/* <img className={classes.voiture} src={voiture} alt=""/> */}
+                        <img className={classes.voiture} src={voiture2} alt=""/>
                         <div className={classes.ligneBlanche}>&nbsp;</div>
                     </div><br></br>       
                 </Grid>
@@ -72,6 +68,8 @@ export default class homePage extends React.PureComponent<P & WithStyles<homePag
         );
     }
 }
+
+
 
 const ConnexionButton = withStyles({
     root: {

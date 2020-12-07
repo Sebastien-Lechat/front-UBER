@@ -3,7 +3,7 @@ import ville from '../../assets/img/ville.png';
 
 export type homePageStyles = ("center" | "form" | "back" | "mainDiv" | "img" | "container"
 | "link" | "subtitle" | "passwordLost"|"ligneBlanche1"|"ligneBlanche"|"dotted"|"voiture"|"annimation"|"client"
-|"boxDroite"|"fondVille"); // add class create
+|"boxDroite"|"fondVille"|"marquee"|"fondVilleImage"); // add class create
 
 // eslint-disable-next-line
 export default (theme: Theme) => createStyles<homePageStyles, {}>({
@@ -57,32 +57,42 @@ export default (theme: Theme) => createStyles<homePageStyles, {}>({
        backgroundImage: 'url(" + ville + ")'
 
     },
+    fondVilleImage:{
+        width:'100%'
+    },
 
     ligneBlanche1:{
         width:'100%',
         height:'5px',
         backgroundColor:'white',
-        marginBottom:'70px'
+        marginBottom:'60px'
     },
     ligneBlanche:{
         width:'100%',
         height:'5px',
         backgroundColor:'white',
         color: 'orange',
-       
-    marginTop: '17px',
-
+     marginTop: '60px',
     },
+
+
+
     dotted:{
         border: '20px dashed #fff',
         borderStyle: 'none none dashed',
         color: 'black',
         backgroundColor: 'black',
      },
+     marquee:{
+        overflow:'hidden',
+        whitespace: 'nowrap',
+     },
      voiture:{
-        height:'80px',
-        width:'230px',
+        height:'100px',
+        width:'100%',
         marginTop:'-100px',
+        float:'right',
+        left:'0px'
      },
      client:{
         height:'200px',
@@ -90,6 +100,7 @@ export default (theme: Theme) => createStyles<homePageStyles, {}>({
         marginTop:'-100px',
       
      },
+
      boxDroite:{
         border:'5px solid white',
         paddingTop:'50px',
