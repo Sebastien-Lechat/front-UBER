@@ -10,6 +10,8 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom';
 import { history } from '../../history';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 interface P {
 }
@@ -44,6 +46,7 @@ export default class Login extends React.PureComponent<P & WithStyles<loginStyle
                                     <Link to="/request-password-lost" className={classes.link}>Mot de passe oublié ?</Link>
                                 </div>
                                 <LoginButton type='submit'>Connexion</LoginButton>
+                                <ToastContainer />
                             </form>
                         </Grid>
                         <Grid item xs={12} className={classes.center}>
@@ -73,13 +76,19 @@ export default class Login extends React.PureComponent<P & WithStyles<loginStyle
         axios.post(`http://localhost:3010/api/UBER-EEDSI/account/login`, data)
         .then(res => {
             localStorage.setItem('currentUser', JSON.stringify(res.data)); // stock les informations de l'utilisateurs en front
-            history.push('/map'); // faire la redirection
+            toast.success("Successfuly connected !", {
+                position: toast.POSITION.BOTTOM_CENTER
+            });
+            // history.push('/map'); // faire la redirection
         })
         .catch(error => {
             if (error.response.data.message === 'Double authentification is activated, code is required') {
                 axios.post(`http://localhost:3010/api/UBER-EEDSI/account/request-double-authentification`, data)
                 .then(res => {
-                    history.push('/double-auth', data); // faire la redirection en envoyant des données à la page d'après
+                    toast.warn("Double authentification is activated", {
+                        position: toast.POSITION.BOTTOM_CENTER
+                    });
+                    // history.push('/double-auth', data); // faire la redirection en envoyant des données à la page d'après
                 })
                 .catch(error => {
                     console.log(error.response.data)
