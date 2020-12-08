@@ -9,6 +9,8 @@ import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { history } from '../../history';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 interface P {}
 interface S {
@@ -50,6 +52,7 @@ export default class RequestPasswordRecovery extends React.PureComponent<P & Wit
                                 <Input id="password" name="password" type="password" label="MOT DE PASSE" variant="outlined" onChange={this.changeVal} />
                                 <Input id="confirmPassword" name="confirmPassword" type="password" label="CONFIRMER LE MOT DE PASSE" variant="outlined" onChange={this.changeVal} />
                                 <SubmitButton type="submit">Confirmer</SubmitButton>
+                                <ToastContainer />
                             </form>
                         </Grid>
                         <Grid item xs={12} className={classes.center}>
@@ -74,7 +77,10 @@ export default class RequestPasswordRecovery extends React.PureComponent<P & Wit
         .then(res => {
             if(this.state.password === this.state.confirmPassword){
                 localStorage.setItem('currentUser', JSON.stringify(res.data)); // stock les informations de l'utilisateurs en front
-                history.push('/login'); // faire la redirection
+                toast.success("Password successfuly changed", {
+                    position: toast.POSITION.BOTTOM_CENTER
+                });
+                // history.push('/login'); // faire la redirection
             }
         })
         .catch(error => {

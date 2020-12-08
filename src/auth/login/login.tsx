@@ -79,7 +79,8 @@ export default class Login extends React.PureComponent<P & WithStyles<loginStyle
             toast.success("Successfuly connected !", {
                 position: toast.POSITION.BOTTOM_CENTER
             });
-            // history.push('/map'); // faire la redirection
+
+            history.push('/map'); // faire la redirection
         })
         .catch(error => {
             if (error.response.data.message === 'Double authentification is activated, code is required') {
@@ -88,7 +89,7 @@ export default class Login extends React.PureComponent<P & WithStyles<loginStyle
                     toast.warn("Double authentification is activated", {
                         position: toast.POSITION.BOTTOM_CENTER
                     });
-                    // history.push('/double-auth', data); // faire la redirection en envoyant des données à la page d'après
+                    history.push('/double-auth', data); // faire la redirection en envoyant des données à la page d'après
                 })
                 .catch(error => {
                     console.log(error.response.data)

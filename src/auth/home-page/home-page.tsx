@@ -10,7 +10,7 @@ import { withStyles, WithStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 
-import Marquee from 'react-smooth-marquee';
+// import Marquee from 'react-smooth-marquee';
 
 interface P {}
 interface S {}
@@ -36,9 +36,9 @@ export default class homePage extends React.PureComponent<P & WithStyles<homePag
                         </div> 
                         <div className={classes.ligneBlanche1}>&nbsp;</div>
                         <hr className={classes.dotted} />
-                        <Marquee>
+                        {/* <Marquee>
                             <img className={classes.voiture} src={voiture} alt=""/>
-                        </Marquee>
+                        </Marquee> */}
                         {/* <img className={classes.voiture} src={voiture} alt=""/> */}
                         <div className={classes.ligneBlanche}>&nbsp;</div>
                     </div><br></br>       
