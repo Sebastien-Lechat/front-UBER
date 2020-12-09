@@ -75,7 +75,7 @@ export default class Login extends React.PureComponent<P & WithStyles<loginStyle
         axios.post(`http://localhost:3010/api/UBER-EEDSI/account/login`, data)
         .then(res => {
             localStorage.setItem('currentUser', JSON.stringify(res.data)); // stock les informations de l'utilisateurs en front
-            toast.success("Successfuly connected !", {
+            toast.success("Connexion réussie !", {
                 position: toast.POSITION.BOTTOM_CENTER
             });
             history.push('/map');
@@ -84,7 +84,7 @@ export default class Login extends React.PureComponent<P & WithStyles<loginStyle
             if (error.response.data.message === 'Double authentification is activated, code is required') {
                 axios.post(`http://localhost:3010/api/UBER-EEDSI/account/request-double-authentification`, data)
                 .then(res => {
-                    toast.warn("Double authentification is activated", {
+                    toast.warn("La double authentification est activée", {
                         position: toast.POSITION.BOTTOM_CENTER
                     });
                     history.push('/double-auth', data); // faire la redirection en envoyant des données à la page d'après

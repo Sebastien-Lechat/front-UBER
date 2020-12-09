@@ -76,7 +76,7 @@ export default class RequestPasswordRecovery extends React.PureComponent<P & Wit
         .then(res => {
             if(this.state.password === this.state.confirmPassword){
                 localStorage.setItem('currentUser', JSON.stringify(res.data)); // stock les informations de l'utilisateurs en front
-                toast.success("Password successfuly changed", {
+                toast.success("Mot de passe changer avec succès", {
                     position: toast.POSITION.BOTTOM_CENTER
                 });
                 // history.push('/login'); // faire la redirection
