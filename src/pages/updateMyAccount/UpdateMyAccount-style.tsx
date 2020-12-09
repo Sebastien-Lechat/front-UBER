@@ -46,6 +46,8 @@ export default (theme: Theme) => createStyles<updateMyAccountStyles, {}>({
         
     },
     btnDeleteAccount:{
+        alignItems:'center',
+        justifyContent:'center',
         backgroundColor:'black',
         border: '1px solid white',
         borderColor: '#A93226',

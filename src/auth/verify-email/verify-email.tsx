@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 import { Link } from 'react-router-dom';
 import logo from '../../assets/img/uber.png';
 import styles, { VerifyEmailStyles } from './verify-email-style';
@@ -8,14 +9,20 @@ import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 
+import { history } from '../../history';
 
 interface P {}
-interface S {}
+interface S {
+    code: string
+}
 
 export default class VerifyEmail extends React.PureComponent<P & WithStyles<VerifyEmailStyles>, S> {
 
     public static Display = withStyles(styles as any)(VerifyEmail) as React.ComponentType<P>
-    
+    public state: Readonly<S> = {
+        code: ""
+    };
+
     render () {
         const { classes } = this.props;
             return (
@@ -32,10 +39,9 @@ export default class VerifyEmail extends React.PureComponent<P & WithStyles<Veri
                             <span className={classes.text}>Vous devez vérifier votre email afin de pouvoir vous connecter</span>
                         </Grid>
                         <Grid item xs={12} className={classes.center}>
-                            <form className={classes.form} noValidate autoComplete="off">
-                                <Input id="code" label="CODE" variant="outlined" />
-                                <Input id="Email" label="EMAIL" variant="outlined" />
-                                <SubmitButton>Confirmer</SubmitButton>
+                            <form className={classes.form} noValidate autoComplete="off" onSubmit={this.verifyEmail}>
+                                <Input id="code" label="CODE" name="code" variant="outlined" onChange={this.changeVal}/>
+                                <SubmitButton type="submit">Confirmer</SubmitButton>
                             </form>
                         </Grid>
                         <Grid item xs={12} className={classes.center}>
@@ -46,6 +52,24 @@ export default class VerifyEmail extends React.PureComponent<P & WithStyles<Veri
             </Grid>
             </div>
         );
+    }
+
+    changeVal = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = e.currentTarget;
+        this.setState({[name]: value} as Pick<S, keyof S>)
+    }
+
+    verifyEmail = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault()
+        const state: any = history.location.state;
+        state.code = this.state.code;
+        axios.post(`http://localhost:3010/api/UBER-EEDSI/account/verify-email`, state)
+        .then(res => {
+            history.push('/login');
+        })
+        .catch(error => {
+            console.log(error.response.data)
+        })
     }
 }
 
