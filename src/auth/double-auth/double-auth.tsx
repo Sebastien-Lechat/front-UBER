@@ -9,6 +9,8 @@ import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { history } from '../../history';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 interface P {}
 interface S {
@@ -43,6 +45,7 @@ export default class DoubleAuth extends React.PureComponent<P & WithStyles<doubl
                             <form className={classes.form} noValidate autoComplete="off" onSubmit={this.doubleAuth}>
                                 <Input id="code" name="code" label="CODE" variant="outlined" onChange={this.changeVal}/>
                                 <DoubleAuthButton type="submit">Connexion</DoubleAuthButton>
+                                <ToastContainer />
                             </form>
                         </Grid>
                         <Grid item xs={12} className={classes.center}>
@@ -67,6 +70,9 @@ export default class DoubleAuth extends React.PureComponent<P & WithStyles<doubl
         axios.post(`http://localhost:3010/api/UBER-EEDSI/account/login`, state)
         .then(res => {
             localStorage.setItem('currentUser', JSON.stringify(res.data));
+            toast.success("Successfuly connected !", {
+                position: toast.POSITION.BOTTOM_CENTER
+            });
             history.push('/map');
         })
         .catch(error => {
