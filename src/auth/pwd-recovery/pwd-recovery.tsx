@@ -52,7 +52,6 @@ export default class RequestPasswordRecovery extends React.PureComponent<P & Wit
                                 <Input id="password" name="password" type="password" label="MOT DE PASSE" variant="outlined" onChange={this.changeVal} />
                                 <Input id="confirmPassword" name="confirmPassword" type="password" label="CONFIRMER LE MOT DE PASSE" variant="outlined" onChange={this.changeVal} />
                                 <SubmitButton type="submit">Confirmer</SubmitButton>
-                                <ToastContainer />
                             </form>
                         </Grid>
                         <Grid item xs={12} className={classes.center}>

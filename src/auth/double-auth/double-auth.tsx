@@ -45,7 +45,6 @@ export default class DoubleAuth extends React.PureComponent<P & WithStyles<doubl
                             <form className={classes.form} noValidate autoComplete="off" onSubmit={this.doubleAuth}>
                                 <Input id="code" name="code" label="CODE" variant="outlined" onChange={this.changeVal}/>
                                 <DoubleAuthButton type="submit">Connexion</DoubleAuthButton>
-                                <ToastContainer />
                             </form>
                         </Grid>
                         <Grid item xs={12} className={classes.center}>

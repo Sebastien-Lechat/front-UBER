@@ -46,7 +46,6 @@ export default class Login extends React.PureComponent<P & WithStyles<loginStyle
                                     <Link to="/request-password-lost" className={classes.link}>Mot de passe oublié ?</Link>
                                 </div>
                                 <LoginButton type='submit'>Connexion</LoginButton>
-                                <ToastContainer />
                             </form>
                         </Grid>
                         <Grid item xs={12} className={classes.center}>
@@ -79,8 +78,7 @@ export default class Login extends React.PureComponent<P & WithStyles<loginStyle
             toast.success("Successfuly connected !", {
                 position: toast.POSITION.BOTTOM_CENTER
             });
-
-            history.push('/map'); // faire la redirection
+            history.push('/map');
         })
         .catch(error => {
             if (error.response.data.message === 'Double authentification is activated, code is required') {
