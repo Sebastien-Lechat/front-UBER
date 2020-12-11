@@ -34,6 +34,7 @@ export default class homePage extends React.PureComponent<P & WithStyles<homePag
                         <img className={classes.fondVilleImage} src={yvi} alt=""/>
                         <div className={classes.ligneBlanche1}>&nbsp;</div>
                         <hr className={classes.dotted} />
+                        <img className={classes.voiture} src={voiture2} alt=""/>
                         <div className={classes.ligneBlanche}>&nbsp;</div>
                     </div><br></br>       
                 </Grid>

@@ -10,7 +10,8 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 
 import { history } from '../../history';
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 interface P {}
 interface S {
     code: string
@@ -65,9 +66,16 @@ export default class VerifyEmail extends React.PureComponent<P & WithStyles<Veri
         state.code = this.state.code;
         axios.post(`http://localhost:3010/api/UBER-EEDSI/account/verify-email`, state)
         .then(res => {
+            toast.success("Connexion réussie !", {
+                position: toast.POSITION.BOTTOM_CENTER
+            });
             history.push('/login');
         })
         .catch(error => {
+            toast.warn("Echec de validation", {
+                position: toast.POSITION.BOTTOM_CENTER
+            });
+            history.push('/verify-email');
             console.log(error.response.data)
         })
     }

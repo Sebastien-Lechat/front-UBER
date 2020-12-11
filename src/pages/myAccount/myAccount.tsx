@@ -11,12 +11,24 @@ import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 
 interface P {}
-interface S {}
+interface S {
+    name: string,
+    email: string,
+    phone: string,
+    password: string,
+    createdAt: string,
+}
 
 export default class MyAccount extends React.PureComponent<P & WithStyles<myAccountStyles>, S> {
 
     public static Display = withStyles(styles as any)(MyAccount) as React.ComponentType<P>
-    
+    public state: Readonly<S> = {
+        name: "",
+        email: "",
+        phone: "",
+        password: "",
+        createdAt: "",
+    };
     render () {
         const { classes } = this.props;
         return (
@@ -37,6 +49,7 @@ export default class MyAccount extends React.PureComponent<P & WithStyles<myAcco
                                         </Typography>
                                     </Grid>
                                 </Grid>
+                              
                                 <hr className={classes.hr2}></hr>
                                 <Typography className={classes.fonttext} gutterBottom variant="h5" component="h2">
                                     <ul className={classes.ul}>
