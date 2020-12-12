@@ -18,19 +18,41 @@ import Warning from '@material-ui/icons/Warning';
 import Fab from '@material-ui/core/Fab';
 import HeaderBarUpdateMyAccount from '../../component/header/header-update-my-account';
 interface P {}
-interface S {}
+interface S {
+    name: string,
+    email: string,
+    phone: string,
+    doubleAuth: boolean,
+    password: string,
+    newPassword: string,
+    confirmPassword: string
+}
+
 function Alert(props: AlertProps) {
-return <MuiAlert elevation={6} variant="filled" {...props} />;
+    return <MuiAlert elevation={6} variant="filled" {...props} />;
 }   
  export default class UpdateMyAccount extends React.PureComponent<P & WithStyles<updateMyAccountStyles>, S> {
 
     public static Display = withStyles(styles as any)(UpdateMyAccount) as React.ComponentType<P>
     
+    public user = JSON.parse(localStorage.getItem('currentUser') as string);
+    public phone: string = (this.user.phone) ? this.user.phone : '';
+    public doubleAuth: boolean = (this.user.double_authentification) ? this.user.double_authentification : false;
+    
+    public state: Readonly<S> = {
+        name: this.user.name,
+        email: this.user.email,
+        phone: this.phone,
+        doubleAuth: this.doubleAuth,
+        password: "",
+        newPassword: "",
+        confirmPassword: ""
+    };
     render () {
         const { classes } = this.props;
         return (
             <><HeaderBarUpdateMyAccount.Display />
-                <div>
+                <form noValidate autoComplete="off" onSubmit={this.changeAccount}>
                     <h1 className={classes.h1}>MON COMPTE &gt; METTRE A JOUR MON COMPTE</h1>
                         {/* <Grid item xs={4} className={classes.leftSucces}>
                             <Alert className={classes.alert}>
@@ -52,38 +74,63 @@ return <MuiAlert elevation={6} variant="filled" {...props} />;
                                             </label>
                                     </Grid>
                                     <Grid item xs={4}>
-                                        <form className={classes.form} noValidate autoComplete="off">
-                                            <TextField className={classes.formId} id="filled-basic" label="Nom" variant="filled" />
-                                            <TextField className={classes.formId} id="filled-basic" label="Email" variant="filled" />
-                                            <TextField className={classes.formId} id="filled-basic" type= "password" label="Mot de passe actuel" variant="filled" />
-                                            <TextField className={classes.formId} id="filled-basic" type= "password" label="Confirmer le nouveau mot de passe" variant="filled" />
-                                        </form>
+                                        <div className={classes.form}>
+                                            <TextField className={classes.formId} label="Nom" variant="filled" name='name' value={this.state.name} inputProps={{autoComplete: 'name',form: {autoComplete: 'off',},}} onChange={this.changeVal}/>
+                                            <TextField className={classes.formId} label="Téléphone" variant="filled" name='phone' value={this.state.phone} inputProps={{autoComplete: 'phone',form: {autoComplete: 'off',},}} onChange={this.changeVal}/>
+                                            <TextField className={classes.formId} type= "password" label= "Nouveau mot de passe" name='newPassword' variant="filled" inputProps={{autoComplete: 'new-password',form: {autoComplete: 'off',},}} onChange={this.changeVal}/>
+                                        </div>
                                     </Grid>
                                     <Grid item xs={4}>
-                                        <form className={classes.form} noValidate autoComplete="off">
-                                            <TextField className={classes.formId} id="filled-basic" label="Prénom" variant="filled" />
-                                            <TextField className={classes.formId} id="filled-basic" label="Téléphone" variant="filled" />
-                                            <TextField className={classes.formId} id="filled-basic" type= "password" label= "Nouveau mot de passe" variant="filled" />
-                                            <Checkbox className={classes.checked}/>
-                                        <a className={classes.a}> Activer l'option de double authentification</a> 
-                                        </form>
+                                        <div className={classes.form}>
+                                            {/* <TextField className={classes.formId} label="Prénom" variant="filled" /> */}
+                                            <TextField className={classes.formId} label="Email" variant="filled" name='email' value={this.state.email} inputProps={{autoComplete: 'email',form: {autoComplete: 'off',},}} onChange={this.changeVal}/>
+                                            <TextField className={classes.formId} type= "password" label="Mot de passe actuel" variant="filled" name='password' inputProps={{autoComplete: 'password',form: {autoComplete: 'off',},}} onChange={this.changeVal}/>
+                                            <TextField className={classes.formId} type= "password" label="Confirmer le nouveau mot de passe" variant="filled" name='confirmPassword' inputProps={{autoComplete: 'confirm-password',form: {autoComplete: 'off',},}} onChange={this.changeVal}/>
+                                            <Checkbox className={classes.checked} checked={this.state.doubleAuth} name="doubleAuth" onChange={this.doubleAuthChange}/>
+                                        <a className={classes.a}>Double authenntification</a> 
+                                        </div>
                                     </Grid>
                                 </Grid>
                                 <br/>
                                 <Grid container >
                                     <Grid item xs={4} className={classes.blocBtn}>
-                                        <Button className={classes.btnDeleteAccount} variant="contained" color="primary" component="span">
-                                            <DeleteAccount className={classes.iconDeleteAccount} /> &nbsp; Supprimer mon compte
+                                        <Button className={classes.btnDeleteAccount} variant="contained" color="primary" component="span" onClick={this.deleteAccount}>
+                                            <DeleteAccount className={classes.iconDeleteAccount}/> &nbsp; Supprimer mon compte
                                         </Button>
                                     </Grid>
                                     <Grid item xs={8} className={classes.containerBtnvalider} >
-                                        <Button  className={classes.btnUpdateUser} variant="contained" color="primary" disableElevation> VALIDER </Button>
+                                        <Button  className={classes.btnUpdateUser} variant="contained" color="primary" disableElevation type="submit"> VALIDER </Button>
                                     </Grid>                         
                                 </Grid>
                             </Container>
                         </Grid>
                     </Grid>              
-                </div></>
+                </form></>
         );
+    }
+
+    changeVal = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = e.currentTarget;
+        this.setState({ ...this.state, [name]: value });
+    }
+
+    changeAccount = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault()
+        let data: any = {};
+        console.log(this.state);
+        // faire la requête pour modifier l'utilisateur, sachant que il faut le mot de passe actuel pour essectuer la requête.
+    }
+
+    doubleAuthChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        e.preventDefault()
+        this.setState({ ...this.state, [e.target.name]: e.target.checked });
+        console.log(this.state.doubleAuth);
+        // faire la requête pour activer ou désactiver la double auth.
+    }
+
+    deleteAccount = (e:React.MouseEvent) => {
+        e.preventDefault()
+        console.log('delete')
+        // faire la requête de suppression, et la redirection sur la page d'acceuil.
     }
 }

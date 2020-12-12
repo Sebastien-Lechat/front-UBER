@@ -74,14 +74,14 @@ export default class Register extends React.PureComponent<P & WithStyles<registe
         if (this.state.email !== '') data.email = this.state.email
         if (this.state.phone !== '') data.phone = this.state.phone
         if (this.state.password !== '') data.password = this.state.password
-        if(data.name && data.email && data.password && data.password.length > 7 && this.state.password === this.state.confirmPassword){
+        if(data.name && data.email && data.password && data.password.length > 7 && this.state.password === this.state.confirmPassword) {
             axios.post(`http://localhost:3010/api/UBER-EEDSI/account/register`, data)
             .then((res:any) => {
+                toast.success("Votre compte à bien été créé", {
+                    position: toast.POSITION.BOTTOM_CENTER
+                });
                 axios.post(`http://localhost:3010/api/UBER-EEDSI/account/request-verify-email`, {email: data.email})
                 .then((res:any) => {
-                    toast.success("votre compte a bien été ajouté!", {
-                        position: toast.POSITION.BOTTOM_CENTER
-                    });
                     history.push('/verify-email', {email: data.email}); // faire la redirection
                 })
                 .catch(error => {
@@ -92,11 +92,15 @@ export default class Register extends React.PureComponent<P & WithStyles<registe
                 })
             })
             .catch(error => {
-                toast.warn("error2", {
+                toast.warn("L'adresse email existe déjà", {
                     position: toast.POSITION.BOTTOM_CENTER
                 });
                 console.log(error.response.data); 
             })
+        } else {
+            toast.warn("Données manquantes pour l'inscription", {
+                position: toast.POSITION.BOTTOM_CENTER
+            });
         }
     }
 }

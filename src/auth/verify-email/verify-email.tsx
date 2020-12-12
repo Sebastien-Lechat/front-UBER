@@ -62,21 +62,27 @@ export default class VerifyEmail extends React.PureComponent<P & WithStyles<Veri
 
     verifyEmail = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
-        const state: any = history.location.state;
-        state.code = this.state.code;
-        axios.post(`http://localhost:3010/api/UBER-EEDSI/account/verify-email`, state)
+        let data: any = {};
+        if (history.location.state) data = history.location.state;
+        if (this.state && this.state.code) data.code = this.state.code;
+        axios.post(`http://localhost:3010/api/UBER-EEDSI/account/verify-email`, data)
         .then(res => {
-            toast.success("Connexion réussie !", {
+            toast.success("Vérification de l'email réussie", {
                 position: toast.POSITION.BOTTOM_CENTER
             });
             history.push('/login');
         })
         .catch(error => {
-            toast.warn("Echec de validation", {
-                position: toast.POSITION.BOTTOM_CENTER
-            });
-            history.push('/verify-email');
-            console.log(error.response.data)
+            if (error.response.data.message === 'Wrong code') {
+                toast.warn("Le code n'est pas bon", {
+                    position: toast.POSITION.BOTTOM_CENTER
+                });
+            } else {
+                console.log(error.response.data)
+                toast.warn("Echec de validation", {
+                    position: toast.POSITION.BOTTOM_CENTER
+                });
+            }
         })
     }
 }

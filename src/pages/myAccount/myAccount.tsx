@@ -30,7 +30,9 @@ export default class MyAccount extends React.PureComponent<P & WithStyles<myAcco
         createdAt: "",
     };
     render () {
+        const user: any = JSON.parse(localStorage.getItem('currentUser') as string);
         const { classes } = this.props;
+        const phone: string = (user.phone) ? user.phone : '';
         return (
             <><Header.Display />
                 <div>
@@ -41,11 +43,11 @@ export default class MyAccount extends React.PureComponent<P & WithStyles<myAcco
                             <Container className={classes.containerUser}>
                                 <Grid container>
                                     <Grid item xs={6} >
-                                        <h1 className={classes.h1}>USER NAME</h1>
+                                        <h1 className={classes.h1}>{user.name}</h1>
                                     </Grid>
                                     <Grid item xs={6}>
                                         <Typography className={classes.fonttext} gutterBottom variant="h5" component="h2">
-                                            <h2 className={classes.h2}>Inscrit le : jj/mm/aaaa</h2>
+                                            <h2 className={classes.h2}>Inscrit le : {user.createdAt}</h2>
                                         </Typography>
                                     </Grid>
                                 </Grid>
@@ -54,10 +56,10 @@ export default class MyAccount extends React.PureComponent<P & WithStyles<myAcco
                                 <Typography className={classes.fonttext} gutterBottom variant="h5" component="h2">
                                     <ul className={classes.ul}>
                                         {/* <h2 className={classes.h2}>Inscrit le : jj/mm/aaaa</h2> */}
-                                        <li className={classes.li}>Nom: <a>XXXXXXXX</a></li>
-                                        <li className={classes.li}>Prénom: <a>XXXXXXXX</a></li>
-                                        <li className={classes.li}> Téléphone: <a>XXXXXXXX</a></li>
-                                        <li className={classes.li}> Email: <a>XXXXXXXX</a></li>
+                                        {/* <li className={classes.li}>Nom: <a>XXXXXXXX</a></li> */}
+                                        {/* <li className={classes.li}>Prénom: <a>XXXXXXXX</a></li> */}
+                                        <li className={classes.li}> Téléphone: <a>{phone}</a></li>
+                                        <li className={classes.li}> Email: <a>{user.email}</a></li>
                                     </ul>
                                 </Typography>
                             </Container>
