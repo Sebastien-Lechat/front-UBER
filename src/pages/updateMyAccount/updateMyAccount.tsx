@@ -1,6 +1,5 @@
 import Header from '../../component/header/header';
 import React from 'react';
-import axios from 'axios';
 import avatar from  '../../assets/img/linux-avatar.png';
 import succes from  '../../assets/img/8.png';
 import styles, { updateMyAccountStyles } from './UpdateMyAccount-style';
@@ -8,7 +7,6 @@ import { withStyles, WithStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { history } from '../../history';
-import { ToastContainer, toast } from 'react-toastify';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
@@ -49,6 +47,7 @@ function Alert(props: AlertProps) {
     public state: Readonly<S> = {
         name: this.user.name,
         email: this.user.email,
+
         phone: this.phone,
         doubleAuth: this.doubleAuth,
         password: "",
@@ -73,6 +72,7 @@ function Alert(props: AlertProps) {
                                 <Grid container>
                                     <Grid item xs={4} className={classes.left}>
                                         <img src={avatar} className={classes.userAvatar} alt="" />
+
                                         <input accept="image/*" className={classes.input} id="contained-button-file" multiple type="file" />
                                             <label htmlFor="contained-button-file">
                                                 <Button className={classes.btnAvatar} variant="contained" color="primary" component="span">

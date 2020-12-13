@@ -20,6 +20,10 @@ export default class HeaderBar extends React.PureComponent<P & WithStyles<header
     
     render () {
         const { classes } = this.props;
+        const user: any = JSON.parse(localStorage.getItem('currentUser') as string);
+        const lastConexion : any = user.connexionDate;
+        const userlastConexionDate : any = lastConexion.substring(8, 10) + "/" + lastConexion.substring(5,7) +"/" + lastConexion.substring(0,4) 
+        const userlastConexionTime : any = lastConexion.substring(11,16);
         return (
           <AppBar position="static">
             <HeaderNavBar>
@@ -30,6 +34,12 @@ export default class HeaderBar extends React.PureComponent<P & WithStyles<header
                 <img className={classes.logo1} src={logo1} alt=""/>
                 <img className={classes.logo2} src={logo2} alt=""/>
               </Link>
+              <div className={classes.connexionUserDiv} >
+                <p className={classes.connexionUser}> Dernière connexion: {userlastConexionDate} à {userlastConexionTime}
+                  {/* <span className={classes.connexionUserA}>Dernière connexion: </span>  &nbsp;
+                  <a className={classes.connexionUserB}>{userlastConexionDate} à {userlastConexionTime}</a> */}
+                </p>
+              </div>
               <div className={classes.menu + ' ' + classes.center}>
                 <span>
                   <Link className={classes.pointer} to="/my-account">Mon compte</Link>
