@@ -5,7 +5,10 @@ import avatar from  '../../assets/img/linux-avatar.png';
 import succes from  '../../assets/img/8.png';
 import styles, { updateMyAccountStyles } from './UpdateMyAccount-style';
 import { withStyles, WithStyles } from '@material-ui/core/styles';
-
+import { Link } from 'react-router-dom';
+import axios from 'axios';
+import { history } from '../../history';
+import { ToastContainer, toast } from 'react-toastify';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
@@ -91,7 +94,7 @@ function Alert(props: AlertProps) {
                                             <TextField className={classes.formId} type= "password" label="Mot de passe actuel" variant="filled" name='password' inputProps={{autoComplete: 'password',form: {autoComplete: 'off',},}} onChange={this.changeVal}/>
                                             <TextField className={classes.formId} type= "password" label="Confirmer le nouveau mot de passe" variant="filled" name='confirmPassword' inputProps={{autoComplete: 'confirm-password',form: {autoComplete: 'off',},}} onChange={this.changeVal}/>
                                             <Checkbox className={classes.checked} checked={this.state.doubleAuth} name="doubleAuth" onChange={this.doubleAuthChange}/>
-                                        <a className={classes.a}>Double authenntification</a> 
+                                        <a className={classes.a}>Double authentification</a> 
                                         </div>
                                     </Grid>
                                 </Grid>
@@ -190,9 +193,36 @@ function Alert(props: AlertProps) {
         // faire la requête pour activer ou désactiver la double auth.
     }
 
-    deleteAccount = (e:React.MouseEvent) => {
+    deleteAccount = (e:React.MouseEvent,) => {
         e.preventDefault()
-        console.log('delete')
-        // faire la requête de suppression, et la redirection sur la page d'acceuil.
+        const user = JSON.parse(localStorage.getItem('currentUser') as string)
+        const data = {
+            email :user.email
+        }
+        const config: any = {
+            method: 'delete',
+            url: 'http://localhost:3010/api/UBER-EEDSI/account',
+            headers: { 
+                'Authorization': user.token, 
+                'Content-Type': 'application/json'
+            },
+            data : data,
+        };
+        console.log("userToken: "+user.token);
+        axios(config)
+        .then(() => {
+            toast.success("Votre compte a bien été supprimé", {
+                position: toast.POSITION.BOTTOM_CENTER
+            });
+            history.push('/home');
+        })
+        .catch((error) => {
+            toast.warn("Vous n'êtes pas autorisé à effectuer cette requête", {
+                position: toast.POSITION.BOTTOM_CENTER
+            });
+            console.log(error.response);
+        });
+   
     }
-}
+
+ }
