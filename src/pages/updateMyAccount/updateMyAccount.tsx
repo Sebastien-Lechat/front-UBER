@@ -5,7 +5,7 @@ import succes from  '../../assets/img/8.png';
 import styles, { updateMyAccountStyles } from './UpdateMyAccount-style';
 import { withStyles, WithStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
+import axios, { AxiosRequestConfig } from 'axios';
 import { history } from '../../history';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
@@ -132,7 +132,7 @@ function Alert(props: AlertProps) {
             newPassword: this.state.newPassword,
             confirmPassword: this.state.confirmPassword,
         };
-        const config: any = {
+        const config: AxiosRequestConfig = {
             method: 'put',
             url: 'http://localhost:3010/api/UBER-EEDSI/account',
             headers: { 
@@ -150,8 +150,12 @@ function Alert(props: AlertProps) {
             },
             data : data
         };
-        if(data.name === '' || data.email === '' || data.password === ''){
-            toast.error("Donnée(s) manquante(s)", {
+        if (data.password === '') {
+            toast.error("Mot de passe actuel nécessaire", {
+                position: toast.POSITION.BOTTOM_CENTER
+            });
+        } else if(data.name === '' || data.email === ''){
+            toast.error("Email/Nom manquante(s)", {
                 position: toast.POSITION.BOTTOM_CENTER
             });
         }
@@ -183,14 +187,51 @@ function Alert(props: AlertProps) {
             console.log(error.response.data)
         })
         console.log(this.state);
-        // faire la requête pour modifier l'utilisateur, sachant que il faut le mot de passe actuel pour effectuer la requête.
     }
 
     doubleAuthChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         e.preventDefault()
         this.setState({ ...this.state, [e.target.name]: e.target.checked });
-        console.log(this.state.doubleAuth);
-        // faire la requête pour activer ou désactiver la double auth.
+        const user = JSON.parse(localStorage.getItem('currentUser') as string);
+        const data = {allow: !this.state.doubleAuth};
+        const config: AxiosRequestConfig = {
+            method: 'post',
+            url: 'http://localhost:3010/api/UBER-EEDSI/account/double-authentification',
+            headers: { 
+                'Authorization': user.token, 
+                'Content-Type': 'application/json'
+            },
+            data : data
+        };
+        const config2: AxiosRequestConfig = {
+            method: 'get',
+            url: 'http://localhost:3010/api/UBER-EEDSI/account/',
+            headers: { 
+                'Authorization': user.token, 
+                'Content-Type': 'application/json'
+            }
+        };
+        axios(config)
+        .then(() => {
+            axios(config2)
+            .then((data2) => {
+                if (data.allow) {
+                    toast.success("Double authentification activé", {
+                        position: toast.POSITION.BOTTOM_CENTER
+                    });
+                } else {
+                    toast.success("Double authentification desactivé", {
+                        position: toast.POSITION.BOTTOM_CENTER
+                    });
+                }
+            })
+            .catch((error) => {
+                console.log(error.response.data);
+            });
+        })
+        .catch((error) => {
+            console.log(error.response.data);
+        });
     }
 
     deleteAccount = (e:React.MouseEvent,) => {
@@ -199,7 +240,7 @@ function Alert(props: AlertProps) {
         const data = {
             email :user.email
         }
-        const config: any = {
+        const config: AxiosRequestConfig = {
             method: 'delete',
             url: 'http://localhost:3010/api/UBER-EEDSI/account',
             headers: { 
@@ -222,7 +263,5 @@ function Alert(props: AlertProps) {
             });
             console.log(error.response);
         });
-   
     }
-
- }
+}
