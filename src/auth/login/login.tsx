@@ -10,7 +10,7 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom';
 import { history } from '../../history';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 interface P {
@@ -78,7 +78,7 @@ export default class Login extends React.PureComponent<P & WithStyles<loginStyle
             toast.success("Connexion réussie !", {
                 position: toast.POSITION.BOTTOM_CENTER
             });
-            history.push('/map');
+            setTimeout(() => {history.push('/map')}, 50);
         })
         .catch(error => {
             if (error.response.data.message === 'Double authentification is activated, code is required') {
@@ -92,6 +92,19 @@ export default class Login extends React.PureComponent<P & WithStyles<loginStyle
                 .catch(error => {
                     console.log(error.response.data)
                 })
+            } else if (error.response.data.message === 'Email address not verified') {
+                axios.post(`http://localhost:3010/api/UBER-EEDSI/account/request-verify-email`, {email: data.email})
+                .then(() => {
+                    history.push('/verify-email', {email: data.email}); // faire la redirection
+                })
+                .catch(error => {
+                    toast.error("Erreur lors de l'envoi du mail de vérification", {
+                        position: toast.POSITION.BOTTOM_CENTER
+                    });
+                    console.log(error.response.data)
+                })
+            } else {
+                console.log(error.response.data)
             }
         })
     }

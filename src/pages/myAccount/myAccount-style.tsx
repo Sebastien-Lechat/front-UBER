@@ -97,10 +97,7 @@ export default (theme: Theme) => createStyles<myAccountStyles, {}>({
         // '& a' : {
         //     color: 'red ',
         // },
-        // '& a:hover' : {
-        //     color:'orange',
-        //     textDecoration: 'none'
-        // },
+        
         // '&:hover' : {
         //     color: '#ADADAE'
         // },
@@ -116,7 +113,10 @@ export default (theme: Theme) => createStyles<myAccountStyles, {}>({
     btnContainer: {
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        '& a:hover' : {
+            textDecoration: 'none'
+        },
     },
     [theme.breakpoints.down('xl')]: {
         

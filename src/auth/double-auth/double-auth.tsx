@@ -9,7 +9,7 @@ import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { history } from '../../history';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 interface P {}
@@ -67,12 +67,12 @@ export default class DoubleAuth extends React.PureComponent<P & WithStyles<doubl
         const state: any = history.location.state;
         state.code = this.state.code
         axios.post(`http://localhost:3010/api/UBER-EEDSI/account/login`, state)
-        .then(res => {
+        .then( async res => {
             localStorage.setItem('currentUser', JSON.stringify(res.data));
             toast.success("Connexion réussie !", {
                 position: toast.POSITION.BOTTOM_CENTER
             });
-            history.push('/map');
+            setTimeout(() => {history.push('/map')}, 50);
         })
         .catch(error => {
             console.log(error.response.data)

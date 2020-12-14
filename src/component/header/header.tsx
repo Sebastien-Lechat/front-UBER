@@ -10,6 +10,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import { history } from '../../history';
+import { toast } from 'react-toastify';
 
 interface P {}
 interface S {}
@@ -58,10 +59,16 @@ export default class HeaderBar extends React.PureComponent<P & WithStyles<header
     };
     axios(config)
     .then(() => {
+      toast.success("Déconnexion réussie", {
+        position: toast.POSITION.BOTTOM_CENTER
+      });
       localStorage.removeItem('currentUser');
       history.push('/login')
     })
     .catch(() => {
+      toast.success("Déconnexion réussie", {
+        position: toast.POSITION.BOTTOM_CENTER
+      });
       localStorage.removeItem('currentUser');
       history.push('/login')
     });

@@ -31,7 +31,7 @@ export default (theme: Theme) => createStyles<VerifyEmailStyles, {}>({
         width: '300px'
     },
     text: {
-        marginTop : '-7rem',
+        marginTop : '-5rem',
         marginBottom: '5rem',
         color: 'white',
         fontSize : '24px',

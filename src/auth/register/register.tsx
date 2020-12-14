@@ -11,7 +11,7 @@ import Button from '@material-ui/core/Button';
 
 import { history } from '../../history';
 
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 interface P {}
 interface S {
@@ -85,10 +85,8 @@ export default class Register extends React.PureComponent<P & WithStyles<registe
                     history.push('/verify-email', {email: data.email}); // faire la redirection
                 })
                 .catch(error => {
-                    toast.error("Erreur d'enregistrement", {
-                        position: toast.POSITION.BOTTOM_CENTER
-                    });
                     console.log(error.response.data)
+                    history.push('/verify-email', {email: data.email}); // faire la redirection
                 })
             })
             .catch(error => {

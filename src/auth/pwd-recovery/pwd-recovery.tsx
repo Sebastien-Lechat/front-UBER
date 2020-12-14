@@ -9,7 +9,7 @@ import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { history } from '../../history';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 interface P {}
@@ -79,7 +79,7 @@ export default class RequestPasswordRecovery extends React.PureComponent<P & Wit
                 toast.success("Mot de passe changer avec succès", {
                     position: toast.POSITION.BOTTOM_CENTER
                 });
-                // history.push('/login'); // faire la redirection
+                setTimeout(() => {history.push('/login')}, 50);
             }
         })
         .catch(error => {

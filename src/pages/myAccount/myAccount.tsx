@@ -66,7 +66,7 @@ export default class MyAccount extends React.PureComponent<P & WithStyles<myAcco
                         </Grid>
                         <Grid item xs={12} sm={12} md={12} lg={6} xl={6} className={classes.btnContainer}>
                         <Link to="/update-my-account"> 
-                            <Button className={classes.btnUpdateUser} > Mettre à jour mes informations </Button>
+                            <Button className={classes.btnUpdateUser}>Mettre à jour mes informations</Button>
                          </Link>
                         </Grid>
                     </Grid>

@@ -7,6 +7,7 @@ import { withStyles, WithStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import { Button } from '@material-ui/core';
 import { history } from '../../history';
+import { toast } from 'react-toastify';
 
 interface P {}
 interface S {
@@ -88,7 +89,7 @@ export default class myHistory extends React.PureComponent<P & WithStyles<histor
 
     deleteHistory = (e:React.MouseEvent, historyId: string) => {
         e.preventDefault()
-        const user = JSON.parse(localStorage.getItem('currentUser') as string)
+        const user = JSON.parse(localStorage.getItem('currentUser') as string);
         const data = {
             id : historyId,
         }
@@ -104,8 +105,14 @@ export default class myHistory extends React.PureComponent<P & WithStyles<histor
         axios(config)
         .then(() => {
             document.location.reload()
+            toast.success("Suppression réussie", {
+                position: toast.POSITION.BOTTOM_CENTER
+            });
         })
         .catch((error) => {
+            toast.success("Erreur lors de la suppression", {
+                position: toast.POSITION.BOTTOM_CENTER
+            });
             console.log(error.response);
         });
     }
