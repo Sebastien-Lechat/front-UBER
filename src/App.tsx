@@ -45,8 +45,8 @@ const App = () => {
                 <PasswordRecovery.Display />
             </Route>
             <ProtectedRoute {...defaultProtectedRouteProps} exact={true} path='/map' component={Map.Display}/>
-            <ProtectedRoute {...defaultProtectedRouteProps} exact={true} path='/my-account' component={Myaccount.Display}/>
-            <ProtectedRoute {...defaultProtectedRouteProps} exact={true} path='/update-my-account' component={UpdateMyAccount.Display}/>
+            {/* <ProtectedRoute {...defaultProtectedRouteProps} exact={true} path='/my-account' component={Myaccount.Display}/> */}
+            <ProtectedRoute {...defaultProtectedRouteProps} exact={true} path='/my-account' component={UpdateMyAccount.Display}/>
             <ProtectedRoute {...defaultProtectedRouteProps} exact={true} path='/history' component={myHistory.Display}/>
         </Router>
     );

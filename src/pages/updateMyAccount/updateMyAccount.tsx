@@ -4,7 +4,9 @@ import avatar from  '../../assets/img/linux-avatar.png';
 import succes from  '../../assets/img/8.png';
 import styles, { updateMyAccountStyles } from './UpdateMyAccount-style';
 import { withStyles, WithStyles } from '@material-ui/core/styles';
-
+import { Link } from 'react-router-dom';
+import axios from 'axios';
+import { history } from '../../history';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
@@ -14,9 +16,12 @@ import Checkbox from '@material-ui/core/Checkbox';
 import MuiAlert, { AlertProps } from '@material-ui/lab/Alert';
 import DeleteAccount from '@material-ui/icons/DeleteForever';
 import Warning from '@material-ui/icons/Warning';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import Fab from '@material-ui/core/Fab';
 import HeaderBarUpdateMyAccount from '../../component/header/header-update-my-account';
+import PasswordRecovery from '../../auth/request-pwd-recovery/request-pwd-recovery';
 interface P {}
 interface S {
     name: string,
@@ -42,6 +47,7 @@ function Alert(props: AlertProps) {
     public state: Readonly<S> = {
         name: this.user.name,
         email: this.user.email,
+
         phone: this.phone,
         doubleAuth: this.doubleAuth,
         password: "",
@@ -66,6 +72,7 @@ function Alert(props: AlertProps) {
                                 <Grid container>
                                     <Grid item xs={4} className={classes.left}>
                                         <img src={avatar} className={classes.userAvatar} alt="" />
+
                                         <input accept="image/*" className={classes.input} id="contained-button-file" multiple type="file" />
                                             <label htmlFor="contained-button-file">
                                                 <Button className={classes.btnAvatar} variant="contained" color="primary" component="span">
@@ -87,7 +94,7 @@ function Alert(props: AlertProps) {
                                             <TextField className={classes.formId} type= "password" label="Mot de passe actuel" variant="filled" name='password' inputProps={{autoComplete: 'password',form: {autoComplete: 'off',},}} onChange={this.changeVal}/>
                                             <TextField className={classes.formId} type= "password" label="Confirmer le nouveau mot de passe" variant="filled" name='confirmPassword' inputProps={{autoComplete: 'confirm-password',form: {autoComplete: 'off',},}} onChange={this.changeVal}/>
                                             <Checkbox className={classes.checked} checked={this.state.doubleAuth} name="doubleAuth" onChange={this.doubleAuthChange}/>
-                                        <a className={classes.a}>Double authenntification</a> 
+                                        <a className={classes.a}>Double authentification</a> 
                                         </div>
                                     </Grid>
                                 </Grid>
@@ -116,9 +123,67 @@ function Alert(props: AlertProps) {
 
     changeAccount = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
-        let data: any = {};
+        let data: any = {
+            name : this.state.name,
+            email: this.state.email,
+            phone: this.state.phone,
+            password: this.state.password.trim(),
+            oldPassword : this.state.password.trim(),
+            newPassword: this.state.newPassword,
+            confirmPassword: this.state.confirmPassword,
+        };
+        const config: any = {
+            method: 'put',
+            url: 'http://localhost:3010/api/UBER-EEDSI/account',
+            headers: { 
+                'Authorization': this.user.token, 
+                'Content-Type': 'application/json'
+            },
+            data : data
+        };
+        const config2: any = {
+            method: 'post',
+            url: 'http://localhost:3010/api/UBER-EEDSI/account/change-password',
+            headers: { 
+                'Authorization': this.user.token, 
+                'Content-Type': 'application/json'
+            },
+            data : data
+        };
+        if(data.name === '' || data.email === '' || data.password === ''){
+            toast.error("Donnée(s) manquante(s)", {
+                position: toast.POSITION.BOTTOM_CENTER
+            });
+        }
+        if(data.name !== '' && data.email !== '' && data.password !== '')
+        axios(config)
+        .then(res => {
+            localStorage.setItem('currentUser', JSON.stringify(res.data)); // stock les informations de l'utilisateurs en front
+            toast.success("Informations mises à jour avec succès", {
+                position: toast.POSITION.BOTTOM_CENTER
+            });
+        })
+        .catch(error => {
+            console.log(error.response.data)
+        })
+        if(data.email !=='' && data.oldPassword !=='' && data.newPassword !=='' && data.confirmPassword !== '' && data.newPassword !== data.confirmPassword){
+            toast.error("Les mots de passe ne sont pas identiques", {
+                position: toast.POSITION.BOTTOM_CENTER
+            });
+        }
+        if(data.email !=='' && data.oldPassword !=='' && data.newPassword !=='' && data.confirmPassword !== '' && data.newPassword === data.confirmPassword)
+        axios(config2)
+        .then(res => {
+            localStorage.setItem('currentUser', JSON.stringify(res.data)); // stock les informations de l'utilisateurs en front
+            toast.success("Mot de passe mis à jour", {
+                position: toast.POSITION.BOTTOM_CENTER
+            });
+        })
+        .catch(error => {
+            console.log(error.response.data)
+        })
         console.log(this.state);
-        // faire la requête pour modifier l'utilisateur, sachant que il faut le mot de passe actuel pour essectuer la requête.
+        // faire la requête pour modifier l'utilisateur, sachant que il faut le mot de passe actuel pour effectuer la requête.
     }
 
     doubleAuthChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -128,9 +193,36 @@ function Alert(props: AlertProps) {
         // faire la requête pour activer ou désactiver la double auth.
     }
 
-    deleteAccount = (e:React.MouseEvent) => {
+    deleteAccount = (e:React.MouseEvent,) => {
         e.preventDefault()
-        console.log('delete')
-        // faire la requête de suppression, et la redirection sur la page d'acceuil.
+        const user = JSON.parse(localStorage.getItem('currentUser') as string)
+        const data = {
+            email :user.email
+        }
+        const config: any = {
+            method: 'delete',
+            url: 'http://localhost:3010/api/UBER-EEDSI/account',
+            headers: { 
+                'Authorization': user.token, 
+                'Content-Type': 'application/json'
+            },
+            data : data,
+        };
+        console.log("userToken: "+user.token);
+        axios(config)
+        .then(() => {
+            toast.success("Votre compte a bien été supprimé", {
+                position: toast.POSITION.BOTTOM_CENTER
+            });
+            history.push('/home');
+        })
+        .catch((error) => {
+            toast.warn("Vous n'êtes pas autorisé à effectuer cette requête", {
+                position: toast.POSITION.BOTTOM_CENTER
+            });
+            console.log(error.response);
+        });
+   
     }
-}
+
+ }
