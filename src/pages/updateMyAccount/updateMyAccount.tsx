@@ -18,6 +18,8 @@ import DeleteAccount from '@material-ui/icons/DeleteForever';
 import Warning from '@material-ui/icons/Warning';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Modal } from "react-bootstrap";
+
 
 import Fab from '@material-ui/core/Fab';
 import HeaderBarUpdateMyAccount from '../../component/header/header-update-my-account';
@@ -30,12 +32,9 @@ interface S {
     doubleAuth: boolean,
     password: string,
     newPassword: string,
-    confirmPassword: string
-}
-
-function Alert(props: AlertProps) {
-    return <MuiAlert elevation={6} variant="filled" {...props} />;
-}   
+    confirmPassword: string,
+    isOpen : boolean,
+} 
  export default class UpdateMyAccount extends React.PureComponent<P & WithStyles<updateMyAccountStyles>, S> {
 
     public static Display = withStyles(styles as any)(UpdateMyAccount) as React.ComponentType<P>
@@ -52,8 +51,13 @@ function Alert(props: AlertProps) {
         doubleAuth: this.doubleAuth,
         password: "",
         newPassword: "",
-        confirmPassword: ""
+        confirmPassword: "",
+        isOpen: false
     };
+
+    openModal = () => this.setState({ isOpen: true });
+    closeModal = () => this.setState({ isOpen: false });
+
     render () {
         const { classes } = this.props;
         return (
@@ -101,10 +105,24 @@ function Alert(props: AlertProps) {
                                 <br/>
                                 <Grid container >
                                     <Grid item xs={4} className={classes.blocBtn}>
-                                        <Button className={classes.btnDeleteAccount} variant="contained" color="primary" component="span" onClick={this.deleteAccount}>
+                                        <Button className={classes.btnDeleteAccount} variant="contained" color="primary" component="span" onClick={this.openModal}>
                                             <DeleteAccount className={classes.iconDeleteAccount}/> &nbsp; Supprimer mon compte
                                         </Button>
                                     </Grid>
+                                    <Modal show={this.state.isOpen} onHide={this.closeModal}>
+                                        <Modal.Header closeButton>
+                                            <Modal.Title>Confirmation</Modal.Title>
+                                        </Modal.Header>
+                                        <Modal.Body>Souhaitez-vous vraiment supprimer votre compte?</Modal.Body>
+                                        <Modal.Footer>
+                                            <Button className={classes.btnValidationDeleteAccount} onClick={this.deleteAccount}>
+                                            Oui
+                                            </Button>
+                                            <Button className={classes.btnCancelDeleteAccount} onClick={this.closeModal}>
+                                            Non
+                                            </Button>
+                                        </Modal.Footer>
+                                    </Modal>
                                     <Grid item xs={8} className={classes.containerBtnvalider} >
                                         <Button  className={classes.btnUpdateUser} variant="contained" color="primary" disableElevation type="submit"> VALIDER </Button>
                                     </Grid>                         
