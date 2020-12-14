@@ -20,11 +20,13 @@ export default class HeaderBar extends React.PureComponent<P & WithStyles<header
     public static Display = withStyles(styles as any)(HeaderBar) as React.ComponentType<P>
     
     render () {
-        const { classes } = this.props;
         const user: any = JSON.parse(localStorage.getItem('currentUser') as string);
+        const { classes } = this.props;
         const lastConexion : any = user.connexionDate;
         const userlastConexionDate : any = lastConexion.substring(8, 10) + "/" + lastConexion.substring(5,7) +"/" + lastConexion.substring(0,4) 
-        const userlastConexionTime : any = lastConexion.substring(11,16);
+        const userlastConexionTimeHeure: any = lastConexion.substring(11,13);
+        const userlastConexionTimeHeureInt: any = Number(userlastConexionTimeHeure) + 1;
+        const userlastConexionTimeMinute: any = lastConexion.substring(14,16);
         return (
           <AppBar position="static">
             <HeaderNavBar>
@@ -36,10 +38,8 @@ export default class HeaderBar extends React.PureComponent<P & WithStyles<header
                 <img className={classes.logo2} src={logo2} alt=""/>
               </Link>
               <div className={classes.connexionUserDiv} >
-                <p className={classes.connexionUser}> Dernière connexion: {userlastConexionDate} à {userlastConexionTime}
-                  {/* <span className={classes.connexionUserA}>Dernière connexion: </span>  &nbsp;
-                  <a className={classes.connexionUserB}>{userlastConexionDate} à {userlastConexionTime}</a> */}
-                </p>
+              <p className={classes.connexionUser}> Dernière connexion: {userlastConexionDate} à {userlastConexionTimeHeureInt}:{userlastConexionTimeMinute}
+               </p>
               </div>
               <div className={classes.menu + ' ' + classes.center}>
                 <span>
