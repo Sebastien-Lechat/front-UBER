@@ -1,5 +1,5 @@
 import React from 'react';
-import axios from 'axios';
+import axios, { AxiosRequestConfig } from 'axios';
 import { Link } from 'react-router-dom';
 import logo from '../../assets/img/uber.png';
 import styles, { passwordRecoveryStyles } from './request-pwd-recovery-style';

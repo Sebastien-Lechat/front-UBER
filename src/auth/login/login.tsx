@@ -1,5 +1,5 @@
 import React from 'react';
-import axios from 'axios';
+import axios, { AxiosRequestConfig } from 'axios';
 import logo from '../../assets/img/1.png';
 import logo2 from '../../assets/img/uber.png';
 import styles, { loginStyles } from './login-style';
