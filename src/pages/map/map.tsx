@@ -83,60 +83,11 @@ export default class Map extends React.PureComponent<P & WithStyles<mapStyles>, 
         return (
             <><Header.Display />
                 <div className={classes.parentMap}>
-                    <LoadScript googleMapsApiKey="">
-                        <GoogleMap mapContainerStyle={containerStyle} center={center} zoom={16}>
-                        { /* Child components, such as markers, info windows, etc. */ }
-                        {
-                            (
-                                this.state.destination !== '' &&
-                                this.state.origin !== '' && !this.state.alreadyShowMap
-                            ) && (
-                                <DirectionsService
-                                // required
-                                options={{ 
-                                    destination: this.state.destination,
-                                    origin: this.state.origin,
-                                    travelMode: this.state.travelMode,
-                                    optimizeWaypoints: true,
-                                    waypoints: this.state.waypoints
-                                }}
-                                // required
-                                callback={this.directionsCallback}
-                                // optional
-                                onLoad={directionsService => {
-                                    // console.log('DirectionsService onLoad directionsService: ', directionsService)
-                                }}
-                                // optional
-                                onUnmount={directionsService => {
-                                    // console.log('DirectionsService onUnmount directionsService: ', directionsService)
-                                }}
-                                />
-                            )
-                            }
-
-                            {
-                            this.state.response !== null && (
-                                <DirectionsRenderer
-                                // required
-                                options={{ 
-                                    directions: this.state.response
-                                }}
-                                // optional
-                                onLoad={directionsRenderer => {
-                                    console.log('DirectionsRenderer onLoad directionsRenderer: ', directionsRenderer)
-                                }}
-                                // optional
-                                onUnmount={directionsRenderer => {
-                                    console.log('DirectionsRenderer onUnmount directionsRenderer: ', directionsRenderer)
-                                }}
-                                />
-                            )
-                            }
-                        <></>
-                        </GoogleMap>
-                    </LoadScript>
-                    <Grid container className={classes.container}>
-                        <Container className={classes.containerMobilite}>
+                    <Grid container className={classes.containerCol}>
+                        {/* Bloc de gauche  */}
+                        <Grid item xs={12} className={classes.leftCol}>
+                            <Grid container className={classes.container}>
+                                <Container className={classes.containerMobilite}>
                             <Grid container className={classes.boutonsMonbilite}>
                                 <Grid item xs={4} className={classes.blocVoitureVeloPieton}>
                                     <Fab color="primary" aria-label="add">
@@ -155,7 +106,7 @@ export default class Map extends React.PureComponent<P & WithStyles<mapStyles>, 
                                 </Grid>
                             </Grid>
                         </Container>
-                        <Container className={classes.containerInfoDeplacement}>
+                                <Container className={classes.containerInfoDeplacement}>
                             <Grid container>
                                 <Grid className={classes.containerPrincipalInput}>
                                     <Grid container className={classes.containerInput}>
@@ -233,6 +184,63 @@ export default class Map extends React.PureComponent<P & WithStyles<mapStyles>, 
                                 </Grid>
                             </Grid>
                         </Container>
+                            </Grid>
+                        </Grid>
+                        {/* Bloc de gauche  */}
+                        <Grid xs={12} className={classes.rightCol}>
+                            <LoadScript googleMapsApiKey="">
+                        <GoogleMap mapContainerStyle={containerStyle} center={center} zoom={16}>
+                        { /* Child components, such as markers, info windows, etc. */ }
+                        {
+                            (
+                                this.state.destination !== '' &&
+                                this.state.origin !== '' && !this.state.alreadyShowMap
+                            ) && (
+                                <DirectionsService
+                                // required
+                                options={{ 
+                                    destination: this.state.destination,
+                                    origin: this.state.origin,
+                                    travelMode: this.state.travelMode,
+                                    optimizeWaypoints: true,
+                                    waypoints: this.state.waypoints
+                                }}
+                                // required
+                                callback={this.directionsCallback}
+                                // optional
+                                onLoad={directionsService => {
+                                    // console.log('DirectionsService onLoad directionsService: ', directionsService)
+                                }}
+                                // optional
+                                onUnmount={directionsService => {
+                                    // console.log('DirectionsService onUnmount directionsService: ', directionsService)
+                                }}
+                                />
+                            )
+                            }
+
+                            {
+                            this.state.response !== null && (
+                                <DirectionsRenderer
+                                // required
+                                options={{ 
+                                    directions: this.state.response
+                                }}
+                                // optional
+                                onLoad={directionsRenderer => {
+                                    console.log('DirectionsRenderer onLoad directionsRenderer: ', directionsRenderer)
+                                }}
+                                // optional
+                                onUnmount={directionsRenderer => {
+                                    console.log('DirectionsRenderer onUnmount directionsRenderer: ', directionsRenderer)
+                                }}
+                                />
+                            )
+                            }
+                        <></>
+                        </GoogleMap>
+                    </LoadScript>
+                        </Grid>
                     </Grid>
                 </div></>
         );
