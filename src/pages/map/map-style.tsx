@@ -1,5 +1,4 @@
 import { Theme, createStyles } from '@material-ui/core/styles';
-import { isWhiteSpaceLike } from 'typescript';
 
 export type mapStyles = ("parentMap"|"map" | "container" |"container2" |"containerMobilite" | "containerInfoDeplacement"|'fonttext' |"boutonsMonbilite"|"blocVoitureVeloPieton"|"containerPrincipalInput" |"containerInput"|"inputDepart"|"inputDestination"|"iconLocalisation"|"iconSup"|"iconSupParent"|"iconAjoutParent"|"iconAjout"|"ajoutText"|"ajoutTextparent"|"btnValiderItineraire" |
 "tempsTrajet" |"tempsTrajetA"|"tempsTrajethms"|"detailBtn"|"detailList"|"leftCol"|"rightCol"|"containerCol"); // add class create

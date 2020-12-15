@@ -7,7 +7,7 @@ import {ProtectedRoute, ProtectedRouteProps} from './guard/auth-gard';
 import {Route, Router} from "react-router-dom";
 import VerifyEmail from './auth/verify-email/verify-email';
 import RequestPasswordRecovery from './auth/request-pwd-recovery/request-pwd-recovery';
-import Myaccount from './pages/myAccount/myAccount';
+// import Myaccount from './pages/myAccount/myAccount';
 import UpdateMyAccount from './pages/updateMyAccount/updateMyAccount';
 import homePage from './auth/home-page/home-page';
 import myHistory from './pages/history/history';

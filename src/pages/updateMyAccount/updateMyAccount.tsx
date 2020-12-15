@@ -1,11 +1,9 @@
-import Header from '../../component/header/header';
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
+import axios, { AxiosRequestConfig } from 'axios';
 import avatar from  '../../assets/img/linux-avatar.png';
-import succes from  '../../assets/img/8.png';
 import styles, { updateMyAccountStyles } from './UpdateMyAccount-style';
 import { withStyles, WithStyles } from '@material-ui/core/styles';
-import { Link } from 'react-router-dom';
-import axios, { AxiosRequestConfig } from 'axios';
 import { history } from '../../history';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
@@ -13,17 +11,13 @@ import Button from '@material-ui/core/Button';
 import Container from '@material-ui/core/Container';
 import PhotoCamera from '@material-ui/icons/PhotoCamera';
 import Checkbox from '@material-ui/core/Checkbox';
-import MuiAlert, { AlertProps } from '@material-ui/lab/Alert';
 import DeleteAccount from '@material-ui/icons/DeleteForever';
-import Warning from '@material-ui/icons/Warning';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Modal } from "react-bootstrap";
 
-
-import Fab from '@material-ui/core/Fab';
 import HeaderBarUpdateMyAccount from '../../component/header/header-update-my-account';
-import PasswordRecovery from '../../auth/request-pwd-recovery/request-pwd-recovery';
+
 interface P {}
 interface S {
     name: string,
@@ -173,7 +167,7 @@ interface S {
                 position: toast.POSITION.BOTTOM_CENTER
             });
         } else if(data.name === '' || data.email === ''){
-            toast.error("Email/Nom manquante(s)", {
+            toast.error("Email/Nom manquant(s)", {
                 position: toast.POSITION.BOTTOM_CENTER
             });
         }
