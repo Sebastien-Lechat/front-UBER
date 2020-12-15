@@ -83,7 +83,7 @@ export default class Map extends React.PureComponent<P & WithStyles<mapStyles>, 
         return (
             <><Header.Display />
                 <div className={classes.parentMap}>
-                    <LoadScript googleMapsApiKey="AIzaSyCS033ffJtFO9HFWywz2tHbnEyNho-a-w0">
+                    <LoadScript googleMapsApiKey="">
                         <GoogleMap mapContainerStyle={containerStyle} center={center} zoom={16}>
                         { /* Child components, such as markers, info windows, etc. */ }
                         {
