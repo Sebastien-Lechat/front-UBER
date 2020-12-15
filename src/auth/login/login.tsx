@@ -81,7 +81,7 @@ export default class Login extends React.PureComponent<P & WithStyles<loginStyle
             setTimeout(() => {history.push('/map')}, 50);
         })
         .catch(error => {
-            if (error.response.data.message === 'Double authentification is activated, code is required') {
+            if (error.response && error.response.data && error.response.data.message === 'Double authentification is activated, code is required') {
                 axios.post(`http://localhost:3010/api/UBER-EEDSI/account/request-double-authentification`, data)
                 .then(res => {
                     toast.warn("La double authentification est activée", {
@@ -92,7 +92,7 @@ export default class Login extends React.PureComponent<P & WithStyles<loginStyle
                 .catch(error => {
                     console.log(error.response.data)
                 })
-            } else if (error.response.data.message === 'Email address not verified') {
+            } else if (error.response && error.response.data && error.response.data.message === 'Email address not verified') {
                 axios.post(`http://localhost:3010/api/UBER-EEDSI/account/request-verify-email`, {email: data.email})
                 .then(() => {
                     history.push('/verify-email', {email: data.email}); // faire la redirection
@@ -104,7 +104,7 @@ export default class Login extends React.PureComponent<P & WithStyles<loginStyle
                     console.log(error.response.data)
                 })
             } else {
-                console.log(error.response.data)
+                console.log(error.response)
             }
         })
     }
