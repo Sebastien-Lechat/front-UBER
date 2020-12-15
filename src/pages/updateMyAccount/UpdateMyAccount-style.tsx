@@ -2,7 +2,8 @@ import { Theme, createStyles } from '@material-ui/core/styles';
 
 export type updateMyAccountStyles = ("container" | "h1" |"left" | "hr" |"containerUser" | "center" |
  "btnAvatar" |"btnUpdateUser" | "input" | "userAvatar"|"form" | "formId" | "checked" |"a" | "alert" | "leftSucces"|"succesIcone"|
-"iconDelete"|"containerBtnvalider"|"blocBtn"|"textDelete"|"btnDeleteAccount"|"iconDeleteAccount"|"iconCamera"); // add class create
+"iconDelete"|"containerBtnvalider"|"blocBtn"|"textDelete"|"btnDeleteAccount"|"iconDeleteAccount"|"btnValidationDeleteAccount" 
+|"btnCancelDeleteAccount"|"iconCamera"); // add class create
 
 // eslint-disable-next-line
 export default (theme: Theme) => createStyles<updateMyAccountStyles, {}>({
@@ -64,6 +65,24 @@ export default (theme: Theme) => createStyles<updateMyAccountStyles, {}>({
 
     iconDeleteAccount:{
         color: '#A93226',
+    },
+    btnValidationDeleteAccount:{
+        backgroundColor:'green',
+        color: '#ffffff',
+        '&:hover' : {
+            backgroundColor:'green',
+            color: '#000000',
+            fontWeight:'bold'
+        }
+    },
+    btnCancelDeleteAccount:{
+        backgroundColor:'red',
+        color: '#ffffff',
+        '&:hover' : {
+            backgroundColor:'red',
+            color: '#000000',
+            fontWeight:'bold'
+        }
     },
     iconCamera:{
         '& hover':{
