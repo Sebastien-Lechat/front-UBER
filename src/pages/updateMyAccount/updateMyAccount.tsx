@@ -20,7 +20,6 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Modal } from "react-bootstrap";
 
-
 import Fab from '@material-ui/core/Fab';
 import HeaderBarUpdateMyAccount from '../../component/header/header-update-my-account';
 import PasswordRecovery from '../../auth/request-pwd-recovery/request-pwd-recovery';
