@@ -73,7 +73,7 @@ export default class VerifyEmail extends React.PureComponent<P & WithStyles<Veri
             history.push('/login');
         })
         .catch(error => {
-            if (error.response.data.message === 'Wrong code') {
+            if (error.response && error.response.data && error.response.data.message === 'Wrong code') {
                 toast.warn("Le code n'est pas bon", {
                     position: toast.POSITION.BOTTOM_CENTER
                 });
