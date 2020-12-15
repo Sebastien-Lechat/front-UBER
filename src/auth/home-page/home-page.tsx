@@ -1,9 +1,13 @@
+// import React from 'react';
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../assets/img/uber.png';
+import voiture from '../../assets/img/UBER.gif';
+import client from '../../assets/img/client.gif';
 import voiture2 from '../../assets/img/uberCar.gif';
 import yvi from '../../assets/img/bgVille.gif';
 
+// import fondVille2 from '../../assets/img/fondVilleResize.jpg';
 import styles, { homePageStyles } from './home-page-style';
 import { withStyles, WithStyles } from '@material-ui/core/styles';
 
@@ -25,6 +29,8 @@ export default class homePage extends React.PureComponent<P & WithStyles<homePag
             <Grid container className={classes.containerLeft}>
                 <Grid item xs={12} >
                     <div className={classes.annimation}>
+                        {/* <img className={classes.client} src={client} alt=""/> */}
+                        {/* <div className={classes.fondVille} style={{ backgroundImage: 'url(' + ville + ')', backgroundRepeat: 'repeat' }}> */}
                         <img className={classes.fondVilleImage} src={yvi} alt=""/>
                         <div className={classes.ligneBlanche1}>&nbsp;</div>
                         <hr className={classes.dotted} />

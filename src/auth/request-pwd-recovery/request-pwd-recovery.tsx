@@ -1,5 +1,5 @@
 import React from 'react';
-import axios from 'axios';
+import axios, { AxiosRequestConfig } from 'axios';
 import { Link } from 'react-router-dom';
 import logo from '../../assets/img/uber.png';
 import styles, { passwordRecoveryStyles } from './request-pwd-recovery-style';
@@ -45,7 +45,7 @@ export default class PasswordRecovery extends React.PureComponent<P & WithStyles
                         <Grid item xs={2} className={classes.center}>
                         </Grid>
                         <Grid item xs={8} className={classes.center}>
-                            <span className={classes.text}>Entrez votre email pour recevoir un email avec <span>un code pour modifier votre mot de passe.</span></span> 
+                            <span className={classes.text}>Entrer votre email pour recevoir email avec <span>un code pour modifier votre mot de passe.</span></span> 
                         </Grid>
                         <Grid item xs={2} className={classes.center}>
                         </Grid>

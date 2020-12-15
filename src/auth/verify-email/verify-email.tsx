@@ -1,5 +1,5 @@
 import React from 'react';
-import axios from 'axios';
+import axios, { AxiosRequestConfig } from 'axios';
 import { Link } from 'react-router-dom';
 import logo from '../../assets/img/uber.png';
 import styles, { VerifyEmailStyles } from './verify-email-style';
@@ -37,7 +37,7 @@ export default class VerifyEmail extends React.PureComponent<P & WithStyles<Veri
                         <Grid item xs={2} className={classes.center}>
                         </Grid>
                         <Grid item xs={8} className={classes.center}>
-                            <span className={classes.text}>Vous devez vérifier votre email afin de pouvoir continuer</span>
+                            <span className={classes.text}>Vous devez vérifier votre email afin de pouvoir vous connecter</span>
                         </Grid>
                         <Grid item xs={12} className={classes.center}>
                             <form className={classes.form} noValidate autoComplete="off" onSubmit={this.verifyEmail}>

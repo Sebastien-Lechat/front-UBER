@@ -1,11 +1,12 @@
 import Header from '../../component/header/header';
-import React from 'react';
+import React, { useState } from 'react';
 import axios, { AxiosRequestConfig } from 'axios';
 import styles, { historyStyles } from './history-style';
 import { withStyles, WithStyles } from '@material-ui/core/styles';
 
 import Grid from '@material-ui/core/Grid';
 import { Button } from '@material-ui/core';
+import { history } from '../../history';
 import { toast } from 'react-toastify';
 
 interface P {}

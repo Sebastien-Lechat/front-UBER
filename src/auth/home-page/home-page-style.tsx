@@ -1,4 +1,5 @@
 import { Theme, createStyles } from '@material-ui/core/styles';
+import ville from '../../assets/img/ville.png';
 
 export type homePageStyles = ("center" | "form" | "back" | "mainDiv" | "img" | "container"
 | "link" | "subtitle" | "passwordLost"|"ligneBlanche1"|"ligneBlanche"|"dotted"|"voiture"|"annimation"|"client"
