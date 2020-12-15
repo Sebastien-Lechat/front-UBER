@@ -1,5 +1,5 @@
 import React from 'react';
-import axios, { AxiosRequestConfig } from 'axios';
+import axios from 'axios';
 import logo from '../../assets/img/1.png';
 import logo2 from '../../assets/img/uber.png';
 import styles, { loginStyles } from './login-style';
@@ -41,7 +41,7 @@ export default class Login extends React.PureComponent<P & WithStyles<loginStyle
                         <Grid item xs={12} className={classes.center}>
                             <form className={classes.form} noValidate autoComplete="off" onSubmit={this.login}>
                                 <InputEmail id="email" label="EMAIL" name="email" variant="outlined" onChange={this.changeVal} />
-                                <InputPassword id="password" label="PASSWORD" type="password" name="password" variant="outlined" onChange={this.changeVal} />
+                                <InputPassword id="password" label="MOT DE PASSE" type="password" name="password" variant="outlined" onChange={this.changeVal} />
                                 <div className={classes.passwordLost}>
                                     <Link to="/request-password-lost" className={classes.link}>Mot de passe oublié ?</Link>
                                 </div>
@@ -75,7 +75,7 @@ export default class Login extends React.PureComponent<P & WithStyles<loginStyle
         axios.post(`http://localhost:3010/api/UBER-EEDSI/account/login`, data)
         .then(res => {
             localStorage.setItem('currentUser', JSON.stringify(res.data)); // stock les informations de l'utilisateurs en front
-            toast.success("Connexion réussie !", {
+            toast.success("Connexion réussie", {
                 position: toast.POSITION.BOTTOM_CENTER
             });
             setTimeout(() => {history.push('/map')}, 50);
