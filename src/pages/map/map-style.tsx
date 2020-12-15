@@ -1,7 +1,7 @@
 import { Theme, createStyles } from '@material-ui/core/styles';
 
 export type mapStyles = ("parentMap"|"map" | "container" |"container2" |"containerMobilite" | "containerInfoDeplacement"|'fonttext' |"boutonsMonbilite"|"blocVoitureVeloPieton"|"containerPrincipalInput" |"containerInput"|"inputDepart"|"inputDestination"|"iconLocalisation"|"iconSup"|"iconSupParent"|"iconAjoutParent"|"iconAjout"|"ajoutText"|"ajoutTextparent"|"btnValiderItineraire" |
-"tempsTrajet" |"tempsTrajetA"|"tempsTrajethms"|"detailBtn"|"detailList"); // add class create
+"tempsTrajet" |"tempsTrajetA"|"tempsTrajethms"|"detailBtn"|"detailList"|"leftCol"|"rightCol"|"containerCol"); // add class create
 
 // eslint-disable-next-line
 export default (theme: Theme) => createStyles<mapStyles, {}>({
@@ -26,16 +26,16 @@ export default (theme: Theme) => createStyles<mapStyles, {}>({
         width: '25%',
         position: 'absolute',
         zIndex: 2,
-        top: '7vh',
-        left: '5vw',
-        height: '75vh'
+        // top: '7vh',
+        // left: '5vw',
+        height: '90vh',
     },
     containerMobilite: {
         backgroundColor:'white',
         borderRadius: '20px',
         height: '10vh',
         width:'100%',
-        marginTop:'10px',
+        marginTop:'50px',
         marginLeft:'10px',
         marginRight:'10px',
         marginBottom:'10px',
@@ -53,14 +53,18 @@ export default (theme: Theme) => createStyles<mapStyles, {}>({
         borderRadius: '20px',
         marginLeft:'10px',
         marginRight:'10px',
-        height: '60vh',
-        maxHeight: '65vh',
+        height: '70vh',
+        // height: '90%',
+        maxHeight: '80vh',
         width:'100%',
         marginBottom:'10px',
         overflowX: 'auto',
-        padding: '15px 7px',
+        padding: '8px 7px',
+        paddingTop: '20px'
     },
     blocVoitureVeloPieton:{
+        marginTop: '',
+        marginBottom: '15px',
         width: '100%',
         height:'100%',
         display: 'flex',
@@ -192,6 +196,19 @@ export default (theme: Theme) => createStyles<mapStyles, {}>({
     [theme.breakpoints.down('xs')]: {
         
     },
-});
+    containerCol:{
+        maxWidth:'100%',
+        
+    },
+    leftCol:{
+        maxWidth:'25%',
+        height: '5Opx', 
+        backgroundColor:''
+    },
+    rightCol:{
+        maxWidth:'75%',
+        width:'75%',
+        height: '90vh'
+    },
     
-
+});
