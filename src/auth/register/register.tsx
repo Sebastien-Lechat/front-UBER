@@ -1,5 +1,5 @@
 import React from 'react';
-import axios, { AxiosRequestConfig } from 'axios';
+import axios from 'axios';
 import { Link } from 'react-router-dom';
 import logo from '../../assets/img/uber.png';
 import styles, { registerStyles } from './register-style';
@@ -44,9 +44,9 @@ export default class Register extends React.PureComponent<P & WithStyles<registe
                         </Grid>
                         <Grid item xs={12} className={classes.center}>
                             <form className={classes.form} noValidate autoComplete="off" onSubmit={this.register}>
-                                <Input id="name" label="NAME" type="text" name="name" variant="outlined" onChange={this.changeVal} />
+                                <Input id="name" label="NOM" type="text" name="name" variant="outlined" onChange={this.changeVal} />
                                 <Input id="email" label="EMAIL" type="email" name="email" variant="outlined" onChange={this.changeVal}/>
-                                <Input id="phone" label="PHONE" type="text"  name="phone" variant="outlined" onChange={this.changeVal} />
+                                <Input id="phone" label="TELEPHONE" type="text"  name="phone" variant="outlined" onChange={this.changeVal} />
                                 <Input id="password" label="MOT DE PASSE" type="password" name="password" variant="outlined"onChange={this.changeVal} />
                                 <Input id="confirmPassword" label="CONFIRMER LE MOT DE PASSE" type="password" name="confirmPassword" variant="outlined" onChange={this.changeVal} />
                                 <RegisterButton type="submit">Inscription</RegisterButton>
