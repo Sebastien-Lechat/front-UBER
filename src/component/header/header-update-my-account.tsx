@@ -22,8 +22,10 @@ export default class HeaderBarUpdateMyAccount extends React.PureComponent<P & Wi
         const { classes } = this.props;
         const lastConexion : any = user.connexionDate;
         const userlastConexionDate : any = lastConexion.substring(8, 10) + "/" + lastConexion.substring(5,7) +"/" + lastConexion.substring(0,4) 
-        const userlastConexionTime : any = lastConexion.substring(11,16);
-        return (
+        const userlastConexionTimeHeure: any = lastConexion.substring(11,13);
+        const userlastConexionTimeHeureInt: any = Number(userlastConexionTimeHeure) + 1;
+        const userlastConexionTimeMinute: any = lastConexion.substring(14,16);
+       return (
           <AppBar position="static">
             <HeaderNavBar>
               <Link to="/map" className={classes.logoDiv + ' ' + classes.center}>
@@ -32,10 +34,8 @@ export default class HeaderBarUpdateMyAccount extends React.PureComponent<P & Wi
 
               </Link>
               <div className={classes.connexionUserDiv} >
-                <p className={classes.connexionUser}> Dernière connexion: {userlastConexionDate} à {userlastConexionTime}
-                  {/* <span className={classes.connexionUserA}>Dernière connexion: </span>  &nbsp;
-                  <a className={classes.connexionUserB}>{userlastConexionDate} à {userlastConexionTime}</a> */}
-                </p>
+                <p className={classes.connexionUser}> Dernière connexion: {userlastConexionDate} à {userlastConexionTimeHeureInt}:{userlastConexionTimeMinute}
+               </p>
               </div>
     
               <div className={classes.menu + ' ' + classes.center}>
