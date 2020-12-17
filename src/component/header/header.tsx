@@ -1,5 +1,5 @@
 import React from 'react';
-import axios from 'axios';
+import axios, { AxiosRequestConfig } from 'axios';
 import { Link } from 'react-router-dom';
 import styles, { headerBarStyles } from './header-style';
 import { withStyles, WithStyles } from '@material-ui/core/styles';
@@ -60,7 +60,7 @@ export default class HeaderBar extends React.PureComponent<P & WithStyles<header
   logout = (e:React.MouseEvent) => {
     e.preventDefault()
     const user = JSON.parse(localStorage.getItem('currentUser') as string)
-    const config: any = {
+    const config: AxiosRequestConfig = {
       method: 'post',
       url: 'http://localhost:3010/api/UBER-EEDSI/account/disconnect',
       headers: { 

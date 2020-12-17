@@ -37,7 +37,7 @@ export default class VerifyEmail extends React.PureComponent<P & WithStyles<Veri
                         <Grid item xs={2} className={classes.center}>
                         </Grid>
                         <Grid item xs={8} className={classes.center}>
-                            <span className={classes.text}>Vous devez vérifier votre email afin de pouvoir vous connecter</span>
+                            <span className={classes.text}>Vous devez vérifier votre email afin de pouvoir continuer</span>
                         </Grid>
                         <Grid item xs={12} className={classes.center}>
                             <form className={classes.form} noValidate autoComplete="off" onSubmit={this.verifyEmail}>
@@ -73,7 +73,7 @@ export default class VerifyEmail extends React.PureComponent<P & WithStyles<Veri
             history.push('/login');
         })
         .catch(error => {
-            if (error.response.data.message === 'Wrong code') {
+            if (error.response && error.response.data && error.response.data.message === 'Wrong code') {
                 toast.warn("Le code n'est pas bon", {
                     position: toast.POSITION.BOTTOM_CENTER
                 });

@@ -1,12 +1,11 @@
 import Header from '../../component/header/header';
 import React from 'react';
-import axios from 'axios';
+import axios, { AxiosRequestConfig } from 'axios';
 import styles, { historyStyles } from './history-style';
 import { withStyles, WithStyles } from '@material-ui/core/styles';
 
 import Grid from '@material-ui/core/Grid';
 import { Button } from '@material-ui/core';
-import { history } from '../../history';
 import { toast } from 'react-toastify';
 
 interface P {}
@@ -70,7 +69,7 @@ export default class myHistory extends React.PureComponent<P & WithStyles<histor
         if (!this.state.hasGetHistory) {
             this.setState({hasGetHistory: true} as Pick<S, keyof S>);
             const user = JSON.parse(localStorage.getItem('currentUser') as string);
-            const config: any = {
+            const config: AxiosRequestConfig = {
                 method: 'get',
                 url: 'http://localhost:3010/api/UBER-EEDSI/history',
                 headers: { 
@@ -93,7 +92,7 @@ export default class myHistory extends React.PureComponent<P & WithStyles<histor
         const data = {
             id : historyId,
         }
-        const config: any = {
+        const config: AxiosRequestConfig = {
             method: 'delete',
             url: 'http://localhost:3010/api/UBER-EEDSI/history',
             headers: { 
@@ -104,13 +103,19 @@ export default class myHistory extends React.PureComponent<P & WithStyles<histor
         };
         axios(config)
         .then(() => {
-            document.location.reload()
+            let hist:Array<Object> = this.state.history;
+            hist = hist.filter((elem:any)=>{ 
+                return (elem._id !== historyId)
+            });
+            this.setState({ 
+                history: hist
+            });
             toast.success("Suppression réussie", {
                 position: toast.POSITION.BOTTOM_CENTER
             });
         })
         .catch((error) => {
-            toast.success("Erreur lors de la suppression", {
+            toast.warn("Erreur lors de la suppression", {
                 position: toast.POSITION.BOTTOM_CENTER
             });
             console.log(error.response);

@@ -1,12 +1,13 @@
 import Header from '../../component/header/header';
 import React from 'react';
+import { GoogleMap, LoadScript, DirectionsService, DirectionsRenderer } from '@react-google-maps/api';
 
 import styles, { mapStyles } from './map-style';
 import { withStyles, WithStyles } from '@material-ui/core/styles';
 
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
-import Iframe from 'react-iframe';
+// import Iframe from 'react-iframe';
 import TextField from '@material-ui/core/TextField';
 import Fab from '@material-ui/core/Fab';
 import Velo from '@material-ui/icons/DirectionsBike';
@@ -24,24 +25,69 @@ import LocalisationIco from '@material-ui/icons/Room';
 
 import Typography from '@material-ui/core/Typography';
 
+const containerStyle = {
+    width: '100%',
+    height: '100%'
+};
+
+const center = {
+lat: 48.891304837789455,
+lng: 2.2840817276289553
+};
+
 interface P {}
-interface S {}
+interface S {
+    response: any,
+    travelMode: any,
+    origin: any,
+    destination: any,
+    waypoints: Array<google.maps.DirectionsWaypoint>; 
+    alreadyShowMap: boolean;
+}
 
 export default class Map extends React.PureComponent<P & WithStyles<mapStyles>, S> {
 
-    public static Display = withStyles(styles as any)(Map) as React.ComponentType<P>
+    constructor (props: any) {
+        super(props)
     
+        this.directionsCallback = this.directionsCallback.bind(this)
+        this.checkDriving = this.checkDriving.bind(this)
+        this.checkBicycling = this.checkBicycling.bind(this)
+        this.checkTransit = this.checkTransit.bind(this)
+        this.checkWalking = this.checkWalking.bind(this)
+        this.getOrigin = this.getOrigin.bind(this)
+        this.getDestination = this.getDestination.bind(this)
+        this.onClick = this.onClick.bind(this)
+        this.onMapClick = this.onMapClick.bind(this)
+    }
+
+    public static Display = withStyles(styles as any)(Map) as React.ComponentType<P>
+    public origin: any;
+    public destination: any;
+    public keyGoogle = (process.env.KEY_GOOGLE as string);
+
+    public state: Readonly<S> = { 
+        response: null,
+        travelMode: 'DRIVING',
+        origin: 'Paris',
+        destination: 'Savigny sur orge' ,
+        alreadyShowMap: false,
+        waypoints: [{
+            location: 'Morsang sur orge',
+            stopover: true
+        }]
+    }
+
     render () {
         const { classes } = this.props;
         return (
             <><Header.Display />
                 <div className={classes.parentMap}>
-                    <Iframe url="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2623.26385935044!2d2.281957415732015!3d48.89130837929074!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66f65519599ab%3A0x648913b6b58c1316!2sIMIE%20Paris!5e0!3m2!1sfr!2sfr!4v1606261522299!5m2!1sfr!2sfr"
-                        width="100%"
-                        height="100%"
-                        className="map" />
-                    <Grid container className={classes.container}>
-                        <Container className={classes.containerMobilite}>
+                    <Grid container className={classes.containerCol}>
+                        {/* Bloc de gauche  */}
+                        <Grid item xs={12} className={classes.leftCol}>
+                            <Grid container className={classes.container}>
+                                <Container className={classes.containerMobilite}>
                             <Grid container className={classes.boutonsMonbilite}>
                                 <Grid item xs={4} className={classes.blocVoitureVeloPieton}>
                                     <Fab color="primary" aria-label="add">
@@ -60,7 +106,7 @@ export default class Map extends React.PureComponent<P & WithStyles<mapStyles>, 
                                 </Grid>
                             </Grid>
                         </Container>
-                        <Container className={classes.containerInfoDeplacement}>
+                                <Container className={classes.containerInfoDeplacement}>
                             <Grid container>
                                 <Grid className={classes.containerPrincipalInput}>
                                     <Grid container className={classes.containerInput}>
@@ -138,8 +184,144 @@ export default class Map extends React.PureComponent<P & WithStyles<mapStyles>, 
                                 </Grid>
                             </Grid>
                         </Container>
+                            </Grid>
+                        </Grid>
+                        {/* Bloc de gauche  */}
+                        <Grid xs={12} className={classes.rightCol}>
+                            <LoadScript googleMapsApiKey="">
+                        <GoogleMap mapContainerStyle={containerStyle} center={center} zoom={16}>
+                        { /* Child components, such as markers, info windows, etc. */ }
+                        {
+                            (
+                                this.state.destination !== '' &&
+                                this.state.origin !== '' && !this.state.alreadyShowMap
+                            ) && (
+                                <DirectionsService
+                                // required
+                                options={{ 
+                                    destination: this.state.destination,
+                                    origin: this.state.origin,
+                                    travelMode: this.state.travelMode,
+                                    optimizeWaypoints: true,
+                                    waypoints: this.state.waypoints
+                                }}
+                                // required
+                                callback={this.directionsCallback}
+                                // optional
+                                onLoad={directionsService => {
+                                    // console.log('DirectionsService onLoad directionsService: ', directionsService)
+                                }}
+                                // optional
+                                onUnmount={directionsService => {
+                                    // console.log('DirectionsService onUnmount directionsService: ', directionsService)
+                                }}
+                                />
+                            )
+                            }
+
+                            {
+                            this.state.response !== null && (
+                                <DirectionsRenderer
+                                // required
+                                options={{ 
+                                    directions: this.state.response
+                                }}
+                                // optional
+                                onLoad={directionsRenderer => {
+                                    console.log('DirectionsRenderer onLoad directionsRenderer: ', directionsRenderer)
+                                }}
+                                // optional
+                                onUnmount={directionsRenderer => {
+                                    console.log('DirectionsRenderer onUnmount directionsRenderer: ', directionsRenderer)
+                                }}
+                                />
+                            )
+                            }
+                        <></>
+                        </GoogleMap>
+                    </LoadScript>
+                        </Grid>
                     </Grid>
                 </div></>
         );
+    }
+
+    directionsCallback (response: any) {
+        console.log(response)
+        this.setState(
+            () => ({
+                alreadyShowMap: true,
+            })
+        )
+        if (response !== null) {
+            if (response.status === 'OK') {
+            this.setState(
+                () => ({
+                response
+                })
+            )
+            } else {
+            console.log('response: ', response)
+            }
+        }
+    }
+
+    checkDriving ({ target: { checked } }: any) {
+        checked &&
+        this.setState(
+            () => ({
+                travelMode: 'DRIVING'
+            })
+        )
+    }
+
+    checkBicycling ({ target: { checked } }: any) {
+    checked &&
+        this.setState(
+        () => ({
+            travelMode: 'BICYCLING'
+        })
+        )
+    }
+
+    checkTransit ({ target: { checked } }: any) {
+    checked &&
+        this.setState(
+        () => ({
+            travelMode: 'TRANSIT'
+        })
+        )
+    }
+
+    checkWalking ({ target: { checked } }: any) {
+    checked &&
+        this.setState(
+        () => ({
+            travelMode: 'WALKING'
+        })
+        )
+    }
+
+    getOrigin (ref: any) {
+        this.origin = ref
+    }
+
+    getDestination (ref: any) {
+        this.destination = ref
+    }
+
+    onClick () {
+    if (this.origin.value !== '' && this.destination.value !== '') {
+        this.setState(
+        () => ({
+            origin: this.origin.value,
+            destination: this.destination.value
+        })
+        )
+    }
+    }
+
+    onMapClick (...args: any[]) {
+    console.log('onClick args: ', args)
     }
 }

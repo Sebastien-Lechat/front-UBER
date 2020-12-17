@@ -37,7 +37,7 @@ export default class DoubleAuth extends React.PureComponent<P & WithStyles<doubl
                         <Grid item xs={2} className={classes.center}>
                         </Grid>
                         <Grid item xs={8} className={classes.center}>
-                            <span className={classes.text}>La double authentification est activé sur votre compte. Nous vous avons envoyé un mail avec le code de validation. Pour vérifier qu'il s'agit bien de votre compte. <span>Saisissez le code de validation</span></span> 
+                            <span className={classes.text}>La double authentification est activée sur votre compte. Nous vous avons envoyé un mail avec le code de validation. Pour vérifier qu'il s'agit bien de votre compte. <span>Saisissez le code de validation</span></span> 
                         </Grid>
                         <Grid item xs={2} className={classes.center}>
                         </Grid>

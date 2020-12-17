@@ -41,7 +41,7 @@ export default class Login extends React.PureComponent<P & WithStyles<loginStyle
                         <Grid item xs={12} className={classes.center}>
                             <form className={classes.form} noValidate autoComplete="off" onSubmit={this.login}>
                                 <InputEmail id="email" label="EMAIL" name="email" variant="outlined" onChange={this.changeVal} />
-                                <InputPassword id="password" label="PASSWORD" type="password" name="password" variant="outlined" onChange={this.changeVal} />
+                                <InputPassword id="password" label="MOT DE PASSE" type="password" name="password" variant="outlined" onChange={this.changeVal} />
                                 <div className={classes.passwordLost}>
                                     <Link to="/request-password-lost" className={classes.link}>Mot de passe oublié ?</Link>
                                 </div>
@@ -75,13 +75,13 @@ export default class Login extends React.PureComponent<P & WithStyles<loginStyle
         axios.post(`http://localhost:3010/api/UBER-EEDSI/account/login`, data)
         .then(res => {
             localStorage.setItem('currentUser', JSON.stringify(res.data)); // stock les informations de l'utilisateurs en front
-            toast.success("Connexion réussie !", {
+            toast.success("Connexion réussie", {
                 position: toast.POSITION.BOTTOM_CENTER
             });
             setTimeout(() => {history.push('/map')}, 50);
         })
         .catch(error => {
-            if (error.response.data.message === 'Double authentification is activated, code is required') {
+            if (error.response && error.response.data && error.response.data.message === 'Double authentification is activated, code is required') {
                 axios.post(`http://localhost:3010/api/UBER-EEDSI/account/request-double-authentification`, data)
                 .then(res => {
                     toast.warn("La double authentification est activée", {
@@ -92,7 +92,7 @@ export default class Login extends React.PureComponent<P & WithStyles<loginStyle
                 .catch(error => {
                     console.log(error.response.data)
                 })
-            } else if (error.response.data.message === 'Email address not verified') {
+            } else if (error.response && error.response.data && error.response.data.message === 'Email address not verified') {
                 axios.post(`http://localhost:3010/api/UBER-EEDSI/account/request-verify-email`, {email: data.email})
                 .then(() => {
                     history.push('/verify-email', {email: data.email}); // faire la redirection

@@ -1,11 +1,8 @@
-import Header from '../../component/header/header';
 import React from 'react';
 import avatar from  '../../assets/img/linux-avatar.png';
-import succes from  '../../assets/img/8.png';
 import styles, { updateMyAccountStyles } from './UpdateMyAccount-style';
 import { withStyles, WithStyles } from '@material-ui/core/styles';
-import { Link } from 'react-router-dom';
-import axios from 'axios';
+import axios, { AxiosRequestConfig } from 'axios';
 import { history } from '../../history';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
@@ -13,15 +10,12 @@ import Button from '@material-ui/core/Button';
 import Container from '@material-ui/core/Container';
 import PhotoCamera from '@material-ui/icons/PhotoCamera';
 import Checkbox from '@material-ui/core/Checkbox';
-import MuiAlert, { AlertProps } from '@material-ui/lab/Alert';
 import DeleteAccount from '@material-ui/icons/DeleteForever';
-import Warning from '@material-ui/icons/Warning';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Modal } from "react-bootstrap";
 
-import Fab from '@material-ui/core/Fab';
 import HeaderBarUpdateMyAccount from '../../component/header/header-update-my-account';
-import PasswordRecovery from '../../auth/request-pwd-recovery/request-pwd-recovery';
 interface P {}
 interface S {
     name: string,
@@ -30,12 +24,9 @@ interface S {
     doubleAuth: boolean,
     password: string,
     newPassword: string,
-    confirmPassword: string
-}
-
-function Alert(props: AlertProps) {
-    return <MuiAlert elevation={6} variant="filled" {...props} />;
-}   
+    confirmPassword: string,
+    isOpen : boolean,
+} 
  export default class UpdateMyAccount extends React.PureComponent<P & WithStyles<updateMyAccountStyles>, S> {
 
     public static Display = withStyles(styles as any)(UpdateMyAccount) as React.ComponentType<P>
@@ -52,8 +43,13 @@ function Alert(props: AlertProps) {
         doubleAuth: this.doubleAuth,
         password: "",
         newPassword: "",
-        confirmPassword: ""
+        confirmPassword: "",
+        isOpen: false
     };
+
+    openModal = () => this.setState({ isOpen: true });
+    closeModal = () => this.setState({ isOpen: false });
+
     render () {
         const { classes } = this.props;
         return (
@@ -101,10 +97,24 @@ function Alert(props: AlertProps) {
                                 <br/>
                                 <Grid container >
                                     <Grid item xs={4} className={classes.blocBtn}>
-                                        <Button className={classes.btnDeleteAccount} variant="contained" color="primary" component="span" onClick={this.deleteAccount}>
+                                        <Button className={classes.btnDeleteAccount} variant="contained" color="primary" component="span" onClick={this.openModal}>
                                             <DeleteAccount className={classes.iconDeleteAccount}/> &nbsp; Supprimer mon compte
                                         </Button>
                                     </Grid>
+                                    <Modal show={this.state.isOpen} onHide={this.closeModal}>
+                                        <Modal.Header closeButton>
+                                            <Modal.Title>Confirmation</Modal.Title>
+                                        </Modal.Header>
+                                        <Modal.Body>Souhaitez-vous vraiment supprimer votre compte?</Modal.Body>
+                                        <Modal.Footer>
+                                            <Button className={classes.btnValidationDeleteAccount} onClick={this.deleteAccount}>
+                                            Oui
+                                            </Button>
+                                            <Button className={classes.btnCancelDeleteAccount} onClick={this.closeModal}>
+                                            Non
+                                            </Button>
+                                        </Modal.Footer>
+                                    </Modal>
                                     <Grid item xs={8} className={classes.containerBtnvalider} >
                                         <Button  className={classes.btnUpdateUser} variant="contained" color="primary" disableElevation type="submit"> VALIDER </Button>
                                     </Grid>                         
@@ -132,7 +142,7 @@ function Alert(props: AlertProps) {
             newPassword: this.state.newPassword,
             confirmPassword: this.state.confirmPassword,
         };
-        const config: any = {
+        const config: AxiosRequestConfig = {
             method: 'put',
             url: 'http://localhost:3010/api/UBER-EEDSI/account',
             headers: { 
@@ -150,8 +160,12 @@ function Alert(props: AlertProps) {
             },
             data : data
         };
-        if(data.name === '' || data.email === '' || data.password === ''){
-            toast.error("Donnée(s) manquante(s)", {
+        if (data.password === '') {
+            toast.error("Mot de passe actuel nécessaire", {
+                position: toast.POSITION.BOTTOM_CENTER
+            });
+        } else if(data.name === '' || data.email === ''){
+            toast.error("Email/Nom manquant(s)", {
                 position: toast.POSITION.BOTTOM_CENTER
             });
         }
@@ -183,14 +197,51 @@ function Alert(props: AlertProps) {
             console.log(error.response.data)
         })
         console.log(this.state);
-        // faire la requête pour modifier l'utilisateur, sachant que il faut le mot de passe actuel pour effectuer la requête.
     }
 
     doubleAuthChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         e.preventDefault()
         this.setState({ ...this.state, [e.target.name]: e.target.checked });
-        console.log(this.state.doubleAuth);
-        // faire la requête pour activer ou désactiver la double auth.
+        const user = JSON.parse(localStorage.getItem('currentUser') as string);
+        const data = {allow: !this.state.doubleAuth};
+        const config: AxiosRequestConfig = {
+            method: 'post',
+            url: 'http://localhost:3010/api/UBER-EEDSI/account/double-authentification',
+            headers: { 
+                'Authorization': user.token, 
+                'Content-Type': 'application/json'
+            },
+            data : data
+        };
+        const config2: AxiosRequestConfig = {
+            method: 'get',
+            url: 'http://localhost:3010/api/UBER-EEDSI/account/',
+            headers: { 
+                'Authorization': user.token, 
+                'Content-Type': 'application/json'
+            }
+        };
+        axios(config)
+        .then(() => {
+            axios(config2)
+            .then((data2) => {
+                if (data.allow) {
+                    toast.success("Double authentification activé", {
+                        position: toast.POSITION.BOTTOM_CENTER
+                    });
+                } else {
+                    toast.success("Double authentification desactivé", {
+                        position: toast.POSITION.BOTTOM_CENTER
+                    });
+                }
+            })
+            .catch((error) => {
+                console.log(error.response.data);
+            });
+        })
+        .catch((error) => {
+            console.log(error.response.data);
+        });
     }
 
     deleteAccount = (e:React.MouseEvent,) => {
@@ -199,7 +250,7 @@ function Alert(props: AlertProps) {
         const data = {
             email :user.email
         }
-        const config: any = {
+        const config: AxiosRequestConfig = {
             method: 'delete',
             url: 'http://localhost:3010/api/UBER-EEDSI/account',
             headers: { 
@@ -222,7 +273,5 @@ function Alert(props: AlertProps) {
             });
             console.log(error.response);
         });
-   
     }
-
- }
+}
