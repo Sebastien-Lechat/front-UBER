@@ -56,11 +56,6 @@ interface S {
             <><HeaderBarUpdateMyAccount.Display />
                 <form noValidate autoComplete="off" onSubmit={this.changeAccount}>
                     <h1 className={classes.h1}>MON COMPTE &gt; METTRE A JOUR MON COMPTE</h1>
-                        {/* <Grid item xs={4} className={classes.leftSucces}>
-                            <Alert className={classes.alert}>
-                                Votre compte à bien été mis à jours!
-                            </Alert>
-                        </Grid> */}
                     <hr className={classes.hr}></hr>
                     <Grid container className={classes.container}>
                         <Grid item xs={12}>

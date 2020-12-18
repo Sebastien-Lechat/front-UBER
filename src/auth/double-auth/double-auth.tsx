@@ -72,7 +72,7 @@ export default class DoubleAuth extends React.PureComponent<P & WithStyles<doubl
             toast.success("Connexion réussie !", {
                 position: toast.POSITION.BOTTOM_CENTER
             });
-            setTimeout(() => {history.push('/map')}, 50);
+            setTimeout(() => {history.push('/map')}, 100);
         })
         .catch(error => {
             console.log(error.response.data)

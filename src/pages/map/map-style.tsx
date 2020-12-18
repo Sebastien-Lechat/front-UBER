@@ -1,11 +1,15 @@
 import { Theme, createStyles } from '@material-ui/core/styles';
 
-export type mapStyles = ("parentMap"|"map" | "container" |"container2" |"containerMobilite" | "containerInfoDeplacement"|'fonttext' |"boutonsMonbilite"|"blocVoitureVeloPieton"|"containerPrincipalInput" |"containerInput"|"inputDepart"|"inputDestination"|"iconLocalisation"|"iconSup"|"iconSupParent"|"iconAjoutParent"|"iconAjout"|"ajoutText"|"ajoutTextparent"|"btnValiderItineraire" |
+export type mapStyles = ("center" |"parentMap"|"map" | "container" |"container2" |"containerMobilite" | "containerInfoDeplacement"|'fonttext' |"boutonsMonbilite"|"blocVoitureVeloPieton"|"containerPrincipalInput" |"containerInput"|"inputDepart"|"inputDestination"|"iconLocalisation"|"iconSup"|"iconSupParent"|"iconAjoutParent"|"iconAjout"|"ajoutText"|"ajoutTextparent"|"btnValiderItineraire" |
 "tempsTrajet" |"tempsTrajetA"|"tempsTrajethms"|"detailBtn"|"detailList"|"leftCol"|"rightCol"|"containerCol"); // add class create
 
 // eslint-disable-next-line
 export default (theme: Theme) => createStyles<mapStyles, {}>({
-   
+    center: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
    
     fonttext:{
         color:'white',
@@ -83,11 +87,11 @@ export default (theme: Theme) => createStyles<mapStyles, {}>({
     inputDepart:{
         Width:'100%', 
         marginTop: '10px',
-
+        width: '100%'
     },
     inputDestination:{
         marginTop: '10px',
-        backgroundColor:''
+        width: '100%'
     },
     iconLocalisation:{
         width: '70%',
@@ -177,6 +181,18 @@ export default (theme: Theme) => createStyles<mapStyles, {}>({
         margin: '15px 15px',
         textAlign:'justify',
     },
+    containerCol:{
+        maxWidth:'100%',
+        
+    },
+    leftCol:{
+        width:'25%',
+    },
+    rightCol:{
+        maxWidth:'75%',
+        width:'75%',
+        height: '90vh'
+    },
     [theme.breakpoints.down('xl')]: {
         
     },
@@ -186,29 +202,28 @@ export default (theme: Theme) => createStyles<mapStyles, {}>({
     [theme.breakpoints.down('md')]: {
         container: {
             width: '35%'
-        }
+        },
+        leftCol:{
+            width:'35%',
+        },
+        rightCol:{
+            maxWidth:'65%',
+            width:'65%',
+        },
     },
     [theme.breakpoints.down('sm')]: {
         container: {
             width: '45%'
-        }
+        },
+        leftCol:{
+            width:'45%',
+        },
+        rightCol:{
+            maxWidth:'55%',
+            width:'55%',
+        },
     },
     [theme.breakpoints.down('xs')]: {
         
     },
-    containerCol:{
-        maxWidth:'100%',
-        
-    },
-    leftCol:{
-        maxWidth:'25%',
-        height: '5Opx', 
-        backgroundColor:''
-    },
-    rightCol:{
-        maxWidth:'75%',
-        width:'75%',
-        height: '90vh'
-    },
-    
 });

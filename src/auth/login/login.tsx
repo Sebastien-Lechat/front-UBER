@@ -78,7 +78,7 @@ export default class Login extends React.PureComponent<P & WithStyles<loginStyle
             toast.success("Connexion réussie", {
                 position: toast.POSITION.BOTTOM_CENTER
             });
-            setTimeout(() => {history.push('/map')}, 50);
+            setTimeout(() => {history.push('/map')}, 100);
         })
         .catch(error => {
             if (error.response && error.response.data && error.response.data.message === 'Double authentification is activated, code is required') {
