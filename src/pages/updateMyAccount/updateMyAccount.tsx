@@ -67,7 +67,7 @@ interface S {
                             {/* xs={12} sm={6} md={6} lg={4} */}
                             <Container className={classes.containerUser}>
                                 <Grid container>
-                                    <Grid item lg={4} className={classes.left}>
+                                    <Grid item lg={4}  md={4} className={classes.left}>
                                         <Grid item sm={12} className={classes.userAvatar}>
                                             <img src={avatar} className={classes.userAvatar} alt="" />
                                         </Grid>
@@ -120,7 +120,7 @@ interface S {
                                             </Button>
                                         </Modal.Footer>
                                     </Modal>
-                                    <Grid item xs={12} lg={8} className={classes.containerBtnvalider} >
+                                    <Grid item xs={12} lg={8} md={8} className={classes.containerBtnvalider} >
                                         <Button  className={classes.btnUpdateUser} variant="contained" color="primary" disableElevation type="submit"> VALIDER </Button>
                                     </Grid>                         
                                 </Grid>

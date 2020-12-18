@@ -30,8 +30,10 @@ export default (theme: Theme) => createStyles<updateMyAccountStyles, {}>({
     },
     container: {
         marginTop: '5vh',
-        margin:'auto',
-        width: '90%'
+        width: '90%',
+        display : 'table',
+        margin : '0 auto',
+        
     },
 
     containerUser: {
@@ -41,6 +43,7 @@ export default (theme: Theme) => createStyles<updateMyAccountStyles, {}>({
         height:'auto',
         borderRadius: '20px',
         paddingBottom:'80px',
+        
     },
     containerBtnvalider:{
         width:'100%',
@@ -146,10 +149,11 @@ export default (theme: Theme) => createStyles<updateMyAccountStyles, {}>({
         // },
     },
     userAvatar:{
-        marginLeft:"25px",
+        // marginLeft:"25px",
         height:'200px', 
         width: '200px',
         borderRadius: '50%',
+        margin: 'auto'
     },
     form:{
         backgroundColor:'white',
@@ -213,13 +217,13 @@ export default (theme: Theme) => createStyles<updateMyAccountStyles, {}>({
         btnAvatar: {
             width: '100%',
         },
-        btnDeleteAccount:{
-            margin: 'auto',
-            textAlign: 'center',
-        },
+        // btnDeleteAccount:{
+        //     margin: 'auto',
+        //     textAlign: 'center',
+        // },
         blocBtn:{
-            margin: 'auto',
-            textAlign: 'center',
+            // margin: 'auto',
+            // textAlign: 'center',
         },
     },
     [theme.breakpoints.down('sm')]: {
@@ -241,8 +245,8 @@ export default (theme: Theme) => createStyles<updateMyAccountStyles, {}>({
             width: '200%',
         }, 
         btnDeleteAccount:{
-            margin: 'auto',
-            textAlign: 'center',
+            // margin: 'auto',
+            // textAlign: 'center',
         },
         btnAvatar: {
             width: '100%',
@@ -260,7 +264,9 @@ export default (theme: Theme) => createStyles<updateMyAccountStyles, {}>({
             width: '500px'
         },
         blocBtn:{
-            margin: 'auto'
+            margin: 'auto',
+            textAlign: 'center'
+
         }
      
     },
@@ -280,9 +286,9 @@ export default (theme: Theme) => createStyles<updateMyAccountStyles, {}>({
         img: {
             width: '300px'
         },
-        // all: {
-        //     width: '200%',
-        // },
+        all: {
+            width: '205%',
+        },
         btnAvatar: {
             marginBottom: '10px'
         },
@@ -292,6 +298,10 @@ export default (theme: Theme) => createStyles<updateMyAccountStyles, {}>({
         },
         left:{
             margin: 'auto'
+        },  
+        blocBtn:{
+            margin: 'auto',
+            textAlign: 'center'
         }
 
     },
