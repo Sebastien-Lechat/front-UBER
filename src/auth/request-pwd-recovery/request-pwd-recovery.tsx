@@ -9,6 +9,8 @@ import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { history } from '../../history';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 interface P {}
 interface S {
@@ -75,14 +77,27 @@ export default class PasswordRecovery extends React.PureComponent<P & WithStyles
             email: this.state.email.trim(),
             type :'email',
         }
-        axios.post(`http://localhost:3010/api/UBER-EEDSI/account/request-reset-password`, data)
-        .then(res => {
-            localStorage.setItem('currentUser', JSON.stringify(res.data)); // stock les informations de l'utilisateurs en front
-            setTimeout(() => {history.push('/password-lost',{email : data.email})}, 100);
-        })
-        .catch(error => {
-            console.log(error.response.data); 
-        })
+        if(data.email){
+            axios.post(`http://localhost:3010/api/UBER-EEDSI/account/request-reset-password`, data)
+            .then(res => {
+                // localStorage.setItem('currentUser', JSON.stringify(res.data)); // stock les informations de l'utilisateurs en front
+                toast.success("Un mail a été envoyé", {
+                    position: toast.POSITION.BOTTOM_CENTER
+                });
+                setTimeout(() => {history.push('/password-lost',{email : data.email})}, 50);
+            })
+            .catch(error => {
+                setTimeout(() => {history.push('/password-lost',{email : data.email})}, 50);
+                toast.success("Un mail a été envoyé", {
+                    position: toast.POSITION.BOTTOM_CENTER
+                });
+                console.log(error.response.data); 
+            })
+        }else{
+            toast.warn("Veuillez saisir un email", {
+                position: toast.POSITION.BOTTOM_CENTER
+            });
+        }
     }
 }
 

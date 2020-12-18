@@ -98,13 +98,16 @@ export default class Login extends React.PureComponent<P & WithStyles<loginStyle
                     history.push('/verify-email', {email: data.email}); // faire la redirection
                 })
                 .catch(error => {
-                    toast.error("Erreur lors de l'envoi du mail de vérification", {
+                    toast.warn("Erreur lors de l'envoi du mail de vérification", {
                         position: toast.POSITION.BOTTOM_CENTER
                     });
                     console.log(error.response.data)
                 })
             } else {
-                console.log(error.response)
+                toast.warn("Veuillez remplir tous les champs", {
+                    position: toast.POSITION.BOTTOM_CENTER
+                });
+                console.log(error.response.data)
             }
         })
     }
