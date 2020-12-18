@@ -25,7 +25,7 @@ export default class myHistory extends React.PureComponent<P & WithStyles<histor
         const { classes } = this.props;
         const { history } = this.state;
             return (
-            <><Header.Display />  
+            <div className = {classes.all}><Header.Display />
             <div>
                 <h1 className={classes.titre}>MON HISTORIQUE DE DÉPLACEMENT</h1>
                 <hr className={classes.hr}></hr>
@@ -61,7 +61,7 @@ export default class myHistory extends React.PureComponent<P & WithStyles<histor
                         })
                     }
                 </Grid>
-            </div></>
+            </div></div>
         );
     }
 

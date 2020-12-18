@@ -1,7 +1,7 @@
 import { Theme, createStyles } from '@material-ui/core/styles';
 
 export type historyStyles = ("container" |"gridTopUser"|"center"|"titre"| "h1" | "h2" | "hr" | "hr2" | "h1" | "containerHistory"
- | "ul" | "input" | "userAvatar" |"li" |'fonttext'|'libellé'|'tableauxHistorique'|'tabHistorique'|'tabHeader'|'detail'|'hrTitre' | 'textContainer'); // add class create
+ | "ul" | "input" | "userAvatar" |"li" |'all'|'fonttext'|'libellé'|'tableauxHistorique'|'tabHistorique'|'tabHeader'|'detail'|'hrTitre' | 'textContainer'); // add class create
 
 // eslint-disable-next-line
 export default (theme: Theme) => createStyles<historyStyles, {}>({
@@ -9,6 +9,8 @@ export default (theme: Theme) => createStyles<historyStyles, {}>({
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center'
+    },
+    all: {
     },
     fonttext:{
         color:'white',
@@ -139,6 +141,9 @@ export default (theme: Theme) => createStyles<historyStyles, {}>({
         },
         img: {
             width: '300px'
+        },
+        all : {
+            width : '300%'
         },
     },
 });
