@@ -67,29 +67,33 @@ interface S {
                             {/* xs={12} sm={6} md={6} lg={4} */}
                             <Container className={classes.containerUser}>
                                 <Grid container>
-                                    <Grid item xs={12} lg={4} className={classes.left}>
-                                        <img src={avatar} className={classes.userAvatar} alt="" />
-
-                                        <input accept="image/*" className={classes.input} id="contained-button-file" multiple type="file" />
+                                    <Grid item lg={4} className={classes.left}>
+                                        <Grid item sm={12} className={classes.userAvatar}>
+                                            <img src={avatar} className={classes.userAvatar} alt="" />
+                                        </Grid>
+                                        <Grid item sm={12} >
+                                        <input accept="image/*" className={classes.input} 
+                                        id="contained-button-file" multiple type="file" />
                                             <label htmlFor="contained-button-file">
                                                 <Button className={classes.btnAvatar} variant="contained" color="primary" component="span">
                                                 <PhotoCamera className={classes.iconCamera}/> &nbsp; Modifier mon avatar &nbsp; &nbsp; 
                                                 </Button>
                                             </label>
+                                            </Grid>
                                     </Grid>
-                                    <Grid xs={12} lg={4} >
+                                    <Grid xs={12}  md={4} lg={4} >
                                         <div className={classes.form}>
                                             <TextField className={classes.formId} label="Nom" variant="filled" name='name' value={this.state.name} inputProps={{autoComplete: 'name',form: {autoComplete: 'off',},}} onChange={this.changeVal}/>
                                             <TextField className={classes.formId} label="Téléphone" variant="filled" name='phone' value={this.state.phone} inputProps={{autoComplete: 'phone',form: {autoComplete: 'off',},}} onChange={this.changeVal}/>
                                             <TextField className={classes.formId} type= "password" label= "Nouveau mot de passe" name='newPassword' variant="filled" inputProps={{autoComplete: 'new-password',form: {autoComplete: 'off',},}} onChange={this.changeVal}/>
                                         </div>
                                     </Grid>
-                                    <Grid xs={12} lg={4}>
+                                    <Grid xs={12} md={4} lg={4}>
                                         <div className={classes.form}>
                                             {/* <TextField className={classes.formId} label="Prénom" variant="filled" /> */}
                                             <TextField className={classes.formId} label="Email" variant="filled" name='email' value={this.state.email} inputProps={{autoComplete: 'email',form: {autoComplete: 'off',},}} onChange={this.changeVal}/>
                                             <TextField className={classes.formId} type= "password" label="Mot de passe actuel" variant="filled" name='password' inputProps={{autoComplete: 'password',form: {autoComplete: 'off',},}} onChange={this.changeVal}/>
-                                            <TextField className={classes.formId} type= "password" label="Confirmer le nouveau mot de passe" variant="filled" name='confirmPassword' inputProps={{autoComplete: 'confirm-password',form: {autoComplete: 'off',},}} onChange={this.changeVal}/>
+                                            <TextField className={classes.formId} type= "password" label="Confirmer le nouveau mot de passe" variant="filled" name='confirmPassword' inputProps={{autoComplete: 'confirm-password',form: {autoComplete: 'off',},}} onChange={this.changeVal}/><br className={classes.brDA}></br>
                                             <Checkbox className={classes.checked} checked={this.state.doubleAuth} name="doubleAuth" onChange={this.doubleAuthChange}/>
                                         <a className={classes.a}>Double authentification</a> 
                                         </div>
@@ -97,7 +101,7 @@ interface S {
                                 </Grid>
                                 <br/>
                                 <Grid container >
-                                    <Grid xs={12} lg={4} className={classes.blocBtn}>
+                                    <Grid xs={12} md={4} lg={4} className={classes.blocBtn}>
                                         <Button className={classes.btnDeleteAccount} variant="contained" color="primary" component="span" onClick={this.openModal}>
                                             <DeleteAccount className={classes.iconDeleteAccount}/> &nbsp; Supprimer mon compte
                                         </Button>

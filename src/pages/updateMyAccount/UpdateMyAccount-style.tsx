@@ -3,7 +3,7 @@ import { Theme, createStyles } from '@material-ui/core/styles';
 export type updateMyAccountStyles = ("container" | "h1" |"left" | "hr" |"containerUser" | "center" |
  "btnAvatar" |"btnUpdateUser" | "input" | "userAvatar"|"form" | "formId" | "checked" |"a" | "alert" | "leftSucces"|"succesIcone"|
 "iconDelete"|"containerBtnvalider"|"blocBtn"|"textDelete"|"btnDeleteAccount"|"iconDeleteAccount"|"btnValidationDeleteAccount" 
-|"btnCancelDeleteAccount"|"iconCamera"|"all"); // add class create
+|"btnCancelDeleteAccount"|"iconCamera"|"all"|"brDA"); // add class create
 
 // eslint-disable-next-line
 export default (theme: Theme) => createStyles<updateMyAccountStyles, {}>({
@@ -200,6 +200,9 @@ export default (theme: Theme) => createStyles<updateMyAccountStyles, {}>({
             width: '375px'
         },
     },
+    brDA:{
+        display:'none'
+    },
     [theme.breakpoints.down('md')]: {
         rightSide: {
             display: 'none',
@@ -207,22 +210,67 @@ export default (theme: Theme) => createStyles<updateMyAccountStyles, {}>({
         img: {
             width: '350px'
         },
+        btnAvatar: {
+            width: '100%',
+        },
+        btnDeleteAccount:{
+            margin: 'auto',
+            textAlign: 'center',
+        },
+        blocBtn:{
+            margin: 'auto',
+            textAlign: 'center',
+        },
     },
     [theme.breakpoints.down('sm')]: {
+        containerUser:{
+            margin: 'auto',
+        },
+        userAvatar:{
+            margin: 'auto'
+        },
         form: {
-            width: '70%',
+            width: '100%',
+            margin:'auto',
+            textAlign: 'center',
         },
         img: {
             width: '325px'
         },
         all: {
+            width: '200%',
+        }, 
+        btnDeleteAccount:{
+            margin: 'auto',
+            textAlign: 'center',
+        },
+        btnAvatar: {
             width: '100%',
+        },
+        // left:{
+        //     paddingLeft: '0px'
+        // },
+        brDA:{
+            display:'block'
+        },
+        left:{
+            margin: 'auto'
+        },
+        input:{
+            width: '500px'
+        },
+        blocBtn:{
+            margin: 'auto'
         }
+     
     },
     [theme.breakpoints.down('xs')]: {
         h1:{
             fontSize: '20px',
             textAlign: 'center'
+        },
+        userAvatar:{
+            margin: 'auto'
         },
         form: {
             width: '100%',
@@ -232,11 +280,18 @@ export default (theme: Theme) => createStyles<updateMyAccountStyles, {}>({
         img: {
             width: '300px'
         },
-        all: {
-            width: '100%',
-        },
+        // all: {
+        //     width: '200%',
+        // },
         btnAvatar: {
             marginBottom: '10px'
+        },
+        btnDeleteAccount:{
+            margin: 'auto',
+            textAlign: 'center',
+        },
+        left:{
+            margin: 'auto'
         }
 
     },
