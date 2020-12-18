@@ -3,7 +3,7 @@ import { Theme, createStyles } from '@material-ui/core/styles';
 export type updateMyAccountStyles = ("container" | "h1" |"left" | "hr" |"containerUser" | "center" |
  "btnAvatar" |"btnUpdateUser" | "input" | "userAvatar"|"form" | "formId" | "checked" |"a" | "alert" | "leftSucces"|"succesIcone"|
 "iconDelete"|"containerBtnvalider"|"blocBtn"|"textDelete"|"btnDeleteAccount"|"iconDeleteAccount"|"btnValidationDeleteAccount" 
-|"btnCancelDeleteAccount"|"iconCamera"); // add class create
+|"btnCancelDeleteAccount"|"iconCamera"|"all"|"brDA"); // add class create
 
 // eslint-disable-next-line
 export default (theme: Theme) => createStyles<updateMyAccountStyles, {}>({
@@ -11,6 +11,9 @@ export default (theme: Theme) => createStyles<updateMyAccountStyles, {}>({
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center'
+    },
+    all:{
+
     },
     input: {
         display: 'none',
@@ -27,8 +30,10 @@ export default (theme: Theme) => createStyles<updateMyAccountStyles, {}>({
     },
     container: {
         marginTop: '5vh',
-        margin:'auto',
-        width: '90%'
+        width: '90%',
+        display : 'table',
+        margin : '0 auto',
+        
     },
 
     containerUser: {
@@ -38,6 +43,7 @@ export default (theme: Theme) => createStyles<updateMyAccountStyles, {}>({
         height:'auto',
         borderRadius: '20px',
         paddingBottom:'80px',
+        
     },
     containerBtnvalider:{
         width:'100%',
@@ -143,10 +149,11 @@ export default (theme: Theme) => createStyles<updateMyAccountStyles, {}>({
         // },
     },
     userAvatar:{
-        marginLeft:"25px",
+        // marginLeft:"25px",
         height:'200px', 
         width: '200px',
         borderRadius: '50%',
+        margin: 'auto'
     },
     form:{
         backgroundColor:'white',
@@ -197,6 +204,9 @@ export default (theme: Theme) => createStyles<updateMyAccountStyles, {}>({
             width: '375px'
         },
     },
+    brDA:{
+        display:'none'
+    },
     [theme.breakpoints.down('md')]: {
         rightSide: {
             display: 'none',
@@ -204,22 +214,96 @@ export default (theme: Theme) => createStyles<updateMyAccountStyles, {}>({
         img: {
             width: '350px'
         },
+        btnAvatar: {
+            width: '100%',
+        },
+        // btnDeleteAccount:{
+        //     margin: 'auto',
+        //     textAlign: 'center',
+        // },
+        blocBtn:{
+            // margin: 'auto',
+            // textAlign: 'center',
+        },
     },
     [theme.breakpoints.down('sm')]: {
+        containerUser:{
+            margin: 'auto',
+        },
+        userAvatar:{
+            margin: 'auto'
+        },
         form: {
-            width: '70%',
+            width: '100%',
+            margin:'auto',
+            textAlign: 'center',
         },
         img: {
             width: '325px'
         },
+        all: {
+            width: '200%',
+        }, 
+        btnDeleteAccount:{
+            // margin: 'auto',
+            // textAlign: 'center',
+        },
+        btnAvatar: {
+            width: '100%',
+        },
+        // left:{
+        //     paddingLeft: '0px'
+        // },
+        brDA:{
+            display:'block'
+        },
+        left:{
+            margin: 'auto'
+        },
+        input:{
+            width: '500px'
+        },
+        blocBtn:{
+            margin: 'auto',
+            textAlign: 'center'
+
+        }
+     
     },
     [theme.breakpoints.down('xs')]: {
+        h1:{
+            fontSize: '20px',
+            textAlign: 'center'
+        },
+        userAvatar:{
+            margin: 'auto'
+        },
         form: {
-            width: '80%',
+            width: '100%',
+            margin:'auto',
+            textAlign: 'center',
         },
         img: {
             width: '300px'
         },
+        all: {
+            width: '205%',
+        },
+        btnAvatar: {
+            marginBottom: '10px'
+        },
+        btnDeleteAccount:{
+            margin: 'auto',
+            textAlign: 'center',
+        },
+        left:{
+            margin: 'auto'
+        },  
+        blocBtn:{
+            margin: 'auto',
+            textAlign: 'center'
+        }
+
     },
 });
     
