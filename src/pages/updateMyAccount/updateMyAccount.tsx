@@ -53,7 +53,7 @@ interface S {
     render () {
         const { classes } = this.props;
         return (
-            <><HeaderBarUpdateMyAccount.Display />
+            <div className ={classes.all}><HeaderBarUpdateMyAccount.Display />
                 <form noValidate autoComplete="off" onSubmit={this.changeAccount}>
                     <h1 className={classes.h1}>MON COMPTE &gt; METTRE A JOUR MON COMPTE</h1>
                         {/* <Grid item xs={4} className={classes.leftSucces}>
@@ -63,10 +63,11 @@ interface S {
                         </Grid> */}
                     <hr className={classes.hr}></hr>
                     <Grid container className={classes.container}>
-                        <Grid item xs={12}>
+                        <Grid item  >
+                            {/* xs={12} sm={6} md={6} lg={4} */}
                             <Container className={classes.containerUser}>
                                 <Grid container>
-                                    <Grid item xs={4} className={classes.left}>
+                                    <Grid item xs={12} lg={4} className={classes.left}>
                                         <img src={avatar} className={classes.userAvatar} alt="" />
 
                                         <input accept="image/*" className={classes.input} id="contained-button-file" multiple type="file" />
@@ -76,14 +77,14 @@ interface S {
                                                 </Button>
                                             </label>
                                     </Grid>
-                                    <Grid item xs={4}>
+                                    <Grid xs={12} lg={4} >
                                         <div className={classes.form}>
                                             <TextField className={classes.formId} label="Nom" variant="filled" name='name' value={this.state.name} inputProps={{autoComplete: 'name',form: {autoComplete: 'off',},}} onChange={this.changeVal}/>
                                             <TextField className={classes.formId} label="Téléphone" variant="filled" name='phone' value={this.state.phone} inputProps={{autoComplete: 'phone',form: {autoComplete: 'off',},}} onChange={this.changeVal}/>
                                             <TextField className={classes.formId} type= "password" label= "Nouveau mot de passe" name='newPassword' variant="filled" inputProps={{autoComplete: 'new-password',form: {autoComplete: 'off',},}} onChange={this.changeVal}/>
                                         </div>
                                     </Grid>
-                                    <Grid item xs={4}>
+                                    <Grid xs={12} lg={4}>
                                         <div className={classes.form}>
                                             {/* <TextField className={classes.formId} label="Prénom" variant="filled" /> */}
                                             <TextField className={classes.formId} label="Email" variant="filled" name='email' value={this.state.email} inputProps={{autoComplete: 'email',form: {autoComplete: 'off',},}} onChange={this.changeVal}/>
@@ -96,7 +97,7 @@ interface S {
                                 </Grid>
                                 <br/>
                                 <Grid container >
-                                    <Grid item xs={4} className={classes.blocBtn}>
+                                    <Grid xs={12} lg={4} className={classes.blocBtn}>
                                         <Button className={classes.btnDeleteAccount} variant="contained" color="primary" component="span" onClick={this.openModal}>
                                             <DeleteAccount className={classes.iconDeleteAccount}/> &nbsp; Supprimer mon compte
                                         </Button>
@@ -115,14 +116,14 @@ interface S {
                                             </Button>
                                         </Modal.Footer>
                                     </Modal>
-                                    <Grid item xs={8} className={classes.containerBtnvalider} >
+                                    <Grid item xs={12} lg={8} className={classes.containerBtnvalider} >
                                         <Button  className={classes.btnUpdateUser} variant="contained" color="primary" disableElevation type="submit"> VALIDER </Button>
                                     </Grid>                         
                                 </Grid>
                             </Container>
                         </Grid>
                     </Grid>              
-                </form></>
+                </form></div>
         );
     }
 

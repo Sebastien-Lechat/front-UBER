@@ -3,7 +3,7 @@ import { Theme, createStyles } from '@material-ui/core/styles';
 export type updateMyAccountStyles = ("container" | "h1" |"left" | "hr" |"containerUser" | "center" |
  "btnAvatar" |"btnUpdateUser" | "input" | "userAvatar"|"form" | "formId" | "checked" |"a" | "alert" | "leftSucces"|"succesIcone"|
 "iconDelete"|"containerBtnvalider"|"blocBtn"|"textDelete"|"btnDeleteAccount"|"iconDeleteAccount"|"btnValidationDeleteAccount" 
-|"btnCancelDeleteAccount"|"iconCamera"); // add class create
+|"btnCancelDeleteAccount"|"iconCamera"|"all"); // add class create
 
 // eslint-disable-next-line
 export default (theme: Theme) => createStyles<updateMyAccountStyles, {}>({
@@ -11,6 +11,9 @@ export default (theme: Theme) => createStyles<updateMyAccountStyles, {}>({
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center'
+    },
+    all:{
+
     },
     input: {
         display: 'none',
@@ -212,14 +215,30 @@ export default (theme: Theme) => createStyles<updateMyAccountStyles, {}>({
         img: {
             width: '325px'
         },
+        all: {
+            width: '100%',
+        }
     },
     [theme.breakpoints.down('xs')]: {
+        h1:{
+            fontSize: '20px',
+            textAlign: 'center'
+        },
         form: {
-            width: '80%',
+            width: '100%',
+            margin:'auto',
+            textAlign: 'center',
         },
         img: {
             width: '300px'
         },
+        all: {
+            width: '100%',
+        },
+        btnAvatar: {
+            marginBottom: '10px'
+        }
+
     },
 });
     
