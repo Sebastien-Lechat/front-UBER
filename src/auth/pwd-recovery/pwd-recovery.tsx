@@ -79,7 +79,7 @@ export default class RequestPasswordRecovery extends React.PureComponent<P & Wit
                 toast.success("Mot de passe changer avec succès", {
                     position: toast.POSITION.BOTTOM_CENTER
                 });
-                setTimeout(() => {history.push('/login')}, 50);
+                setTimeout(() => {history.push('/login')}, 100);
             }
         })
         .catch(error => {

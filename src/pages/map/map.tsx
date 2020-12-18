@@ -1,5 +1,6 @@
 import Header from '../../component/header/header';
 import React from 'react';
+import axios, { AxiosRequestConfig } from 'axios';
 import { GoogleMap, LoadScript, DirectionsService, DirectionsRenderer } from '@react-google-maps/api';
 
 import styles, { mapStyles } from './map-style';
@@ -25,14 +26,16 @@ import LocalisationIco from '@material-ui/icons/Room';
 
 import Typography from '@material-ui/core/Typography';
 
+import { toast } from 'react-toastify';
+
 const containerStyle = {
     width: '100%',
     height: '100%'
 };
 
 const center = {
-lat: 48.891304837789455,
-lng: 2.2840817276289553
+lat: 46.632969048412384, 
+lng: 2.390131424350795
 };
 
 interface P {}
@@ -43,64 +46,60 @@ interface S {
     destination: any,
     waypoints: Array<google.maps.DirectionsWaypoint>; 
     alreadyShowMap: boolean;
+    readyToShowMap: boolean;
 }
 
 export default class Map extends React.PureComponent<P & WithStyles<mapStyles>, S> {
 
     constructor (props: any) {
         super(props)
-    
         this.directionsCallback = this.directionsCallback.bind(this)
         this.checkDriving = this.checkDriving.bind(this)
         this.checkBicycling = this.checkBicycling.bind(this)
-        this.checkTransit = this.checkTransit.bind(this)
         this.checkWalking = this.checkWalking.bind(this)
-        this.getOrigin = this.getOrigin.bind(this)
-        this.getDestination = this.getDestination.bind(this)
         this.onClick = this.onClick.bind(this)
-        this.onMapClick = this.onMapClick.bind(this)
     }
-
+    
     public static Display = withStyles(styles as any)(Map) as React.ComponentType<P>
-    public origin: any;
-    public destination: any;
     public keyGoogle = (process.env.KEY_GOOGLE as string);
-
+    
     public state: Readonly<S> = { 
         response: null,
         travelMode: 'DRIVING',
-        origin: 'Paris',
-        destination: 'Savigny sur orge' ,
+        origin: '',
+        destination: '' ,
         alreadyShowMap: false,
-        waypoints: [{
-            location: 'Morsang sur orge',
-            stopover: true
-        }]
+        readyToShowMap: false,
+        waypoints: []
     }
-
+    
+    public origin: string ="";
+    public destination: string = "";
+    
     render () {
         const { classes } = this.props;
+        const { waypoints } = this.state;
         return (
             <><Header.Display />
                 <div className={classes.parentMap}>
                     <Grid container className={classes.containerCol}>
                         {/* Bloc de gauche  */}
-                        <Grid item xs={12} className={classes.leftCol}>
+                        <Grid className={classes.leftCol}>
                             <Grid container className={classes.container}>
                                 <Container className={classes.containerMobilite}>
                             <Grid container className={classes.boutonsMonbilite}>
                                 <Grid item xs={4} className={classes.blocVoitureVeloPieton}>
-                                    <Fab color="primary" aria-label="add">
+                                    <Fab id="driving" color="primary" aria-label="add" onClick={(e) => this.checkDriving(e)}>
                                         <Voiture fontSize="large" />
                                     </Fab>
                                 </Grid>
                                 <Grid item xs={4} className={classes.blocVoitureVeloPieton}>
-                                    <Fab color="default" aria-label="add">
+                                    <Fab id="bicycling" color="default" aria-label="add" onClick={(e) => this.checkBicycling(e)}>
                                         <Velo fontSize="large" />
                                     </Fab>
                                 </Grid>
                                 <Grid item xs={4} className={classes.blocVoitureVeloPieton}>
-                                    <Fab color="default" aria-label="add">
+                                    <Fab id="walking" color="default" aria-label="add" onClick={(e) => this.checkWalking(e)}>
                                         <Apied fontSize="large" />
                                     </Fab>
                                 </Grid>
@@ -114,9 +113,9 @@ export default class Map extends React.PureComponent<P & WithStyles<mapStyles>, 
                                             <LocalisationIco className={classes.iconLocalisation} />
                                         </Grid>
                                         <Grid item xs={8}>
-                                            <form noValidate autoComplete="off">
-                                                <TextField id="filled-size-small" className={classes.inputDepart} size="small" label="Adresse de départ" variant="filled" />
-                                            </form>
+                                            <div>
+                                                <TextField className={classes.inputDepart} name="origin" label="Adresse de départ" variant="filled"  onChange={this.changeVal}/>
+                                            </div>
                                         </Grid>
                                         <Grid item xs={2}>
                                         </Grid>
@@ -127,40 +126,51 @@ export default class Map extends React.PureComponent<P & WithStyles<mapStyles>, 
                                         <LocalisationIco className={classes.iconLocalisation} />
                                     </Grid>
                                     <Grid item xs={8}>
-                                        <form noValidate autoComplete="off">
-                                            <TextField id="filled-size-small" className={classes.inputDestination} size="small" label="Déstination 1" variant="filled" />
-                                        </form>
+                                        <div>
+                                            <TextField className={classes.inputDestination} name="destination" label="Destination" variant="filled"  onChange={this.changeVal}/>
+                                        </div>
                                     </Grid>
                                     <Grid item xs={2}>
                                     </Grid>
                                 </Grid>
+                                {
+                                    waypoints.map((x:google.maps.DirectionsWaypoint, i:number) => {
+                                        let destination = "Destination " + (i + 1)
+                                        return (
+                                            <Grid container key={i}>
+                                                <Grid item xs={2}>
+                                                    <LocalisationIco className={classes.iconLocalisation} />
+                                                </Grid>
+                                                <Grid item xs={8}>
+                                                    <div>
+                                                        <TextField className={classes.inputDestination} name="location" label={destination} variant="filled"  onChange={ (e: React.ChangeEvent<HTMLInputElement>) => {this.handleInputChange(e, i)}}/>
+                                                    </div>
+                                                </Grid>
+                                                { waypoints.length - 1 === i &&
+                                                    <Grid item xs={2}>
+                                                        <div className={classes.center}>
+                                                        <Fab color="default" className={classes.iconSupParent} onClick={() => {this.handleRemoveInput(i)}}>
+                                                            <SupprimerIco className={classes.iconSup}/>
+                                                        </Fab>
+                                                        </div>
+                                                    </Grid>
+                                                }
+                                            </Grid>
+                                        )
+                                    })
+                                }
                                 <Grid container>
                                     <Grid item xs={2}>
-                                        <LocalisationIco className={classes.iconLocalisation} />
-                                    </Grid>
-                                    <Grid item xs={8}>
-                                        <form noValidate autoComplete="off">
-                                            <TextField id="filled-size-small" className={classes.inputDestination} size="small" label="Déstination 2" variant="filled" />
-                                        </form>
-                                    </Grid>
-                                    <Grid item xs={2}>
-                                        <Fab color="default" className={classes.iconSupParent}>
-                                            <SupprimerIco className={classes.iconSup} />
-                                        </Fab>
-                                    </Grid>
-                                </Grid>
-                                <Grid container>
-                                    <Grid item xs={2}>
-                                        <Fab color="default" className={classes.iconAjoutParent}>
+                                        <Fab color="default" className={classes.iconAjoutParent} onClick={this.handleAddInput}>
                                             <AjouterIco className={classes.iconAjout} />
                                         </Fab>
                                     </Grid>
                                     <Grid item xs={8} className={classes.ajoutTextparent}>
-                                        <a href="#" className={classes.ajoutText}>Ajouter une Destination</a>
+                                        <div className={classes.ajoutText}>Ajouter une Destination</div>
                                     </Grid>
                                 </Grid>
                                 <Grid container justify="center" alignItems="center">
-                                    <Button className={classes.btnValiderItineraire} variant="contained" color="primary" disableElevation> Valider l'itinéraire</Button>
+                                    <Button className={classes.btnValiderItineraire} variant="contained" color="primary" disableElevation type="button" onClick={this.onClick}> Valider l'itinéraire</Button>
                                 </Grid>
 
                                 <Grid container justify="center" alignItems="center">
@@ -170,7 +180,7 @@ export default class Map extends React.PureComponent<P & WithStyles<mapStyles>, 
                                         </Typography>
                                     </div>
                                 </Grid>
-                                <Grid container justify="center" alignItems="center">
+                                {/* <Grid container justify="center" alignItems="center">
                                     <a className={classes.detailBtn} href="#"> DETAIL DE L'ITINERAIRE &#9660;</a>
                                 </Grid>
 
@@ -181,20 +191,22 @@ export default class Map extends React.PureComponent<P & WithStyles<mapStyles>, 
                                         sit amet, consectetur adipisicing elit.Assumenda aliquam commodi accusantium eum.Fugiat,
                                         voluptate?Doloremque sint vel assumenda?Distinctio quis officia corrupti modi esse repudiandae aliquid vitae ex?Iure.
                                     </p>
-                                </Grid>
+                                </Grid> */}
                             </Grid>
                         </Container>
                             </Grid>
                         </Grid>
                         {/* Bloc de gauche  */}
-                        <Grid xs={12} className={classes.rightCol}>
-                            <LoadScript googleMapsApiKey="">
-                        <GoogleMap mapContainerStyle={containerStyle} center={center} zoom={16}>
+                        <Grid container className={classes.rightCol}>
+                            <LoadScript googleMapsApiKey="AIzaSyB1EK8qrQOybJbjjDzLcbULnEiBIVTtHOA">
+                        <GoogleMap mapContainerStyle={containerStyle} center={center} zoom={6}>
                         { /* Child components, such as markers, info windows, etc. */ }
                         {
                             (
                                 this.state.destination !== '' &&
-                                this.state.origin !== '' && !this.state.alreadyShowMap
+                                this.state.origin !== '' && 
+                                this.state.readyToShowMap && 
+                                !this.state.alreadyShowMap
                             ) && (
                                 <DirectionsService
                                 // required
@@ -209,11 +221,11 @@ export default class Map extends React.PureComponent<P & WithStyles<mapStyles>, 
                                 callback={this.directionsCallback}
                                 // optional
                                 onLoad={directionsService => {
-                                    // console.log('DirectionsService onLoad directionsService: ', directionsService)
+                                    console.log('DirectionsService onLoad directionsService: ', directionsService)  
                                 }}
                                 // optional
                                 onUnmount={directionsService => {
-                                    // console.log('DirectionsService onUnmount directionsService: ', directionsService)
+                                    console.log('DirectionsService onUnmount directionsService: ', directionsService)
                                 }}
                                 />
                             )
@@ -246,6 +258,35 @@ export default class Map extends React.PureComponent<P & WithStyles<mapStyles>, 
         );
     }
 
+    handleInputChange = (e: React.ChangeEvent<HTMLInputElement>, index: number) => {
+        const { value } = e.currentTarget;
+        let waypoints = this.state.waypoints;
+        waypoints[index] = {location: value}
+        this.setState({waypoints: waypoints});
+        console.log(this.state.waypoints);
+    };
+
+    handleRemoveInput= (index: number) => {
+        this.setState(prevState => ({
+            waypoints: prevState.waypoints.filter((_, i) => i !== index),
+        }), () => {
+            // console.log(this.state.waypoints);
+        });
+    };
+
+    handleAddInput = () => {
+        this.setState(prevState => ({
+            waypoints: [...prevState.waypoints, {location:''}]
+        }), () => {
+            // console.log(this.state.waypoints);
+        });
+    };
+
+    changeVal = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = e.currentTarget;
+        this.setState({ ...this.state, [name]: value });
+    }
+
     directionsCallback (response: any) {
         console.log(response)
         this.setState(
@@ -257,71 +298,119 @@ export default class Map extends React.PureComponent<P & WithStyles<mapStyles>, 
             if (response.status === 'OK') {
             this.setState(
                 () => ({
-                response
+                    response
                 })
             )
             } else {
-            console.log('response: ', response)
+                toast.error("Une ou plusieurs adresses sont invalide", {
+                    position: toast.POSITION.BOTTOM_CENTER,
+                    style: {
+                        textAlign:'center',
+                    }
+                });
             }
         }
     }
 
-    checkDriving ({ target: { checked } }: any) {
-        checked &&
+    checkDriving = (e:React.MouseEvent) => {
+        if (!e.currentTarget.classList.contains('MuiFab-primary'))
+            e.currentTarget.classList.add('MuiFab-primary')
+        if (document.querySelector("#walking")?.classList.contains('MuiFab-primary')) {
+            document.querySelector("#walking")?.classList.remove('MuiFab-primary')
+        }
+        if (document.querySelector("#bicycling")?.classList.contains('MuiFab-primary')) {
+            document.querySelector("#bicycling")?.classList.remove('MuiFab-primary')
+        }
         this.setState(
             () => ({
-                travelMode: 'DRIVING'
+                travelMode: 'DRIVING',
+                readyToShowMap: true,
+                alreadyShowMap: false
             })
         )
     }
 
-    checkBicycling ({ target: { checked } }: any) {
-    checked &&
+    checkBicycling = (e:React.MouseEvent) => {
+        if (!e.currentTarget.classList.contains('MuiFab-primary'))
+            e.currentTarget.classList.add('MuiFab-primary')
+        if (document.querySelector("#walking")?.classList.contains('MuiFab-primary')) {
+            document.querySelector("#walking")?.classList.remove('MuiFab-primary')
+        }
+        if (document.querySelector("#driving")?.classList.contains('MuiFab-primary')) {
+            document.querySelector("#driving")?.classList.remove('MuiFab-primary')
+        }
         this.setState(
         () => ({
-            travelMode: 'BICYCLING'
+            travelMode: 'BICYCLING',
+            readyToShowMap: true,
+            alreadyShowMap: false
         })
         )
     }
 
-    checkTransit ({ target: { checked } }: any) {
-    checked &&
+    checkWalking = (e:React.MouseEvent) => {
+        if (!e.currentTarget.classList.contains('MuiFab-primary'))
+            e.currentTarget.classList.add('MuiFab-primary')
+        if (document.querySelector("#driving")?.classList.contains('MuiFab-primary')) {
+            document.querySelector("#driving")?.classList.remove('MuiFab-primary')
+        }
+        if (document.querySelector("#bicycling")?.classList.contains('MuiFab-primary')) {
+            document.querySelector("#bicycling")?.classList.remove('MuiFab-primary')
+        }
         this.setState(
         () => ({
-            travelMode: 'TRANSIT'
+            travelMode: 'WALKING',
+            readyToShowMap: true,
+            alreadyShowMap: false
         })
         )
-    }
-
-    checkWalking ({ target: { checked } }: any) {
-    checked &&
-        this.setState(
-        () => ({
-            travelMode: 'WALKING'
-        })
-        )
-    }
-
-    getOrigin (ref: any) {
-        this.origin = ref
-    }
-
-    getDestination (ref: any) {
-        this.destination = ref
     }
 
     onClick () {
-    if (this.origin.value !== '' && this.destination.value !== '') {
-        this.setState(
-        () => ({
-            origin: this.origin.value,
-            destination: this.destination.value
-        })
-        )
-    }
-    }
-
-    onMapClick (...args: any[]) {
-    console.log('onClick args: ', args)
+        if (this.state.origin !== '' && this.state.destination !== '' && this.state.waypoints.length === 0) {
+            this.setState(
+                () => ({
+                    readyToShowMap: true,
+                    alreadyShowMap: false
+                })
+            )
+        } else if (this.state.origin !== '' && this.state.destination !== '') {
+            const data = {
+                origin: this.state.origin,
+                destination: this.state.destination,
+                mode: this.state.travelMode.toLowerCase(),
+                waypoints: [],
+            }
+            for (let i = 0; i < this.state.waypoints.length; i++) {
+                data.waypoints.push((this.state.waypoints[i].location as never))
+            }
+            const config: AxiosRequestConfig = {
+                method: 'post',
+                url: 'http://localhost:3010/api/UBER-EEDSI/map/direction',
+                headers: { 
+                    'Content-Type': 'application/json'
+                },
+                data : data,
+            };
+            axios(config)
+            .then( (response) => {
+                for (let i = 0; i < response.data.waypoints.length; i++) {
+                    response.data.waypoints[i] = {location: response.data.waypoints[i]}
+                }
+                console.log(response.data);
+                this.setState(
+                    () => ({
+                        readyToShowMap: true,
+                        alreadyShowMap: false,
+                        origin: response.data.origin,
+                        destination: response.data.destination,
+                        waypoints: response.data.waypoints,
+                    })
+                )
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+        }
     }
 }
