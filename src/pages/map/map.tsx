@@ -44,9 +44,10 @@ interface S {
     travelMode: any,
     origin: any,
     destination: any,
-    waypoints: Array<google.maps.DirectionsWaypoint>; 
-    alreadyShowMap: boolean;
-    readyToShowMap: boolean;
+    waypoints: Array<google.maps.DirectionsWaypoint>, 
+    alreadyShowMap: boolean,
+    readyToShowMap: boolean,
+    travelTime: string | number,
 }
 
 export default class Map extends React.PureComponent<P & WithStyles<mapStyles>, S> {
@@ -70,6 +71,7 @@ export default class Map extends React.PureComponent<P & WithStyles<mapStyles>, 
         destination: '' ,
         alreadyShowMap: false,
         readyToShowMap: false,
+        travelTime: 0,
         waypoints: []
     }
     
@@ -87,174 +89,162 @@ export default class Map extends React.PureComponent<P & WithStyles<mapStyles>, 
                         <Grid className={classes.leftCol}>
                             <Grid container className={classes.container}>
                                 <Container className={classes.containerMobilite}>
-                            <Grid container className={classes.boutonsMonbilite}>
-                                <Grid item xs={4} className={classes.blocVoitureVeloPieton}>
-                                    <Fab id="driving" color="primary" aria-label="add" onClick={(e) => this.checkDriving(e)}>
-                                        <Voiture fontSize="large" />
-                                    </Fab>
-                                </Grid>
-                                <Grid item xs={4} className={classes.blocVoitureVeloPieton}>
-                                    <Fab id="bicycling" color="default" aria-label="add" onClick={(e) => this.checkBicycling(e)}>
-                                        <Velo fontSize="large" />
-                                    </Fab>
-                                </Grid>
-                                <Grid item xs={4} className={classes.blocVoitureVeloPieton}>
-                                    <Fab id="walking" color="default" aria-label="add" onClick={(e) => this.checkWalking(e)}>
-                                        <Apied fontSize="large" />
-                                    </Fab>
-                                </Grid>
-                            </Grid>
-                        </Container>
-                                <Container className={classes.containerInfoDeplacement}>
-                            <Grid container>
-                                <Grid className={classes.containerPrincipalInput}>
-                                    <Grid container className={classes.containerInput}>
+                                    <Grid container className={classes.boutonsMonbilite}>
+                                        <Grid item xs={4} className={classes.blocVoitureVeloPieton}>
+                                            <Fab id="driving" color="primary" aria-label="add" onClick={(e) => this.checkDriving(e)}>
+                                                <Voiture fontSize="large" />
+                                            </Fab>
+                                        </Grid>
+                                        <Grid item xs={4} className={classes.blocVoitureVeloPieton}>
+                                            <Fab id="bicycling" color="default" aria-label="add" onClick={(e) => this.checkBicycling(e)}>
+                                                <Velo fontSize="large" />
+                                            </Fab>
+                                        </Grid>
+                                        <Grid item xs={4} className={classes.blocVoitureVeloPieton}>
+                                            <Fab id="walking" color="default" aria-label="add" onClick={(e) => this.checkWalking(e)}>
+                                                <Apied fontSize="large" />
+                                            </Fab>
+                                        </Grid>
+                                    </Grid>
+                                </Container>
+                            <Container className={classes.containerInfoDeplacement}>
+                                <Grid container>
+                                    <Grid className={classes.containerPrincipalInput}>
+                                        <Grid container className={classes.containerInput}>
+                                            <Grid item xs={2}>
+                                                <LocalisationIco className={classes.iconLocalisation} />
+                                            </Grid>
+                                            <Grid item xs={8}>
+                                                <div>
+                                                    <TextField className={classes.inputDepart} name="origin" label="Adresse de départ" variant="filled"  onChange={this.changeVal}/>
+                                                </div>
+                                            </Grid>
+                                            <Grid item xs={2}>
+                                            </Grid>
+                                        </Grid>
+                                    </Grid>
+                                    <Grid container>
                                         <Grid item xs={2}>
                                             <LocalisationIco className={classes.iconLocalisation} />
                                         </Grid>
                                         <Grid item xs={8}>
                                             <div>
-                                                <TextField className={classes.inputDepart} name="origin" label="Adresse de départ" variant="filled"  onChange={this.changeVal}/>
+                                                <TextField className={classes.inputDestination} name="destination" label="Destination" variant="filled"  onChange={this.changeVal}/>
                                             </div>
                                         </Grid>
                                         <Grid item xs={2}>
                                         </Grid>
                                     </Grid>
-                                </Grid>
-                                <Grid container>
-                                    <Grid item xs={2}>
-                                        <LocalisationIco className={classes.iconLocalisation} />
-                                    </Grid>
-                                    <Grid item xs={8}>
-                                        <div>
-                                            <TextField className={classes.inputDestination} name="destination" label="Destination" variant="filled"  onChange={this.changeVal}/>
-                                        </div>
-                                    </Grid>
-                                    <Grid item xs={2}>
-                                    </Grid>
-                                </Grid>
-                                {
-                                    waypoints.map((x:google.maps.DirectionsWaypoint, i:number) => {
-                                        let destination = "Destination " + (i + 1)
-                                        return (
-                                            <Grid container key={i}>
-                                                <Grid item xs={2}>
-                                                    <LocalisationIco className={classes.iconLocalisation} />
-                                                </Grid>
-                                                <Grid item xs={8}>
-                                                    <div>
-                                                        <TextField className={classes.inputDestination} name="location" label={destination} variant="filled"  onChange={ (e: React.ChangeEvent<HTMLInputElement>) => {this.handleInputChange(e, i)}}/>
-                                                    </div>
-                                                </Grid>
-                                                { waypoints.length - 1 === i &&
+                                    {
+                                        waypoints.map((x:google.maps.DirectionsWaypoint, i:number) => {
+                                            let destination = "Destination " + (i + 1)
+                                            return (
+                                                <Grid container key={i}>
                                                     <Grid item xs={2}>
-                                                        <div className={classes.center}>
-                                                        <Fab color="default" className={classes.iconSupParent} onClick={() => {this.handleRemoveInput(i)}}>
-                                                            <SupprimerIco className={classes.iconSup}/>
-                                                        </Fab>
+                                                        <LocalisationIco className={classes.iconLocalisation} />
+                                                    </Grid>
+                                                    <Grid item xs={8}>
+                                                        <div>
+                                                            <TextField className={classes.inputDestination} name="location" label={destination} variant="filled"  onChange={ (e: React.ChangeEvent<HTMLInputElement>) => {this.handleInputChange(e, i)}}/>
                                                         </div>
                                                     </Grid>
-                                                }
-                                            </Grid>
-                                        )
-                                    })
-                                }
-                                <Grid container>
-                                    <Grid item xs={2}>
-                                        <Fab color="default" className={classes.iconAjoutParent} onClick={this.handleAddInput}>
-                                            <AjouterIco className={classes.iconAjout} />
-                                        </Fab>
+                                                    { waypoints.length - 1 === i &&
+                                                        <Grid item xs={2}>
+                                                            <div className={classes.center}>
+                                                            <Fab color="default" className={classes.iconSupParent} onClick={() => {this.handleRemoveInput(i)}}>
+                                                                <SupprimerIco className={classes.iconSup}/>
+                                                            </Fab>
+                                                            </div>
+                                                        </Grid>
+                                                    }
+                                                </Grid>
+                                            )
+                                        })
+                                    }
+                                    <Grid container>
+                                        <Grid item xs={2}>
+                                            <Fab color="default" className={classes.iconAjoutParent} onClick={this.handleAddInput}>
+                                                <AjouterIco className={classes.iconAjout} />
+                                            </Fab>
+                                        </Grid>
+                                        <Grid item xs={8} className={classes.ajoutTextparent}>
+                                            <div className={classes.ajoutText}>Ajouter une Destination</div>
+                                        </Grid>
                                     </Grid>
-                                    <Grid item xs={8} className={classes.ajoutTextparent}>
-                                        <div className={classes.ajoutText}>Ajouter une Destination</div>
+                                    <Grid container justify="center" alignItems="center">
+                                        <Button className={classes.btnValiderItineraire} variant="contained" color="primary" disableElevation type="button" onClick={this.onClick}> Valider l'itinéraire</Button>
                                     </Grid>
+                                    { 
+                                        (this.state.travelTime !== 0) &&
+                                        (<Grid container justify="center" alignItems="center">
+                                            <div className={classes.tempsTrajet}>
+                                                <Typography className={classes.fonttext}>
+                                                    <a className={classes.tempsTrajetA}>Temps éstimé: </a><a color="primary.main" className={classes.tempsTrajethms}>{ this.state.travelTime }</a>
+                                                </Typography>
+                                            </div>
+                                        </Grid>)
+                                    }
+                                    {/* <Grid container justify="center" alignItems="center">
+                                        <a className={classes.detailBtn} href="#"> DETAIL DE L'ITINERAIRE &#9660;</a>
+                                    </Grid>
+                                    <Grid container justify="center" alignItems="center">
+                                        <p className={classes.detailList}>
+                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit.Assumenda aliquam commodi accusantium eum.Fugiat,
+                                            Doloremque sint vel assumenda?Distinctio quis officia corrupti modi esse repudiandae aliquid vitae ex?Iure.
+                                            sit amet, consectetur adipisicing elit.Assumenda aliquam commodi accusantium eum.Fugiat,
+                                            voluptate?Doloremque sint vel assumenda?Distinctio quis officia corrupti modi esse repudiandae aliquid vitae ex?Iure.
+                                        </p>
+                                    </Grid> */}
                                 </Grid>
-                                <Grid container justify="center" alignItems="center">
-                                    <Button className={classes.btnValiderItineraire} variant="contained" color="primary" disableElevation type="button" onClick={this.onClick}> Valider l'itinéraire</Button>
-                                </Grid>
-
-                                <Grid container justify="center" alignItems="center">
-                                    <div className={classes.tempsTrajet}>
-                                        <Typography className={classes.fonttext}>
-                                            <a className={classes.tempsTrajetA}>Temps éstimé: </a><a color="primary.main" className={classes.tempsTrajethms}> 1 H 15 min</a>
-                                        </Typography>
-                                    </div>
-                                </Grid>
-                                {/* <Grid container justify="center" alignItems="center">
-                                    <a className={classes.detailBtn} href="#"> DETAIL DE L'ITINERAIRE &#9660;</a>
-                                </Grid>
-
-                                <Grid container justify="center" alignItems="center">
-                                    <p className={classes.detailList}>
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit.Assumenda aliquam commodi accusantium eum.Fugiat,
-                                        Doloremque sint vel assumenda?Distinctio quis officia corrupti modi esse repudiandae aliquid vitae ex?Iure.
-                                        sit amet, consectetur adipisicing elit.Assumenda aliquam commodi accusantium eum.Fugiat,
-                                        voluptate?Doloremque sint vel assumenda?Distinctio quis officia corrupti modi esse repudiandae aliquid vitae ex?Iure.
-                                    </p>
-                                </Grid> */}
-                            </Grid>
-                        </Container>
-                            </Grid>
-                        </Grid>
-                        {/* Bloc de gauche  */}
-                        <Grid container className={classes.rightCol}>
-                            <LoadScript googleMapsApiKey={process.env.REACT_APP_KEY_GOOGLE as string}>
-                        <GoogleMap mapContainerStyle={containerStyle} center={center} zoom={6}>
-                        { /* Child components, such as markers, info windows, etc. */ }
-                        {
-                            (
-                                this.state.destination !== '' &&
-                                this.state.origin !== '' && 
-                                this.state.readyToShowMap && 
-                                !this.state.alreadyShowMap
-                            ) && (
-                                <DirectionsService
-                                // required
-                                options={{ 
-                                    destination: this.state.destination,
-                                    origin: this.state.origin,
-                                    travelMode: this.state.travelMode,
-                                    optimizeWaypoints: true,
-                                    waypoints: this.state.waypoints
-                                }}
-                                // required
-                                callback={this.directionsCallback}
-                                // optional
-                                onLoad={directionsService => {
-                                    console.log('DirectionsService onLoad directionsService: ', directionsService)  
-                                }}
-                                // optional
-                                onUnmount={directionsService => {
-                                    console.log('DirectionsService onUnmount directionsService: ', directionsService)
-                                }}
-                                />
-                            )
-                            }
-
-                            {
-                            this.state.response !== null && (
-                                <DirectionsRenderer
-                                // required
-                                options={{ 
-                                    directions: this.state.response
-                                }}
-                                // optional
-                                onLoad={directionsRenderer => {
-                                    console.log('DirectionsRenderer onLoad directionsRenderer: ', directionsRenderer)
-                                }}
-                                // optional
-                                onUnmount={directionsRenderer => {
-                                    console.log('DirectionsRenderer onUnmount directionsRenderer: ', directionsRenderer)
-                                }}
-                                />
-                            )
-                            }
-                        <></>
-                        </GoogleMap>
-                    </LoadScript>
+                            </Container>
                         </Grid>
                     </Grid>
-                </div></>
+                    {/* Bloc de gauche  */}
+                    <Grid container className={classes.rightCol}>
+                        <LoadScript googleMapsApiKey={process.env.REACT_APP_KEY_GOOGLE as string}>
+                            <GoogleMap mapContainerStyle={containerStyle} center={center} zoom={6}>
+                            { /* Child components, such as markers, info windows, etc. */ }
+                            {
+                                (
+                                    this.state.destination !== '' &&
+                                    this.state.origin !== '' && 
+                                    this.state.readyToShowMap && 
+                                    !this.state.alreadyShowMap
+                                ) && (
+                                    <DirectionsService
+                                    // required
+                                    options={{ 
+                                        destination: this.state.destination,
+                                        origin: this.state.origin,
+                                        travelMode: this.state.travelMode,
+                                        optimizeWaypoints: true,
+                                        waypoints: this.state.waypoints
+                                    }}
+                                    // required
+                                    callback={this.directionsCallback}
+                                    // optional
+                                    onLoad={directionsService => {console.log('DirectionsService onLoad directionsService: ', directionsService)}}
+                                    // optional
+                                    onUnmount={directionsService => {console.log('DirectionsService onUnmount directionsService: ', directionsService)}}/>
+                                )
+                            }
+                            {
+                                this.state.response !== null && (
+                                    <DirectionsRenderer
+                                    // required
+                                    options={{directions: this.state.response}}
+                                    // optional
+                                    onLoad={directionsRenderer => {console.log('DirectionsRenderer onLoad directionsRenderer: ', directionsRenderer)}}
+                                    // optional
+                                    onUnmount={directionsRenderer => {console.log('DirectionsRenderer onUnmount directionsRenderer: ', directionsRenderer)}}/>
+                                )
+                            }
+                            <></>
+                            </GoogleMap>
+                        </LoadScript>
+                    </Grid>
+                </Grid>
+            </div></>
         );
     }
 
@@ -288,10 +278,18 @@ export default class Map extends React.PureComponent<P & WithStyles<mapStyles>, 
     }
 
     directionsCallback (response: any) {
-        console.log(response)
+        console.log(response);
+        let i: number = 0
+        let totalTime: number|string = 0
+        while (i < response.routes[0].legs.length) {
+            totalTime += response.routes[0].legs[i].duration.value
+            i = i + 1
+        }
+        totalTime = this.sToTime(totalTime);
         this.setState(
             () => ({
                 alreadyShowMap: true,
+                travelTime: totalTime
             })
         )
         if (response !== null) {
@@ -397,7 +395,6 @@ export default class Map extends React.PureComponent<P & WithStyles<mapStyles>, 
                 for (let i = 0; i < response.data.waypoints.length; i++) {
                     response.data.waypoints[i] = {location: response.data.waypoints[i]}
                 }
-                console.log(response.data);
                 this.setState(
                     () => ({
                         readyToShowMap: true,
@@ -412,5 +409,13 @@ export default class Map extends React.PureComponent<P & WithStyles<mapStyles>, 
                 console.log(error);
             });
         }
+    }
+
+    sToTime = (duration: number) => {
+        let hours: number|string = Math.floor((duration / (60 * 60)));
+        let minutes: number|string = Math.floor((duration / (60)) % 60);
+        hours = (hours < 10) ? "0" + hours : hours;
+        minutes = (minutes < 10) ? "0" + minutes : minutes;
+        return hours + "h " + minutes + "min"
     }
 }
