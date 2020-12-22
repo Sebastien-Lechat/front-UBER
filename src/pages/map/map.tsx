@@ -77,6 +77,7 @@ export default class Map extends React.PureComponent<P & WithStyles<mapStyles>, 
     
     public origin: string ="";
     public destination: string = "";
+    public user = JSON.parse(localStorage.getItem('currentUser') as string);
     
     render () {
         const { classes } = this.props;
@@ -294,11 +295,40 @@ export default class Map extends React.PureComponent<P & WithStyles<mapStyles>, 
         )
         if (response !== null) {
             if (response.status === 'OK') {
-            this.setState(
-                () => ({
-                    response
+
+                this.setState(() => ({response}))
+
+                const data: any = {
+                    departure_location: this.state.origin,
+                    arrival_location: this.state.destination,
+                    duration: totalTime,
+                    mode: this.state.travelMode.toLowerCase()
+                }
+                if (this.state.waypoints.length > 0) data.waypoints = this.state.waypoints;
+                console.log(data);
+                const config: AxiosRequestConfig = {
+                    method: 'post',
+                    url: 'http://localhost:3010/api/UBER-EEDSI/history',
+                    headers: { 
+                        'Authorization': this.user.token, 
+                        'Content-Type': 'application/json'
+                    },
+                    data : data
+                };
+                
+                axios(config)
+                .then((res) => {
+                    console.log(res.data);
+                    toast.success("Historique enregistré", {
+                        position: toast.POSITION.BOTTOM_CENTER,
+                        style: {
+                            textAlign:'center',
+                        }
+                    });
                 })
-            )
+                .catch((error) => {
+                    console.log(error.response);
+                });
             } else {
                 toast.error("Une ou plusieurs adresses sont invalide", {
                     position: toast.POSITION.BOTTOM_CENTER,
@@ -386,6 +416,7 @@ export default class Map extends React.PureComponent<P & WithStyles<mapStyles>, 
                 method: 'post',
                 url: 'http://localhost:3010/api/UBER-EEDSI/map/direction',
                 headers: { 
+                    'Authorization': this.user.token, 
                     'Content-Type': 'application/json'
                 },
                 data : data,
@@ -405,8 +436,23 @@ export default class Map extends React.PureComponent<P & WithStyles<mapStyles>, 
                     })
                 )
             })
-            .catch(function (error) {
-                console.log(error);
+            .catch((error) => {
+                console.log(error.response.data.message);
+                if (error.response && error.response.data && error.response.data.message === 'To much waypoints') {
+                    toast.error("Trop de points de destination", {
+                        position: toast.POSITION.BOTTOM_CENTER,
+                        style: {
+                            textAlign:'center',
+                        }
+                    });
+                } else {
+                    toast.error("Une ou plusieurs adresses sont invalide", {
+                        position: toast.POSITION.BOTTOM_CENTER,
+                        style: {
+                            textAlign:'center',
+                        }
+                    });
+                }
             });
         }
     }

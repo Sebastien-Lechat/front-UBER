@@ -32,13 +32,25 @@ export default class myHistory extends React.PureComponent<P & WithStyles<histor
                 <Grid container spacing={5} className={classes.container}>
                     { history.map((item: any) => {
                             item.date = new Date(item.createdAt).toLocaleString();
+                            let waypointsString = "";
+                            if (item.waypoints) {
+                                for (let i = 0; i < item.waypoints.length; i++) {
+                                    if(i === 0 ) waypointsString +=  item.waypoints[i].location
+                                    else waypointsString +=  ' / '+ item.waypoints[i].location
+                                }
+                            }
                             return (
                                 <Grid item xs={12} sm={6} md={6} lg={4}>
                                     <div className={classes.tabHistorique}>
                                         <Grid className={classes.tabHeader}>
                                             <Grid className={classes.textContainer}>
                                                 <p><span className={classes.libellé}>Date:</span>&nbsp;<span>{ item.date }</span></p>
-                                                <p><span className={classes.libellé}>Temps de trajet:</span> <span>XXHXX</span></p>
+                                                <p>
+                                                    <span className={classes.libellé}>Temps de trajet:</span> 
+                                                    <span> { item.duration }</span>
+                                                    <span className={classes.libellé}>Mode:</span> 
+                                                    <span>{ (item.mode === 'driving') ? ' Voiture' : (item.mode === 'bicycling') ? ' Vélo' :  ' A pied' }</span>
+                                                </p>
                                             </Grid>
                                             <hr className={classes.hrTitre}/>
                                             <Grid className={classes.textContainer}>
@@ -48,7 +60,10 @@ export default class myHistory extends React.PureComponent<P & WithStyles<histor
                                             <hr className={classes.hrTitre}/>
                                         </Grid>
                                         <Grid className={classes.textContainer}>
-                                            <span className={classes.libellé}>Detail du trajet:</span> <p  className={classes.detail}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo ex explicabo laborum eius ut error odio illum animi accusamus porro. Deserunt sit voluptate enim officia amet vel animi reprehenderit culpa!Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo ex explicabo laborum eius ut error odio illum animi accusamus porro. Deserunt sit voluptate enim officia amet vel animi reprehenderit culpa</p>
+                                            <span className={classes.libellé}>Detail du trajet:</span> 
+                                            <p  className={classes.detail}>
+                                                Le trajet avait pour points intermédiaire : {waypointsString}
+                                            </p>
                                         </Grid>
                                         <hr className={classes.hrTitre}/>
                                         <Grid className={classes.textContainer + ' ' + classes.center}>
