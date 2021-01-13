@@ -72,7 +72,7 @@ export default class Login extends React.PureComponent<P & WithStyles<loginStyle
             email: this.state.email.trim(),
             password: this.state.password.trim(),
         }
-        axios.post(`http://localhost:3010/api/UBER-EEDSI/account/login`, data)
+        axios.post(`https://206.81.21.146/api/UBER-EEDSI/account/login`, data)
         .then(res => {
             localStorage.setItem('currentUser', JSON.stringify(res.data)); // stock les informations de l'utilisateurs en front
             toast.success("Connexion réussie", {
@@ -82,7 +82,7 @@ export default class Login extends React.PureComponent<P & WithStyles<loginStyle
         })
         .catch(error => {
             if (error.response && error.response.data && error.response.data.message === 'Double authentification is activated, code is required') {
-                axios.post(`http://localhost:3010/api/UBER-EEDSI/account/request-double-authentification`, data)
+                axios.post(`https://206.81.21.146/api/UBER-EEDSI/account/request-double-authentification`, data)
                 .then(res => {
                     toast.warn("La double authentification est activée", {
                         position: toast.POSITION.BOTTOM_CENTER
@@ -93,7 +93,7 @@ export default class Login extends React.PureComponent<P & WithStyles<loginStyle
                     console.log(error.response.data)
                 })
             } else if (error.response && error.response.data && error.response.data.message === 'Email address not verified') {
-                axios.post(`http://localhost:3010/api/UBER-EEDSI/account/request-verify-email`, {email: data.email})
+                axios.post(`https://206.81.21.146/api/UBER-EEDSI/account/request-verify-email`, {email: data.email})
                 .then(() => {
                     history.push('/verify-email', {email: data.email}); // faire la redirection
                 })

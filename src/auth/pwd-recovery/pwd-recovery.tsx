@@ -72,7 +72,7 @@ export default class RequestPasswordRecovery extends React.PureComponent<P & Wit
         const state: any = history.location.state;
         state.code = this.state.code
         state.password = this.state.password
-        axios.post(`http://localhost:3010/api/UBER-EEDSI/account/reset-password`, state)
+        axios.post(`https://206.81.21.146/api/UBER-EEDSI/account/reset-password`, state)
         .then(res => {
             if(this.state.password === this.state.confirmPassword){
                 localStorage.setItem('currentUser', JSON.stringify(res.data)); // stock les informations de l'utilisateurs en front

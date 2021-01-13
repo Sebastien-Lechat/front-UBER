@@ -86,7 +86,7 @@ export default class myHistory extends React.PureComponent<P & WithStyles<histor
             const user = JSON.parse(localStorage.getItem('currentUser') as string);
             const config: AxiosRequestConfig = {
                 method: 'get',
-                url: 'http://localhost:3010/api/UBER-EEDSI/history',
+                url: 'https://206.81.21.146/api/UBER-EEDSI/history',
                 headers: { 
                 'Authorization': user.token
                 }
@@ -109,7 +109,7 @@ export default class myHistory extends React.PureComponent<P & WithStyles<histor
         }
         const config: AxiosRequestConfig = {
             method: 'delete',
-            url: 'http://localhost:3010/api/UBER-EEDSI/history',
+            url: 'https://206.81.21.146/api/UBER-EEDSI/history',
             headers: { 
                 'Authorization': user.token, 
                 'Content-Type': 'application/json'

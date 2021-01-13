@@ -144,7 +144,7 @@ interface S {
         };
         const config: AxiosRequestConfig = {
             method: 'put',
-            url: 'http://localhost:3010/api/UBER-EEDSI/account',
+            url: 'https://206.81.21.146/api/UBER-EEDSI/account',
             headers: { 
                 'Authorization': this.user.token, 
                 'Content-Type': 'application/json'
@@ -153,7 +153,7 @@ interface S {
         };
         const config2: any = {
             method: 'post',
-            url: 'http://localhost:3010/api/UBER-EEDSI/account/change-password',
+            url: 'https://206.81.21.146/api/UBER-EEDSI/account/change-password',
             headers: { 
                 'Authorization': this.user.token, 
                 'Content-Type': 'application/json'
@@ -206,7 +206,7 @@ interface S {
         const data = {allow: !this.state.doubleAuth};
         const config: AxiosRequestConfig = {
             method: 'post',
-            url: 'http://localhost:3010/api/UBER-EEDSI/account/double-authentification',
+            url: 'https://206.81.21.146/api/UBER-EEDSI/account/double-authentification',
             headers: { 
                 'Authorization': user.token, 
                 'Content-Type': 'application/json'
@@ -215,7 +215,7 @@ interface S {
         };
         const config2: AxiosRequestConfig = {
             method: 'get',
-            url: 'http://localhost:3010/api/UBER-EEDSI/account/',
+            url: 'https://206.81.21.146/api/UBER-EEDSI/account/',
             headers: { 
                 'Authorization': user.token, 
                 'Content-Type': 'application/json'
@@ -252,7 +252,7 @@ interface S {
         }
         const config: AxiosRequestConfig = {
             method: 'delete',
-            url: 'http://localhost:3010/api/UBER-EEDSI/account',
+            url: 'https://206.81.21.146/api/UBER-EEDSI/account',
             headers: { 
                 'Authorization': user.token, 
                 'Content-Type': 'application/json'

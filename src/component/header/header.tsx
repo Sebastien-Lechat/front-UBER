@@ -62,7 +62,7 @@ export default class HeaderBar extends React.PureComponent<P & WithStyles<header
     const user = JSON.parse(localStorage.getItem('currentUser') as string)
     const config: AxiosRequestConfig = {
       method: 'post',
-      url: 'http://localhost:3010/api/UBER-EEDSI/account/disconnect',
+      url: 'https://206.81.21.146/api/UBER-EEDSI/account/disconnect',
       headers: { 
         'Authorization': user.token
       }

@@ -78,7 +78,7 @@ export default class PasswordRecovery extends React.PureComponent<P & WithStyles
             type :'email',
         }
         if(data.email){
-            axios.post(`http://localhost:3010/api/UBER-EEDSI/account/request-reset-password`, data)
+            axios.post(`https://206.81.21.146/api/UBER-EEDSI/account/request-reset-password`, data)
             .then(res => {
                 // localStorage.setItem('currentUser', JSON.stringify(res.data)); // stock les informations de l'utilisateurs en front
                 toast.success("Un mail a été envoyé", {

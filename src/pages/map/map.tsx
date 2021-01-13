@@ -308,7 +308,7 @@ export default class Map extends React.PureComponent<P & WithStyles<mapStyles>, 
                 console.log(data);
                 const config: AxiosRequestConfig = {
                     method: 'post',
-                    url: 'http://localhost:3010/api/UBER-EEDSI/history',
+                    url: 'https://206.81.21.146/api/UBER-EEDSI/history',
                     headers: { 
                         'Authorization': this.user.token, 
                         'Content-Type': 'application/json'
@@ -414,7 +414,7 @@ export default class Map extends React.PureComponent<P & WithStyles<mapStyles>, 
             }
             const config: AxiosRequestConfig = {
                 method: 'post',
-                url: 'http://localhost:3010/api/UBER-EEDSI/map/direction',
+                url: 'https://206.81.21.146/api/UBER-EEDSI/map/direction',
                 headers: { 
                     'Authorization': this.user.token, 
                     'Content-Type': 'application/json'

@@ -66,7 +66,7 @@ export default class DoubleAuth extends React.PureComponent<P & WithStyles<doubl
         e.preventDefault()
         const state: any = history.location.state;
         state.code = this.state.code
-        axios.post(`http://localhost:3010/api/UBER-EEDSI/account/login`, state)
+        axios.post(`https://206.81.21.146/api/UBER-EEDSI/account/login`, state)
         .then( async res => {
             localStorage.setItem('currentUser', JSON.stringify(res.data));
             toast.success("Connexion réussie !", {

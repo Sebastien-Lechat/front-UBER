@@ -65,7 +65,7 @@ export default class VerifyEmail extends React.PureComponent<P & WithStyles<Veri
         let data: any = {};
         if (history.location.state) data = history.location.state;
         if (this.state && this.state.code) data.code = this.state.code;
-        axios.post(`http://localhost:3010/api/UBER-EEDSI/account/verify-email`, data)
+        axios.post(`https://206.81.21.146/api/UBER-EEDSI/account/verify-email`, data)
         .then(res => {
             toast.success("Vérification de l'email réussie", {
                 position: toast.POSITION.BOTTOM_CENTER

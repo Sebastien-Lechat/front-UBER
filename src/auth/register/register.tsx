@@ -75,12 +75,12 @@ export default class Register extends React.PureComponent<P & WithStyles<registe
         if (this.state.phone !== '') data.phone = this.state.phone
         if (this.state.password !== '') data.password = this.state.password
         if(data.name && data.email && data.password && data.password.length > 7 && this.state.password === this.state.confirmPassword) {
-            axios.post(`http://localhost:3010/api/UBER-EEDSI/account/register`, data)
+            axios.post(`https://206.81.21.146/api/UBER-EEDSI/account/register`, data)
             .then((res:any) => {
                 toast.success("Votre compte à bien été créé", {
                     position: toast.POSITION.BOTTOM_CENTER
                 });
-                axios.post(`http://localhost:3010/api/UBER-EEDSI/account/request-verify-email`, {email: data.email})
+                axios.post(`https://206.81.21.146/api/UBER-EEDSI/account/request-verify-email`, {email: data.email})
                 .then((res:any) => {
                     history.push('/verify-email', {email: data.email}); // faire la redirection
                 })
