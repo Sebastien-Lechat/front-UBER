@@ -66,12 +66,12 @@ interface S {
                                         <Grid item sm={12} className={classes.userAvatar}>
                                             <img src={avatar} className={classes.userAvatar} alt="" />
                                         </Grid>
-                                        <Grid item sm={12} >
+                                        <Grid item sm={12} className={classes.center}>
                                         <input accept="image/*" className={classes.input} 
                                         id="contained-button-file" multiple type="file" />
                                             <label htmlFor="contained-button-file">
                                                 <Button className={classes.btnAvatar} variant="contained" color="primary" component="span">
-                                                <PhotoCamera className={classes.iconCamera}/> &nbsp; Modifier mon avatar &nbsp; &nbsp; 
+                                                    <PhotoCamera className={classes.iconCamera}/> &nbsp; Modifier mon avatar
                                                 </Button>
                                             </label>
                                             </Grid>

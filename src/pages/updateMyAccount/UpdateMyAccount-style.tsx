@@ -96,7 +96,6 @@ export default (theme: Theme) => createStyles<updateMyAccountStyles, {}>({
         }
     },
     left:{
-        backgroundColor:'',
         paddingLeft:'40px'
         
     },
@@ -112,7 +111,8 @@ export default (theme: Theme) => createStyles<updateMyAccountStyles, {}>({
         }
     },
     blocBtn:{
-        paddingLeft: '40px'
+        paddingLeft: '40px',
+        textAlign:'center',
     },
     iconDelete:{
         color:'white',
